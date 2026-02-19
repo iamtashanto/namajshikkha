@@ -8,6 +8,8 @@ import { useTheme } from "@/components/ThemeProvider";
 const navLinks = [
     { href: "/", label: "হোম", labelEn: "Home" },
     { href: "/namaj-rules", label: "নামাজের নিয়ম", labelEn: "Namaj Rules" },
+    { href: "/namaj-details", label: "নামাজের বিবরণ", labelEn: "Prayer Details" },
+    { href: "/quran", label: "কুরআন", labelEn: "Quran" },
     { href: "/surah-dua", label: "সূরা ও দোয়া", labelEn: "Surah & Dua" },
     { href: "/hadith-faq", label: "হাদিস ও FAQ", labelEn: "Hadith & FAQ" },
 ];

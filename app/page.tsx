@@ -1,4 +1,4 @@
-import { BookOpen, BookHeart, MessageCircleQuestion, ScrollText } from "lucide-react";
+import { BookOpen, BookHeart, MessageCircleQuestion, ScrollText, BookOpenCheck, ListChecks } from "lucide-react";
 import NavigationCard from "@/components/NavigationCard";
 
 export default function Home() {
@@ -49,13 +49,27 @@ export default function Home() {
         <h2 className="bangla-text mb-8 text-center text-2xl font-bold text-gray-800 dark:text-dark-text sm:text-3xl">
           কী শিখতে চান?
         </h2>
-        <div className="stagger-children grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="stagger-children grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           <NavigationCard
             href="/namaj-rules"
             icon={BookOpen}
             title="নামাজের নিয়ম"
             description="ধাপে ধাপে নামাজ পড়ার সম্পূর্ণ নিয়ম শিখুন"
             color="emerald"
+          />
+          <NavigationCard
+            href="/namaj-details"
+            icon={ListChecks}
+            title="নামাজের বিবরণ"
+            description="কোন নামাজ কত রাকাত, তাকবীর, দোয়া — সব বিস্তারিত"
+            color="emerald"
+          />
+          <NavigationCard
+            href="/quran"
+            icon={BookOpenCheck}
+            title="কুরআনের সূরা"
+            description="১১৪টি সূরা — অডিও তিলাওয়াত সহ অনুসন্ধান করুন"
+            color="gold"
           />
           <NavigationCard
             href="/surah-dua"
