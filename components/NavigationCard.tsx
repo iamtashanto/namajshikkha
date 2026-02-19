@@ -31,9 +31,9 @@ export default function NavigationCard({
             iconBg: "bg-gradient-to-br from-gold-400 to-gold-600",
             border: "border-gold-100",
             hover: "hover:border-gold-300 hover:shadow-gold-100",
-            darkBg: "dark:bg-gold-950/20",
-            darkBorder: "dark:border-gold-800/30",
-            darkHover: "dark:hover:border-gold-600/50 dark:hover:shadow-gold-900/20",
+            darkBg: "dark:bg-amber-950/40",
+            darkBorder: "dark:border-amber-800/40",
+            darkHover: "dark:hover:border-amber-600/50 dark:hover:shadow-amber-900/20",
         },
         blue: {
             bg: "bg-blue-50",
