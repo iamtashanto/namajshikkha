@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Metadata } from "next";
 import SurahCard from "@/components/SurahCard";
 import SearchBar from "@/components/SearchBar";
 import surahs from "@/data/surahs.json";
@@ -36,12 +35,12 @@ export default function SurahDuaPage() {
         <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8">
             {/* Page Header */}
             <div className="mb-10 text-center">
-                <h1 className="bangla-text mb-3 text-3xl font-bold text-gray-900 sm:text-4xl">
-                    <span className="bg-gradient-to-r from-gold-500 to-gold-700 bg-clip-text text-transparent">
+                <h1 className="bangla-text mb-3 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
+                    <span className="bg-gradient-to-r from-gold-500 to-gold-700 bg-clip-text text-transparent dark:from-gold-400 dark:to-gold-600">
                         সূরা ও দোয়া
                     </span>
                 </h1>
-                <p className="bangla-text mx-auto max-w-xl text-gray-500">
+                <p className="bangla-text mx-auto max-w-xl text-gray-500 dark:text-dark-text-secondary">
                     নামাজে পড়ার সূরা ও দোয়াসমূহ — আরবি, বাংলা উচ্চারণ, ব্যাংলিশ ও
                     বাংলা অর্থসহ
                 </p>
@@ -63,8 +62,8 @@ export default function SurahDuaPage() {
                         key={tab.key}
                         onClick={() => setActiveTab(tab.key)}
                         className={`bangla-text rounded-xl px-4 py-2 text-sm font-medium transition-all ${activeTab === tab.key
-                                ? "bg-emerald-600 text-white shadow-md shadow-emerald-200"
-                                : "bg-emerald-50 text-emerald-600 hover:bg-emerald-100"
+                                ? "bg-emerald-600 text-white shadow-md shadow-emerald-200 dark:shadow-emerald-900/30"
+                                : "bg-emerald-50 text-emerald-600 hover:bg-emerald-100 dark:bg-emerald-900/20 dark:text-emerald-400 dark:hover:bg-emerald-900/40"
                             }`}
                     >
                         {tab.label}
@@ -80,11 +79,11 @@ export default function SurahDuaPage() {
                         <SurahCard key={`${item.category}-${item.id}`} data={item} />
                     ))
                 ) : (
-                    <div className="rounded-2xl border border-emerald-100 bg-emerald-50/50 py-16 text-center">
-                        <p className="bangla-text text-lg text-gray-400">
+                    <div className="rounded-2xl border border-emerald-100 bg-emerald-50/50 py-16 text-center dark:border-dark-border dark:bg-dark-card">
+                        <p className="bangla-text text-lg text-gray-400 dark:text-dark-text-muted">
                             কোনো ফলাফল পাওয়া যায়নি
                         </p>
-                        <p className="mt-1 text-sm text-gray-300">
+                        <p className="mt-1 text-sm text-gray-300 dark:text-dark-text-muted">
                             অন্য কিছু অনুসন্ধান করুন
                         </p>
                     </div>

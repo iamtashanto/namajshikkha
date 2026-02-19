@@ -80,7 +80,7 @@ export default function SurahCard({ data }: { data: SurahDuaData }) {
         switch (activeTab) {
             case "arabic":
                 return (
-                    <div className="arabic-text text-2xl leading-[2.4] text-gray-800 sm:text-3xl">
+                    <div className="arabic-text text-2xl leading-[2.4] text-gray-800 dark:text-dark-text sm:text-3xl">
                         {data.arabic_text.split("\n").map((line, i) => (
                             <p key={i} className="mb-2">{line}</p>
                         ))}
@@ -88,7 +88,7 @@ export default function SurahCard({ data }: { data: SurahDuaData }) {
                 );
             case "bangla":
                 return (
-                    <div className="bangla-text text-base leading-8 text-gray-700 sm:text-lg">
+                    <div className="bangla-text text-base leading-8 text-gray-700 dark:text-dark-text-secondary sm:text-lg">
                         {data.bangla_pronunciation.split("\n").map((line, i) => (
                             <p key={i} className="mb-1.5">{line}</p>
                         ))}
@@ -96,7 +96,7 @@ export default function SurahCard({ data }: { data: SurahDuaData }) {
                 );
             case "banglish":
                 return (
-                    <div className="text-base leading-7 text-gray-600 italic sm:text-lg">
+                    <div className="text-base leading-7 text-gray-600 italic dark:text-dark-text-muted sm:text-lg">
                         {data.banglish.split("\n").map((line, i) => (
                             <p key={i} className="mb-1.5">{line}</p>
                         ))}
@@ -104,7 +104,7 @@ export default function SurahCard({ data }: { data: SurahDuaData }) {
                 );
             case "meaning":
                 return (
-                    <div className="bangla-text text-base leading-8 text-emerald-800 sm:text-lg">
+                    <div className="bangla-text text-base leading-8 text-emerald-800 dark:text-emerald-400 sm:text-lg">
                         {data.bangla_meaning.split("\n").map((line, i) => (
                             <p key={i} className="mb-1.5">{line}</p>
                         ))}
@@ -114,36 +114,36 @@ export default function SurahCard({ data }: { data: SurahDuaData }) {
     };
 
     return (
-        <article className="group overflow-hidden rounded-2xl border border-emerald-100 bg-white shadow-sm transition-all duration-300 hover:shadow-md hover:border-emerald-200">
+        <article className="group overflow-hidden rounded-2xl border border-emerald-100 bg-white shadow-sm transition-all duration-300 hover:shadow-md hover:border-emerald-200 dark:border-dark-border dark:bg-dark-card dark:hover:border-emerald-800/50 dark:hover:shadow-emerald-900/10">
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-emerald-50 bg-gradient-to-r from-emerald-50 to-white px-5 py-4 sm:px-6">
+            <div className="flex items-center justify-between border-b border-emerald-50 bg-gradient-to-r from-emerald-50 to-white px-5 py-4 dark:border-dark-border dark:from-emerald-950/30 dark:to-dark-card sm:px-6">
                 <div className="flex items-center gap-3">
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-700 shadow-sm">
                         <BookOpenText className="h-5 w-5 text-white" />
                     </div>
                     <div>
-                        <h3 className="bangla-text text-base font-bold text-gray-800 sm:text-lg">
+                        <h3 className="bangla-text text-base font-bold text-gray-800 dark:text-dark-text sm:text-lg">
                             {data.title_bn}
                         </h3>
-                        <p className="text-xs text-gray-400">{data.title_en}</p>
+                        <p className="text-xs text-gray-400 dark:text-dark-text-muted">{data.title_en}</p>
                     </div>
                 </div>
                 {data.verse_count && (
-                    <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-medium text-emerald-700">
+                    <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-medium text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400">
                         {data.verse_count} আয়াত
                     </span>
                 )}
             </div>
 
             {/* Tabs */}
-            <div className="flex border-b border-emerald-50 bg-gray-50/50">
+            <div className="flex border-b border-emerald-50 bg-gray-50/50 dark:border-dark-border dark:bg-dark-bg/50">
                 {tabs.map((tab) => (
                     <button
                         key={tab.key}
                         onClick={() => setActiveTab(tab.key)}
                         className={`bangla-text flex-1 py-2.5 text-xs font-medium transition-all sm:text-sm ${activeTab === tab.key
-                                ? "border-b-2 border-emerald-500 bg-white text-emerald-700"
-                                : "text-gray-400 hover:text-gray-600 hover:bg-white/50"
+                                ? "border-b-2 border-emerald-500 bg-white text-emerald-700 dark:bg-dark-card dark:text-emerald-400"
+                                : "text-gray-400 hover:text-gray-600 hover:bg-white/50 dark:text-dark-text-muted dark:hover:text-dark-text-secondary dark:hover:bg-dark-card/50"
                             }`}
                     >
                         {tab.label}
@@ -157,12 +157,12 @@ export default function SurahCard({ data }: { data: SurahDuaData }) {
             </div>
 
             {/* Audio Player */}
-            <div className="border-t border-emerald-50 bg-gradient-to-r from-emerald-50/50 to-white px-5 py-3.5 sm:px-6">
+            <div className="border-t border-emerald-50 bg-gradient-to-r from-emerald-50/50 to-white px-5 py-3.5 dark:border-dark-border dark:from-emerald-950/20 dark:to-dark-card sm:px-6">
                 <audio ref={audioRef} src={data.audio_url} preload="metadata" />
                 <div className="flex items-center gap-3">
                     <button
                         onClick={togglePlay}
-                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 text-white shadow-md shadow-emerald-200 transition-all hover:shadow-lg hover:scale-105 active:scale-95"
+                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 text-white shadow-md shadow-emerald-200 transition-all hover:shadow-lg hover:scale-105 active:scale-95 dark:shadow-emerald-900/30"
                         aria-label={isPlaying ? "Pause" : "Play"}
                     >
                         {isPlaying ? (
@@ -173,7 +173,7 @@ export default function SurahCard({ data }: { data: SurahDuaData }) {
                     </button>
 
                     <div className="flex flex-1 items-center gap-2.5">
-                        <span className="w-10 text-right text-xs tabular-nums text-gray-400">
+                        <span className="w-10 text-right text-xs tabular-nums text-gray-400 dark:text-dark-text-muted">
                             {formatTime(currentTime)}
                         </span>
                         <input
@@ -185,12 +185,12 @@ export default function SurahCard({ data }: { data: SurahDuaData }) {
                             className="h-1 flex-1 cursor-pointer"
                             aria-label="Audio progress"
                         />
-                        <span className="w-10 text-xs tabular-nums text-gray-400">
+                        <span className="w-10 text-xs tabular-nums text-gray-400 dark:text-dark-text-muted">
                             {formatTime(duration)}
                         </span>
                     </div>
 
-                    <Volume2 className="h-4 w-4 shrink-0 text-emerald-400" />
+                    <Volume2 className="h-4 w-4 shrink-0 text-emerald-400 dark:text-emerald-500" />
                 </div>
             </div>
         </article>
