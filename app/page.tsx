@@ -1,4 +1,4 @@
-import { BookOpen, BookHeart, MessageCircleQuestion, ScrollText, BookOpenCheck, ListChecks } from "lucide-react";
+import { BookOpen, BookHeart, MessageCircleQuestion, ScrollText, BookOpenCheck, ListChecks, Landmark } from "lucide-react";
 import NavigationCard from "@/components/NavigationCard";
 
 export default function Home() {
@@ -70,6 +70,13 @@ export default function Home() {
             title="কুরআনের সূরা"
             description="১১৪টি সূরা — অডিও তিলাওয়াত সহ অনুসন্ধান করুন"
             color="gold"
+          />
+          <NavigationCard
+            href="/islamic-history"
+            icon={Landmark}
+            title="ইসলামের ইতিহাস"
+            description="প্রাক-ইসলাম থেকে আধুনিক যুগ — ৫৮টি ঘটনা"
+            color="purple"
           />
           <NavigationCard
             href="/surah-dua"

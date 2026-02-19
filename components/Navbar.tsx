@@ -10,6 +10,7 @@ const navLinks = [
     { href: "/namaj-rules", label: "নামাজের নিয়ম", labelEn: "Namaj Rules" },
     { href: "/namaj-details", label: "নামাজের বিবরণ", labelEn: "Prayer Details" },
     { href: "/quran", label: "কুরআন", labelEn: "Quran" },
+    { href: "/islamic-history", label: "ইতিহাস", labelEn: "History" },
     { href: "/surah-dua", label: "সূরা ও দোয়া", labelEn: "Surah & Dua" },
     { href: "/hadith-faq", label: "হাদিস ও FAQ", labelEn: "Hadith & FAQ" },
 ];
