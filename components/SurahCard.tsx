@@ -142,8 +142,8 @@ export default function SurahCard({ data }: { data: SurahDuaData }) {
                         key={tab.key}
                         onClick={() => setActiveTab(tab.key)}
                         className={`bangla-text flex-1 py-2.5 text-xs font-medium transition-all sm:text-sm ${activeTab === tab.key
-                                ? "border-b-2 border-emerald-500 bg-white text-emerald-700 dark:bg-dark-card dark:text-emerald-400"
-                                : "text-gray-400 hover:text-gray-600 hover:bg-white/50 dark:text-dark-text-muted dark:hover:text-dark-text-secondary dark:hover:bg-dark-card/50"
+                            ? "border-b-2 border-emerald-500 bg-white text-emerald-700 dark:bg-dark-card dark:text-emerald-400"
+                            : "text-gray-400 hover:text-gray-600 hover:bg-white/50 dark:text-dark-text-muted dark:hover:text-dark-text-secondary dark:hover:bg-dark-card/50"
                             }`}
                     >
                         {tab.label}
@@ -157,42 +157,48 @@ export default function SurahCard({ data }: { data: SurahDuaData }) {
             </div>
 
             {/* Audio Player */}
-            <div className="border-t border-emerald-50 bg-gradient-to-r from-emerald-50/50 to-white px-5 py-3.5 dark:border-dark-border dark:from-emerald-950/20 dark:to-dark-card sm:px-6">
-                <audio ref={audioRef} src={data.audio_url} preload="metadata" />
-                <div className="flex items-center gap-3">
-                    <button
-                        onClick={togglePlay}
-                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 text-white shadow-md shadow-emerald-200 transition-all hover:shadow-lg hover:scale-105 active:scale-95 dark:shadow-emerald-900/30"
-                        aria-label={isPlaying ? "Pause" : "Play"}
-                    >
-                        {isPlaying ? (
-                            <Pause className="h-4 w-4" />
-                        ) : (
-                            <Play className="ml-0.5 h-4 w-4" />
-                        )}
-                    </button>
+            {data.audio_url ? (
+                <div className="border-t border-emerald-50 bg-gradient-to-r from-emerald-50/50 to-white px-5 py-3.5 dark:border-dark-border dark:from-emerald-950/20 dark:to-dark-card sm:px-6">
+                    <audio ref={audioRef} src={data.audio_url} preload="metadata" />
+                    <div className="flex items-center gap-3">
+                        <button
+                            onClick={togglePlay}
+                            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 text-white shadow-md shadow-emerald-200 transition-all hover:shadow-lg hover:scale-105 active:scale-95 dark:shadow-emerald-900/30"
+                            aria-label={isPlaying ? "Pause" : "Play"}
+                        >
+                            {isPlaying ? (
+                                <Pause className="h-4 w-4" />
+                            ) : (
+                                <Play className="ml-0.5 h-4 w-4" />
+                            )}
+                        </button>
 
-                    <div className="flex flex-1 items-center gap-2.5">
-                        <span className="w-10 text-right text-xs tabular-nums text-gray-400 dark:text-dark-text-muted">
-                            {formatTime(currentTime)}
-                        </span>
-                        <input
-                            type="range"
-                            min={0}
-                            max={duration || 0}
-                            value={currentTime}
-                            onChange={handleSeek}
-                            className="h-1 flex-1 cursor-pointer"
-                            aria-label="Audio progress"
-                        />
-                        <span className="w-10 text-xs tabular-nums text-gray-400 dark:text-dark-text-muted">
-                            {formatTime(duration)}
-                        </span>
+                        <div className="flex flex-1 items-center gap-2.5">
+                            <span className="w-10 text-right text-xs tabular-nums text-gray-400 dark:text-dark-text-muted">
+                                {formatTime(currentTime)}
+                            </span>
+                            <input
+                                type="range"
+                                min={0}
+                                max={duration || 0}
+                                value={currentTime}
+                                onChange={handleSeek}
+                                className="h-1 flex-1 cursor-pointer"
+                                aria-label="Audio progress"
+                            />
+                            <span className="w-10 text-xs tabular-nums text-gray-400 dark:text-dark-text-muted">
+                                {formatTime(duration)}
+                            </span>
+                        </div>
+
+                        <Volume2 className="h-4 w-4 shrink-0 text-emerald-400 dark:text-emerald-500" />
                     </div>
-
-                    <Volume2 className="h-4 w-4 shrink-0 text-emerald-400 dark:text-emerald-500" />
                 </div>
-            </div>
+            ) : (
+                <div className="border-t border-emerald-50 bg-gray-50/50 px-5 py-3 text-center text-xs text-gray-400 dark:border-dark-border dark:bg-dark-bg/30 dark:text-dark-text-muted">
+                    অডিও শীঘ্রই যুক্ত করা হবে
+                </div>
+            )}
         </article>
     );
 }
