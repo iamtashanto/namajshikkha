@@ -75,7 +75,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="flex min-h-screen flex-col bg-white antialiased dark:bg-dark-bg">
+      <body className="flex min-h-screen flex-col bg-white antialiased dark:bg-dark-bg" suppressHydrationWarning>
         <ThemeProvider>
           <AudioProvider>
             <Navbar />

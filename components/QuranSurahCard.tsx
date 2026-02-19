@@ -17,7 +17,7 @@ interface SurahData {
 }
 
 export default function QuranSurahCard({ data, playlist }: { data: SurahData; playlist?: SurahData[] }) {
-    const { activeTrack, isPlaying, play, pause, toggle, progress, duration, isLoading: isGlobalLoading } = useAudio();
+    const { activeTrack, isPlaying, play, toggle, progress, duration, isLoading: isGlobalLoading } = useAudio();
     const [isExpanded, setIsExpanded] = useState(false);
 
     const isThisPlaying = activeTrack?.url === data.audio_url;

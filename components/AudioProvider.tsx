@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useRef, useEffect } from "react";
+import React, { createContext, useContext, useState, useRef, useEffect, useCallback } from "react";
 
 interface Track {
     id: string | number;
@@ -46,17 +46,76 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
     const hasNext = activeIndex !== -1 && activeIndex < playlist.length - 1;
     const hasPrevious = activeIndex > 0;
 
-    const playNext = () => {
+    const play = useCallback((track: Track, newPlaylist?: Track[]) => {
+        const audio = audioRef.current;
+        if (!audio) return;
+
+        if (newPlaylist) {
+            setPlaylist(newPlaylist);
+        }
+
+        if (activeTrack?.url === track.url) {
+            audio.play();
+            setIsPlaying(true);
+            return;
+        }
+
+        audio.src = track.url;
+        setActiveTrack(track);
+        setIsLoading(true);
+        audio.play()
+            .then(() => setIsPlaying(true))
+            .catch((err) => {
+                console.error("Audio play error:", err);
+                setIsPlaying(false);
+                setIsLoading(false);
+            });
+    }, [activeTrack]);
+
+    const playNext = useCallback(() => {
         if (hasNext) {
             play(playlist[activeIndex + 1]);
         }
-    };
+    }, [hasNext, play, playlist, activeIndex]);
 
-    const playPrevious = () => {
+    const playPrevious = useCallback(() => {
         if (hasPrevious) {
             play(playlist[activeIndex - 1]);
         }
-    };
+    }, [hasPrevious, play, playlist, activeIndex]);
+
+    const pause = useCallback(() => {
+        audioRef.current?.pause();
+        setIsPlaying(false);
+    }, []);
+
+    const toggle = useCallback(() => {
+        if (isPlaying) {
+            pause();
+        } else if (activeTrack) {
+            audioRef.current?.play();
+            setIsPlaying(true);
+        }
+    }, [isPlaying, pause, activeTrack]);
+
+    const seek = useCallback((time: number) => {
+        if (audioRef.current) {
+            audioRef.current.currentTime = time;
+            setProgress(time);
+        }
+    }, []);
+
+    const stop = useCallback(() => {
+        if (audioRef.current) {
+            audioRef.current.pause();
+            audioRef.current.src = "";
+        }
+        setActiveTrack(null);
+        setIsPlaying(false);
+        setProgress(0);
+        setDuration(0);
+        setIsLoading(false);
+    }, []);
 
     useEffect(() => {
         if (!audioRef.current) {
@@ -96,66 +155,8 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
             audio.removeEventListener("canplay", handleCanPlay);
             audio.removeEventListener("error", handleError);
         };
-    }, [autoNext, hasNext, playlist, activeIndex]); // Dependencies added for handleEnded logic
+    }, [autoNext, hasNext, playNext]); // Properly scoped dependencies
 
-    const play = (track: Track, newPlaylist?: Track[]) => {
-        const audio = audioRef.current;
-        if (!audio) return;
-
-        if (newPlaylist) {
-            setPlaylist(newPlaylist);
-        }
-
-        if (activeTrack?.url === track.url) {
-            audio.play();
-            setIsPlaying(true);
-            return;
-        }
-
-        audio.src = track.url;
-        setActiveTrack(track);
-        setIsLoading(true);
-        audio.play()
-            .then(() => setIsPlaying(true))
-            .catch((err) => {
-                console.error("Audio play error:", err);
-                setIsPlaying(false);
-                setIsLoading(false);
-            });
-    };
-
-    const pause = () => {
-        audioRef.current?.pause();
-        setIsPlaying(false);
-    };
-
-    const toggle = () => {
-        if (isPlaying) {
-            pause();
-        } else if (activeTrack) {
-            audioRef.current?.play();
-            setIsPlaying(true);
-        }
-    };
-
-    const seek = (time: number) => {
-        if (audioRef.current) {
-            audioRef.current.currentTime = time;
-            setProgress(time);
-        }
-    };
-
-    const stop = () => {
-        if (audioRef.current) {
-            audioRef.current.pause();
-            audioRef.current.src = "";
-        }
-        setActiveTrack(null);
-        setIsPlaying(false);
-        setProgress(0);
-        setDuration(0);
-        setIsLoading(false);
-    };
 
     return (
         <AudioContext.Provider

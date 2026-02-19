@@ -18,7 +18,7 @@ interface SurahDuaData {
 }
 
 export default function SurahCard({ data, playlist }: { data: SurahDuaData; playlist?: SurahDuaData[] }) {
-    const { activeTrack, isPlaying, play, pause, toggle, progress, duration, isLoading } = useAudio();
+    const { activeTrack, isPlaying, play, toggle, progress, duration } = useAudio();
     const [activeTab, setActiveTab] = useState<"arabic" | "bangla" | "banglish" | "meaning">("arabic");
 
     const isThisPlaying = activeTrack?.url === data.audio_url;
