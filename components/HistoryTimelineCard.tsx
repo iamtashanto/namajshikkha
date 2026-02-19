@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 interface HistoryEvent {
     year: string;
@@ -9,6 +10,7 @@ interface HistoryEvent {
     title_en: string;
     description_bn: string;
     significance_bn: string;
+    slug?: string;
 }
 
 interface HistoryEra {
@@ -81,6 +83,17 @@ export default function HistoryTimelineCard({ era, eventIndex, event }: { era: H
                                 ✦ গুরুত্ব: {event.significance_bn}
                             </p>
                         </div>
+                        {event.slug && (
+                            <div className={`border-t px-4 py-2.5 ${colors.border}`}>
+                                <Link
+                                    href={`/islamic-history/${era.id}/${event.slug}`}
+                                    onClick={(e) => e.stopPropagation()}
+                                    className={`bangla-text inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium text-white transition-all hover:shadow-md bg-gradient-to-r ${colors.accent}`}
+                                >
+                                    বিস্তারিত দেখুন <ArrowRight className="h-3 w-3" />
+                                </Link>
+                            </div>
+                        )}
                     </div>
                 </article>
             </div>
