@@ -62,8 +62,8 @@ export default function SurahDuaPage() {
                         key={tab.key}
                         onClick={() => setActiveTab(tab.key)}
                         className={`bangla-text rounded-xl px-4 py-2 text-sm font-medium transition-all ${activeTab === tab.key
-                                ? "bg-emerald-600 text-white shadow-md shadow-emerald-200 dark:shadow-emerald-900/30"
-                                : "bg-emerald-50 text-emerald-600 hover:bg-emerald-100 dark:bg-emerald-900/20 dark:text-emerald-400 dark:hover:bg-emerald-900/40"
+                            ? "bg-emerald-600 text-white shadow-md shadow-emerald-200 dark:shadow-emerald-900/30"
+                            : "bg-emerald-50 text-emerald-600 hover:bg-emerald-100 dark:bg-emerald-900/20 dark:text-emerald-400 dark:hover:bg-emerald-900/40"
                             }`}
                     >
                         {tab.label}
@@ -76,7 +76,9 @@ export default function SurahDuaPage() {
             <div className="space-y-6">
                 {filteredItems.length > 0 ? (
                     filteredItems.map((item) => (
-                        <SurahCard key={`${item.category}-${item.id}`} data={item} />
+                        <div key={`${item.category}-${item.id}`} id={`${item.category}-${item.id}`} className="scroll-mt-24">
+                            <SurahCard data={item} />
+                        </div>
                     ))
                 ) : (
                     <div className="rounded-2xl border border-emerald-100 bg-emerald-50/50 py-16 text-center dark:border-dark-border dark:bg-dark-card">

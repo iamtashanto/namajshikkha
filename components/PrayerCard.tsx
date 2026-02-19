@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, Clock } from "lucide-react";
+import Link from "next/link";
+import { ChevronDown, Clock, ExternalLink } from "lucide-react";
 
 interface RakatBreakdown {
     type: string;
@@ -16,6 +17,10 @@ interface PrayerAction {
     arabic?: string;
     bangla_pronunciation?: string;
     note?: string;
+    ref?: {
+        type: "surah" | "dua";
+        id: number;
+    };
 }
 
 interface PrayerStep {
@@ -152,14 +157,27 @@ export default function PrayerCard({ data }: { data: PrayerData }) {
 
                                 <div className="ml-3 space-y-2.5 border-l-2 border-emerald-100 pl-5 dark:border-emerald-800/40">
                                     {step.actions.map((action, actionIndex) => (
-                                        <div key={actionIndex} className="relative">
+                                        <div key={actionIndex} className="relative group/action">
                                             <div className="absolute -left-[25px] top-1.5 h-2 w-2 rounded-full bg-emerald-300 dark:bg-emerald-600" />
-                                            <p className="bangla-text text-sm leading-7 text-gray-600 dark:text-dark-text-secondary">
-                                                {action.action_bn}
-                                            </p>
+
+                                            <div className="flex flex-wrap items-start justify-between gap-2">
+                                                <p className="bangla-text text-sm leading-7 text-gray-600 dark:text-dark-text-secondary">
+                                                    {action.action_bn}
+                                                </p>
+
+                                                {action.ref && (
+                                                    <Link
+                                                        href={`/surah-dua#${action.ref.type}-${action.ref.id}`}
+                                                        className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-medium text-emerald-600 transition-colors hover:bg-emerald-100 dark:bg-emerald-900/30 dark:text-emerald-400 dark:hover:bg-emerald-900/50"
+                                                    >
+                                                        <span>সম্পূর্ণ পড়ুন</span>
+                                                        <ExternalLink className="h-3 w-3" />
+                                                    </Link>
+                                                )}
+                                            </div>
 
                                             {action.arabic && (
-                                                <div className="mt-1.5 rounded-lg bg-emerald-50/70 px-3 py-2 dark:bg-emerald-950/30">
+                                                <div className="mt-1.5 rounded-lg bg-emerald-50/70 px-3 py-2 dark:bg-emerald-950/30 transition-colors group-hover/action:bg-emerald-100/50 dark:group-hover/action:bg-emerald-900/20">
                                                     <p className="arabic-text text-base text-gray-800 dark:text-dark-text">
                                                         {action.arabic}
                                                     </p>
