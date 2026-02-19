@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next';
 import historyData from "@/data/islamic-history.json";
 
+export const dynamic = 'force-static';
+
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://namajshikkha.vercel.app'; // Replace with actual domain if known
 
@@ -24,10 +26,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const historyRoutes: MetadataRoute.Sitemap = [];
 
     historyData.forEach((era) => {
-        era.events.forEach((event: any) => {
-            if (event.slug) {
+        era.events.forEach((event) => {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const slug = (event as any).slug;
+            if (slug) {
                 historyRoutes.push({
-                    url: `${baseUrl}/islamic-history/${era.id}/${event.slug}`,
+                    url: `${baseUrl}/islamic-history/${era.id}/${slug}`,
                     lastModified: new Date(),
                     changeFrequency: 'yearly' as const,
                     priority: 0.6,

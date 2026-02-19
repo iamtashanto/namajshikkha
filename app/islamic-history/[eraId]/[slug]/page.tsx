@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import historyData from "@/data/islamic-history.json";
 import { notFound } from "next/navigation";
 import Link from "next/link";

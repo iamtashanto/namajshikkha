@@ -68,7 +68,8 @@ export default function NamajDetailsPage() {
 
             {/* Prayer Cards */}
             <div className="space-y-4">
-                {prayerDetails.map((prayer) => (
+                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                {prayerDetails.map((prayer: any) => (
                     <PrayerCard key={prayer.id} data={prayer} />
                 ))}
             </div>
