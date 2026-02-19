@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Amiri, Noto_Sans_Bengali } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -8,6 +8,20 @@ import "./globals.css";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const amiri = Amiri({
+  variable: "--font-arabic",
+  weight: ["400", "700"],
+  subsets: ["arabic"],
+  display: "swap",
+});
+
+const notoSansBengali = Noto_Sans_Bengali({
+  variable: "--font-bengali",
+  weight: ["400", "500", "600", "700"],
+  subsets: ["bengali"],
   display: "swap",
 });
 
@@ -43,12 +57,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="bn" className={inter.variable} suppressHydrationWarning>
+    <html lang="bn" className={`${inter.variable} ${amiri.variable} ${notoSansBengali.variable}`} suppressHydrationWarning>
       <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
         {/* Prevent flash of wrong theme */}
         <script
           dangerouslySetInnerHTML={{
