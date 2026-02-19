@@ -16,16 +16,17 @@ export default function Footer() {
                     </p>
 
                     {/* Divider */}
-                    <div className="my-2 h-px w-24 bg-gradient-to-r from-transparent via-emerald-600 to-transparent dark:via-emerald-500" />
+                    <div className=" h-px w-24 bg-gradient-to-r from-transparent via-emerald-600 to-transparent dark:via-emerald-500" />
 
                     {/* Copyright */}
                     <p className="flex items-center gap-1.5 text-xs text-emerald-400 dark:text-emerald-500/80">
-                        তৈরি করা হয়েছে{" "}
-                        <Heart className="h-3.5 w-3.5 fill-red-400 text-red-400" />{" "}
-                        দিয়ে — নামাজ শিক্ষা © {new Date().getFullYear()}
+                        <p className="bangla-text text-sm text-emerald-300/80 dark:text-emerald-400/60">
+                            Developed by <span className="font-semibold text-gold-400">Md Tanvir Ahamed Shanto</span>
+                        </p>{" "}
+                        নামাজ শিক্ষা © {new Date().getFullYear()}
                     </p>
 
-                    <p className="text-xs text-emerald-500 dark:text-emerald-600">
+                    <p className="text-xs text-emerald-500 dark:text-emerald-600 ">
                         সকল তথ্য সহীহ হাদিস ও কুরআন থেকে সংগৃহীত
                     </p>
                 </div>

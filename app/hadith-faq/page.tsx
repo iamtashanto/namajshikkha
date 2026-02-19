@@ -13,20 +13,26 @@ export default function HadithFaqPage() {
     const [searchQuery, setSearchQuery] = useState("");
     const [openFaqId, setOpenFaqId] = useState<number | null>(null);
 
+    const normalizedQuery = searchQuery.toLowerCase().trim();
+
     const filteredHadiths = hadiths.filter(
         (h) =>
             searchQuery === "" ||
             h.title_bn.includes(searchQuery) ||
-            h.title_en.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            h.text_bn.includes(searchQuery)
+            h.title_en.toLowerCase().includes(normalizedQuery) ||
+            h.text_bn.includes(searchQuery) ||
+            h.narrator_bn.includes(searchQuery) ||
+            h.source.includes(searchQuery) ||
+            h.category.includes(normalizedQuery)
     );
 
     const filteredFaqs = faqs.filter(
         (f) =>
             searchQuery === "" ||
             f.question_bn.includes(searchQuery) ||
-            f.question_en.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            f.answer_bn.includes(searchQuery)
+            f.question_en.toLowerCase().includes(normalizedQuery) ||
+            f.answer_bn.includes(searchQuery) ||
+            f.category.includes(normalizedQuery)
     );
 
     return (
@@ -57,8 +63,8 @@ export default function HadithFaqPage() {
                 <button
                     onClick={() => { setView("hadith"); setSearchQuery(""); }}
                     className={`flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-medium transition-all ${view === "hadith"
-                            ? "bg-blue-600 text-white shadow-md shadow-blue-200 dark:shadow-blue-900/30"
-                            : "bg-blue-50 text-blue-600 hover:bg-blue-100 dark:bg-blue-900/20 dark:text-blue-400 dark:hover:bg-blue-900/40"
+                        ? "bg-blue-600 text-white shadow-md shadow-blue-200 dark:shadow-blue-900/30"
+                        : "bg-blue-50 text-blue-600 hover:bg-blue-100 dark:bg-blue-900/20 dark:text-blue-400 dark:hover:bg-blue-900/40"
                         }`}
                 >
                     <BookHeart className="h-4 w-4" />
@@ -68,8 +74,8 @@ export default function HadithFaqPage() {
                 <button
                     onClick={() => { setView("faq"); setSearchQuery(""); }}
                     className={`flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-medium transition-all ${view === "faq"
-                            ? "bg-purple-600 text-white shadow-md shadow-purple-200 dark:shadow-purple-900/30"
-                            : "bg-purple-50 text-purple-600 hover:bg-purple-100 dark:bg-purple-900/20 dark:text-purple-400 dark:hover:bg-purple-900/40"
+                        ? "bg-purple-600 text-white shadow-md shadow-purple-200 dark:shadow-purple-900/30"
+                        : "bg-purple-50 text-purple-600 hover:bg-purple-100 dark:bg-purple-900/20 dark:text-purple-400 dark:hover:bg-purple-900/40"
                         }`}
                 >
                     <MessageCircleQuestion className="h-4 w-4" />
