@@ -77,7 +77,7 @@ export default function SurahDuaPage() {
                 {filteredItems.length > 0 ? (
                     filteredItems.map((item) => (
                         <div key={`${item.category}-${item.id}`} id={`${item.category}-${item.id}`} className="scroll-mt-24">
-                            <SurahCard data={item} />
+                            <SurahCard data={item} playlist={filteredItems} />
                         </div>
                     ))
                 ) : (

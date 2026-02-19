@@ -103,7 +103,7 @@ export default function QuranPage() {
             <div className="space-y-3">
                 {filteredSurahs.length > 0 ? (
                     filteredSurahs.map((surah) => (
-                        <QuranSurahCard key={surah.number} data={surah} />
+                        <QuranSurahCard key={surah.number} data={surah} playlist={filteredSurahs} />
                     ))
                 ) : (
                     <div className="rounded-2xl border border-emerald-100 bg-emerald-50/50 py-16 text-center dark:border-dark-border dark:bg-dark-card">

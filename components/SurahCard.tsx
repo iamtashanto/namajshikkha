@@ -17,7 +17,7 @@ interface SurahDuaData {
     verse_count?: number;
 }
 
-export default function SurahCard({ data }: { data: SurahDuaData }) {
+export default function SurahCard({ data, playlist }: { data: SurahDuaData; playlist?: SurahDuaData[] }) {
     const { activeTrack, isPlaying, play, pause, toggle, progress, duration, isLoading } = useAudio();
     const [activeTab, setActiveTab] = useState<"arabic" | "bangla" | "banglish" | "meaning">("arabic");
 
@@ -27,12 +27,19 @@ export default function SurahCard({ data }: { data: SurahDuaData }) {
         if (isThisPlaying) {
             toggle();
         } else {
+            const trackPlaylist = playlist?.map(item => ({
+                id: `${item.category}-${item.id}`,
+                title_bn: item.title_bn,
+                title_en: item.title_en,
+                url: item.audio_url
+            }));
+
             play({
                 id: `${data.category}-${data.id}`,
                 title_bn: data.title_bn,
                 title_en: data.title_en,
                 url: data.audio_url
-            });
+            }, trackPlaylist);
         }
     };
 

@@ -16,7 +16,7 @@ interface SurahData {
     audio_url: string;
 }
 
-export default function QuranSurahCard({ data }: { data: SurahData }) {
+export default function QuranSurahCard({ data, playlist }: { data: SurahData; playlist?: SurahData[] }) {
     const { activeTrack, isPlaying, play, pause, toggle, progress, duration, isLoading: isGlobalLoading } = useAudio();
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -27,12 +27,19 @@ export default function QuranSurahCard({ data }: { data: SurahData }) {
         if (isThisPlaying) {
             toggle();
         } else {
+            const trackPlaylist = playlist?.map(item => ({
+                id: `surah-${item.number}`,
+                title_bn: item.name_bangla,
+                title_en: item.name_english,
+                url: item.audio_url
+            }));
+
             play({
                 id: `surah-${data.number}`,
                 title_bn: data.name_bangla,
                 title_en: data.name_english,
                 url: data.audio_url
-            });
+            }, trackPlaylist);
         }
     };
 
