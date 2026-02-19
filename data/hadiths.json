@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "title_bn": "নামাজের গুরুত্ব",
+    "title_en": "Importance of Salah",
+    "narrator_bn": "আবদুল্লাহ ইবনে মাসউদ (রা.)",
+    "narrator_en": "Abdullah ibn Mas'ud (RA)",
+    "text_bn": "আমি রাসূলুল্লাহ (সা.)-কে জিজ্ঞাসা করলাম, 'কোন আমল আল্লাহর নিকট সবচেয়ে প্রিয়?' তিনি বললেন, 'সময়মতো নামাজ পড়া।' আমি বললাম, 'তারপর কোনটি?' তিনি বললেন, 'মাতা-পিতার সাথে সদ্ব্যবহার করা।'",
+    "text_en": "I asked the Messenger of Allah (PBUH), 'Which deed is the dearest to Allah?' He replied, 'To offer the prayers at their fixed times.' I asked, 'What is the next?' He replied, 'To be good and dutiful to your parents.'",
+    "source": "সহীহ বুখারী ৫২৭",
+    "category": "namaj"
+  },
+  {
+    "id": 2,
+    "title_bn": "নামাজ ঈমান ও কুফরের পার্থক্য",
+    "title_en": "Prayer Distinguishes Belief from Disbelief",
+    "narrator_bn": "জাবির ইবনে আবদুল্লাহ (রা.)",
+    "narrator_en": "Jabir ibn Abdullah (RA)",
+    "text_bn": "রাসূলুল্লাহ (সা.) বলেছেন, 'বান্দা এবং কুফরের মধ্যে পার্থক্য হলো নামাজ পরিত্যাগ করা।'",
+    "text_en": "The Prophet (PBUH) said, 'Between a man and shirk and kufr there stands his giving up prayer.'",
+    "source": "সহীহ মুসলিম ৮২",
+    "category": "namaj"
+  },
+  {
+    "id": 3,
+    "title_bn": "পাঁচ ওয়াক্ত নামাজের ফযীলত",
+    "title_en": "Virtue of Five Daily Prayers",
+    "narrator_bn": "আবু হুরায়রা (রা.)",
+    "narrator_en": "Abu Hurairah (RA)",
+    "text_bn": "রাসূলুল্লাহ (সা.) বলেছেন, 'তোমাদের কারো বাড়ির সামনে যদি একটি নদী থাকে এবং সে তাতে দিনে পাঁচবার গোসল করে, তবে তার শরীরে কি কোনো ময়লা থাকবে?' সাহাবীগণ বললেন, 'না।' তিনি বললেন, 'এটাই পাঁচ ওয়াক্ত নামাজের দৃষ্টান্ত। এর মাধ্যমে আল্লাহ গুনাহসমূহ মিটিয়ে দেন।'",
+    "text_en": "The Prophet (PBUH) said, 'If there was a river at the door of any one of you and he took a bath in it five times a day, would you notice any dirt on him?' They said, 'Not a trace.' He said, 'That is the example of the five daily prayers with which Allah erases sins.'",
+    "source": "সহীহ বুখারী ৫২৮",
+    "category": "namaj"
+  },
+  {
+    "id": 4,
+    "title_bn": "জামাতে নামাজের ফযীলত",
+    "title_en": "Virtue of Congregational Prayer",
+    "narrator_bn": "আবদুল্লাহ ইবনে উমর (রা.)",
+    "narrator_en": "Abdullah ibn Umar (RA)",
+    "text_bn": "রাসূলুল্লাহ (সা.) বলেছেন, 'জামাতে নামাজ একাকী নামাজের চেয়ে সাতাশ গুণ বেশি মর্যাদাসম্পন্ন।'",
+    "text_en": "The Prophet (PBUH) said, 'Prayer in congregation is twenty-seven times more meritorious than prayer performed individually.'",
+    "source": "সহীহ বুখারী ৬৪৫",
+    "category": "namaj"
+  },
+  {
+    "id": 5,
+    "title_bn": "ফজরের নামাজের ফযীলত",
+    "title_en": "Virtue of Fajr Prayer",
+    "narrator_bn": "উসমান ইবনে আফফান (রা.)",
+    "narrator_en": "Uthman ibn Affan (RA)",
+    "text_bn": "রাসূলুল্লাহ (সা.) বলেছেন, 'যে ব্যক্তি এশার নামাজ জামাতে পড়ল, সে যেন অর্ধেক রাত নামাজ পড়ল। আর যে ফজরের নামাজ জামাতে পড়ল, সে যেন পুরো রাত নামাজ পড়ল।'",
+    "text_en": "The Prophet (PBUH) said, 'Whoever prays Isha in congregation, it is as if he prayed half the night. And whoever prays Fajr in congregation, it is as if he prayed the whole night.'",
+    "source": "সহীহ মুসলিম ৬৫৬",
+    "category": "namaj"
+  },
+  {
+    "id": 6,
+    "title_bn": "ধৈর্য ও নামাজ",
+    "title_en": "Patience and Prayer",
+    "narrator_bn": "কুরআন - সূরা বাকারা",
+    "narrator_en": "Quran - Surah Al-Baqarah",
+    "text_bn": "হে ঈমানদারগণ! তোমরা ধৈর্য ও নামাজের মাধ্যমে সাহায্য প্রার্থনা করো। নিশ্চয়ই আল্লাহ ধৈর্যশীলদের সাথে আছেন। (সূরা বাকারা: ১৫৩)",
+    "text_en": "O you who believe! Seek help through patience and prayer. Indeed, Allah is with the patient. (Al-Baqarah: 153)",
+    "source": "সূরা আল-বাকারা ২:১৫৩",
+    "category": "quran"
+  }
+]

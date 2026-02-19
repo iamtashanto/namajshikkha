@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "question_bn": "দিনে কত ওয়াক্ত নামাজ ফরজ?",
+    "question_en": "How many daily prayers are obligatory?",
+    "answer_bn": "দিনে পাঁচ ওয়াক্ত নামাজ ফরজ: ফজর (২ রাকাত), যোহর (৪ রাকাত), আসর (৪ রাকাত), মাগরিব (৩ রাকাত), এবং এশা (৪ রাকাত)।",
+    "answer_en": "Five daily prayers are obligatory: Fajr (2 Rakat), Dhuhr (4 Rakat), Asr (4 Rakat), Maghrib (3 Rakat), and Isha (4 Rakat).",
+    "category": "basic"
+  },
+  {
+    "id": 2,
+    "question_bn": "অযু ভাঙার কারণ কী কী?",
+    "question_en": "What breaks Wudu?",
+    "answer_bn": "অযু ভাঙার প্রধান কারণ: পায়খানা-প্রস্রাব করা, বায়ু নিঃসরণ, রক্ত প্রবাহিত হওয়া, বমি করা (মুখ ভরে), ঘুমিয়ে পড়া (হেলান দিয়ে বা শুয়ে), এবং জ্ঞান হারানো।",
+    "answer_en": "Main causes: using the bathroom, passing gas, bleeding, vomiting (mouthful), sleeping while reclining, and losing consciousness.",
+    "category": "wudu"
+  },
+  {
+    "id": 3,
+    "question_bn": "নামাজে কী কী পড়তে হয়?",
+    "question_en": "What is recited during prayer?",
+    "answer_bn": "নামাজে যা পড়তে হয়: সানা, সূরা ফাতিহা (প্রতি রাকাতে), অন্য একটি সূরা (প্রথম ২ রাকাতে), রুকুর তাসবীহ, সামিআল্লাহু লিমান হামিদাহ, সেজদার তাসবীহ, আত্তাহিয়্যাতু, দুরূদ শরীফ, দোয়া মাসুরা।",
+    "answer_en": "Recitations: Sana, Surah Fatihah (every Rakat), another Surah (first 2), Ruku Tasbeeh, Sami'Allahu, Sajdah Tasbeeh, Attahiyyat, Durood, Dua Masura.",
+    "category": "basic"
+  },
+  {
+    "id": 4,
+    "question_bn": "মহিলাদের নামাজ পড়ার নিয়ম কি পুরুষদের থেকে আলাদা?",
+    "question_en": "Is women's prayer different from men's?",
+    "answer_bn": "মূল নিয়ম একই, তবে কিছু পার্থক্য: মহিলারা হাত কাঁধ পর্যন্ত তোলেন, হাত বুকের ওপর বাঁধেন, সেজদায় শরীর গুটিয়ে রাখেন এবং পুরো শরীর ঢেকে নামাজ পড়েন (মুখমণ্ডল ও হাত ছাড়া)।",
+    "answer_en": "The core rules are the same, but some differences: women raise hands to shoulders, fold hands on chest, keep body close during sajdah, and cover entire body except face and hands.",
+    "category": "women"
+  },
+  {
+    "id": 5,
+    "question_bn": "নামাজ ভঙ্গের কারণ কী কী?",
+    "question_en": "What invalidates prayer?",
+    "answer_bn": "নামাজ ভঙ্গের কারণ: কথা বলা, হাসি, খাওয়া-পান করা, অযু ভাঙা, কিবলা থেকে বুক ফেরানো, অনাবশ্যক নড়াচড়া (তিনবারের বেশি), আমালে কাসীর (বেশি কাজ করা)।",
+    "answer_en": "Causes: talking, laughing, eating/drinking, Wudu breaking, turning chest from Qibla, unnecessary movements (more than 3 times), excessive actions.",
+    "category": "basic"
+  },
+  {
+    "id": 6,
+    "question_bn": "ক্বাযা নামাজ কী এবং কিভাবে পড়তে হয়?",
+    "question_en": "What is Qaza prayer and how to perform it?",
+    "answer_bn": "সময়মতো না পড়া নামাজকে ক্বাযা নামাজ বলে। যত দ্রুত সম্ভব ক্বাযা নামাজ আদায় করা উচিত। ক্বাযা নামাজ সাধারণ নামাজের মতোই পড়তে হয়, তবে নিয়্যতে 'ক্বাযা' উল্লেখ করতে হয়।",
+    "answer_en": "Missed prayers are called Qaza. They should be performed as soon as possible, following the same method but with the intention of Qaza.",
+    "category": "basic"
+  },
+  {
+    "id": 7,
+    "question_bn": "বিতর নামাজ কি ফরজ?",
+    "question_en": "Is Witr prayer obligatory?",
+    "answer_bn": "বিতর নামাজ ওয়াজিব (হানাফী মাযহাব অনুযায়ী)। এটি এশার নামাজের পর ৩ রাকাত পড়তে হয়। তৃতীয় রাকাতে সূরা ফাতিহা ও অন্য সূরার পর দোয়া কুনূত পড়তে হয়।",
+    "answer_en": "Witr is Wajib (according to Hanafi school). It is 3 Rakat prayed after Isha. In the third Rakat, Dua Qunoot is recited after Surah Fatihah and another Surah.",
+    "category": "basic"
+  },
+  {
+    "id": 8,
+    "question_bn": "তায়াম্মুম কখন করতে হয়?",
+    "question_en": "When should Tayammum be performed?",
+    "answer_bn": "পানি না পাওয়া গেলে বা অসুস্থতার কারণে পানি ব্যবহার সম্ভব না হলে তায়াম্মুম করতে হয়। পরিষ্কার মাটি বা ধূলিতে হাত মেরে মুখমণ্ডল ও হাত কনুই পর্যন্ত মাসেহ করুন।",
+    "answer_en": "Tayammum is performed when water is unavailable or when illness prevents water use. Strike clean earth and wipe face and arms to elbows.",
+    "category": "wudu"
+  }
+]

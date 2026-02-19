@@ -1,0 +1,35 @@
+import { Heart } from "lucide-react";
+
+export default function Footer() {
+    return (
+        <footer className="border-t border-emerald-100 bg-emerald-950 text-emerald-100">
+            <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+                <div className="flex flex-col items-center gap-4 text-center">
+                    {/* Islamic Greeting */}
+                    <p className="arabic-text text-2xl text-gold-300">
+                        بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ
+                    </p>
+
+                    {/* Bangla tagline */}
+                    <p className="bangla-text text-sm text-emerald-300">
+                        সঠিকভাবে নামাজ শিখুন, আল্লাহর নৈকট্য লাভ করুন
+                    </p>
+
+                    {/* Divider */}
+                    <div className="my-2 h-px w-24 bg-gradient-to-r from-transparent via-emerald-600 to-transparent" />
+
+                    {/* Copyright */}
+                    <p className="flex items-center gap-1.5 text-xs text-emerald-400">
+                        তৈরি করা হয়েছে{" "}
+                        <Heart className="h-3.5 w-3.5 fill-red-400 text-red-400" />{" "}
+                        দিয়ে — নামাজ শিক্ষা © {new Date().getFullYear()}
+                    </p>
+
+                    <p className="text-xs text-emerald-500">
+                        সকল তথ্য সহীহ হাদিস ও কুরআন থেকে সংগৃহীত
+                    </p>
+                </div>
+            </div>
+        </footer>
+    );
+}
