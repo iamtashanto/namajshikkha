@@ -18,13 +18,18 @@ export default function Footer() {
                     {/* Divider */}
                     <div className=" h-px w-24 bg-gradient-to-r from-transparent via-emerald-600 to-transparent dark:via-emerald-500" />
 
-                    {/* Copyright */}
-                    <p className="flex items-center gap-1.5 text-xs text-emerald-400 dark:text-emerald-500/80">
+                    {/* Developer Credits */}
+                    <div className="flex flex-col items-center gap-1.5 mt-2">
                         <p className="bangla-text text-sm text-emerald-300/80 dark:text-emerald-400/60">
                             Developed by <span className="font-semibold text-gold-400">Md Tanvir Ahamed Shanto</span>
-                        </p>{" "}
-                        নামাজ শিক্ষা © {new Date().getFullYear()}
-                    </p>
+                        </p>
+                    </div>
+
+                    {/* Copyright */}
+                    <div className="flex items-center gap-1.5 text-xs text-emerald-400 dark:text-emerald-500/80">
+                        <Heart className="h-3.5 w-3.5 fill-red-400 text-red-400" />
+                        <span>নামাজ শিক্ষা © {new Date().getFullYear()}</span>
+                    </div>
 
                     <p className="text-xs text-emerald-500 dark:text-emerald-600 ">
                         সকল তথ্য সহীহ হাদিস ও কুরআন থেকে সংগৃহীত
