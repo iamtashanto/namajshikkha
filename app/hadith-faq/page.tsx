@@ -18,21 +18,21 @@ export default function HadithFaqPage() {
     const filteredHadiths = hadiths.filter(
         (h) =>
             searchQuery === "" ||
-            h.title_bn.includes(searchQuery) ||
-            h.title_en.toLowerCase().includes(normalizedQuery) ||
-            h.text_bn.includes(searchQuery) ||
-            h.narrator_bn.includes(searchQuery) ||
-            h.source.includes(searchQuery) ||
-            h.category.includes(normalizedQuery)
+            h.title_bn?.includes(searchQuery) ||
+            h.title_en?.toLowerCase().includes(normalizedQuery) ||
+            h.text_bn?.includes(searchQuery) ||
+            h.narrator_bn?.includes(searchQuery) ||
+            h.source?.includes(searchQuery) ||
+            h.category?.includes(normalizedQuery)
     );
 
     const filteredFaqs = faqs.filter(
         (f) =>
             searchQuery === "" ||
-            f.question_bn.includes(searchQuery) ||
-            f.question_en.toLowerCase().includes(normalizedQuery) ||
-            f.answer_bn.includes(searchQuery) ||
-            f.category.includes(normalizedQuery)
+            f.question_bn?.includes(searchQuery) ||
+            f.question_en?.toLowerCase().includes(normalizedQuery) ||
+            f.answer_bn?.includes(searchQuery) ||
+            f.category?.includes(normalizedQuery)
     );
 
     return (

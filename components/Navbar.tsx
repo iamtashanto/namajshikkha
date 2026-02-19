@@ -89,9 +89,8 @@ export default function Navbar() {
                 </div>
             </div>
 
-            {/* Mobile Menu */}
             <div
-                className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-64 border-t border-emerald-100 dark:border-dark-border" : "max-h-0"
+                className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-96 border-t border-emerald-100 dark:border-dark-border" : "max-h-0"
                     }`}
             >
                 <div className="space-y-1 bg-white px-4 py-3 dark:bg-dark-card">
