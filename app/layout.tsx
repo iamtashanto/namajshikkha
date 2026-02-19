@@ -3,6 +3,8 @@ import { Inter, Amiri, Noto_Sans_Bengali } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { AudioProvider } from "@/components/AudioProvider";
+import { GlobalAudioPlayer } from "@/components/GlobalAudioPlayer";
 import "./globals.css";
 
 const inter = Inter({
@@ -75,9 +77,12 @@ export default function RootLayout({
       </head>
       <body className="flex min-h-screen flex-col bg-white antialiased dark:bg-dark-bg">
         <ThemeProvider>
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <AudioProvider>
+            <Navbar />
+            <main className="flex-1 pb-32">{children}</main>
+            <GlobalAudioPlayer />
+            <Footer />
+          </AudioProvider>
         </ThemeProvider>
       </body>
     </html>

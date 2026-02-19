@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
+import { useAudio } from "./AudioProvider";
 import { Play, Pause, Volume2, ChevronDown } from "lucide-react";
 
 interface SurahData {
@@ -16,62 +17,23 @@ interface SurahData {
 }
 
 export default function QuranSurahCard({ data }: { data: SurahData }) {
-    const audioRef = useRef<HTMLAudioElement>(null);
-    const [isPlaying, setIsPlaying] = useState(false);
+    const { activeTrack, isPlaying, play, pause, toggle, progress, duration, isLoading: isGlobalLoading } = useAudio();
     const [isExpanded, setIsExpanded] = useState(false);
-    const [currentTime, setCurrentTime] = useState(0);
-    const [duration, setDuration] = useState(0);
-    const [isLoading, setIsLoading] = useState(false);
 
-    useEffect(() => {
-        const audio = audioRef.current;
-        if (!audio) return;
+    const isThisPlaying = activeTrack?.url === data.audio_url;
 
-        const handleTimeUpdate = () => setCurrentTime(audio.currentTime);
-        const handleLoadedMetadata = () => {
-            setDuration(audio.duration);
-            setIsLoading(false);
-        };
-        const handleEnded = () => setIsPlaying(false);
-        const handleWaiting = () => setIsLoading(true);
-        const handleCanPlay = () => setIsLoading(false);
-
-        audio.addEventListener("timeupdate", handleTimeUpdate);
-        audio.addEventListener("loadedmetadata", handleLoadedMetadata);
-        audio.addEventListener("ended", handleEnded);
-        audio.addEventListener("waiting", handleWaiting);
-        audio.addEventListener("canplay", handleCanPlay);
-
-        return () => {
-            audio.removeEventListener("timeupdate", handleTimeUpdate);
-            audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
-            audio.removeEventListener("ended", handleEnded);
-            audio.removeEventListener("waiting", handleWaiting);
-            audio.removeEventListener("canplay", handleCanPlay);
-        };
-    }, []);
-
-    const togglePlay = (e: React.MouseEvent) => {
+    const handleToggle = (e: React.MouseEvent) => {
         e.stopPropagation();
-        const audio = audioRef.current;
-        if (!audio) return;
-
-        if (isPlaying) {
-            audio.pause();
+        if (isThisPlaying) {
+            toggle();
         } else {
-            setIsLoading(true);
-            audio.play().catch(() => setIsLoading(false));
+            play({
+                id: `surah-${data.number}`,
+                title_bn: data.name_bangla,
+                title_en: data.name_english,
+                url: data.audio_url
+            });
         }
-        setIsPlaying(!isPlaying);
-    };
-
-    const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
-        e.stopPropagation();
-        const audio = audioRef.current;
-        if (!audio) return;
-        const time = Number(e.target.value);
-        audio.currentTime = time;
-        setCurrentTime(time);
     };
 
     const formatTime = (time: number) => {
@@ -159,18 +121,17 @@ export default function QuranSurahCard({ data }: { data: SurahData }) {
                 </div>
 
                 {/* Audio Player */}
-                <div className="border-t border-emerald-50 bg-gradient-to-r from-emerald-50/50 to-white px-4 py-3 dark:border-dark-border dark:from-emerald-950/20 dark:to-dark-card sm:px-5">
-                    <audio ref={audioRef} src={data.audio_url} preload="none" />
+                <div className={`border-t border-emerald-50 bg-gradient-to-r px-4 py-3 transition-all duration-300 dark:border-dark-border sm:px-5 ${isThisPlaying ? "from-emerald-50/80 to-emerald-100/30 dark:from-emerald-950/40 dark:to-emerald-900/10" : "from-emerald-50/50 to-white dark:from-emerald-950/20 dark:to-dark-card"}`}>
                     <div className="flex items-center gap-3">
                         <button
-                            onClick={togglePlay}
-                            disabled={isLoading}
-                            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 text-white shadow-md shadow-emerald-200 transition-all hover:shadow-lg hover:scale-105 active:scale-95 disabled:opacity-60 dark:shadow-emerald-900/30"
-                            aria-label={isPlaying ? "Pause" : "Play"}
+                            onClick={handleToggle}
+                            disabled={isThisPlaying && isGlobalLoading}
+                            className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-white shadow-md transition-all hover:scale-105 active:scale-95 disabled:opacity-60 ${isThisPlaying && isPlaying ? "bg-gold-500 shadow-gold-200 dark:shadow-gold-900/20" : "bg-gradient-to-br from-emerald-500 to-emerald-700 shadow-emerald-200 dark:shadow-emerald-900/30"}`}
+                            aria-label={isThisPlaying && isPlaying ? "Pause" : "Play"}
                         >
-                            {isLoading ? (
+                            {isThisPlaying && isGlobalLoading ? (
                                 <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                            ) : isPlaying ? (
+                            ) : isThisPlaying && isPlaying ? (
                                 <Pause className="h-4 w-4" />
                             ) : (
                                 <Play className="ml-0.5 h-4 w-4" />
@@ -178,25 +139,23 @@ export default function QuranSurahCard({ data }: { data: SurahData }) {
                         </button>
 
                         <div className="flex flex-1 items-center gap-2">
-                            <span className="w-10 text-right text-xs tabular-nums text-gray-400 dark:text-dark-text-muted">
-                                {formatTime(currentTime)}
+                            <span className="w-10 text-right text-[10px] tabular-nums text-gray-400 dark:text-dark-text-muted">
+                                {formatTime(isThisPlaying ? progress : 0)}
                             </span>
-                            <input
-                                type="range"
-                                min={0}
-                                max={duration || 0}
-                                value={currentTime}
-                                onChange={handleSeek}
-                                onClick={(e) => e.stopPropagation()}
-                                className="h-1 flex-1 cursor-pointer"
-                                aria-label="Audio progress"
-                            />
-                            <span className="w-10 text-xs tabular-nums text-gray-400 dark:text-dark-text-muted">
-                                {formatTime(duration)}
+                            <div className="relative flex-1">
+                                <div className="h-1 w-full rounded-full bg-gray-200 dark:bg-dark-bg">
+                                    <div
+                                        className="h-full rounded-full bg-emerald-500 transition-all duration-300"
+                                        style={{ width: `${(isThisPlaying ? progress / duration : 0) * 100}%` }}
+                                    />
+                                </div>
+                            </div>
+                            <span className="w-10 text-[10px] tabular-nums text-gray-400 dark:text-dark-text-muted">
+                                {formatTime(isThisPlaying ? duration : 0)}
                             </span>
                         </div>
 
-                        <Volume2 className="h-4 w-4 shrink-0 text-emerald-400 dark:text-emerald-500" />
+                        <Volume2 className={`h-4 w-4 shrink-0 transition-colors ${isThisPlaying && isPlaying ? "text-gold-500 animate-pulse" : "text-emerald-400 dark:text-emerald-500"}`} />
                     </div>
                     <p className="mt-2 text-center text-[10px] text-gray-400 dark:text-dark-text-muted">
                         🔊 সম্পূর্ণ সূরা তিলাওয়াত — mp3quran.net

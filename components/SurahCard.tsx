@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
+import { useAudio } from "./AudioProvider";
 import { Play, Pause, Volume2, BookOpenText } from "lucide-react";
 
 interface SurahDuaData {
@@ -17,49 +18,22 @@ interface SurahDuaData {
 }
 
 export default function SurahCard({ data }: { data: SurahDuaData }) {
-    const audioRef = useRef<HTMLAudioElement>(null);
-    const [isPlaying, setIsPlaying] = useState(false);
-    const [currentTime, setCurrentTime] = useState(0);
-    const [duration, setDuration] = useState(0);
+    const { activeTrack, isPlaying, play, pause, toggle, progress, duration, isLoading } = useAudio();
     const [activeTab, setActiveTab] = useState<"arabic" | "bangla" | "banglish" | "meaning">("arabic");
 
-    useEffect(() => {
-        const audio = audioRef.current;
-        if (!audio) return;
+    const isThisPlaying = activeTrack?.url === data.audio_url;
 
-        const handleTimeUpdate = () => setCurrentTime(audio.currentTime);
-        const handleLoadedMetadata = () => setDuration(audio.duration);
-        const handleEnded = () => setIsPlaying(false);
-
-        audio.addEventListener("timeupdate", handleTimeUpdate);
-        audio.addEventListener("loadedmetadata", handleLoadedMetadata);
-        audio.addEventListener("ended", handleEnded);
-
-        return () => {
-            audio.removeEventListener("timeupdate", handleTimeUpdate);
-            audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
-            audio.removeEventListener("ended", handleEnded);
-        };
-    }, []);
-
-    const togglePlay = () => {
-        const audio = audioRef.current;
-        if (!audio) return;
-
-        if (isPlaying) {
-            audio.pause();
+    const handleToggle = () => {
+        if (isThisPlaying) {
+            toggle();
         } else {
-            audio.play();
+            play({
+                id: `${data.category}-${data.id}`,
+                title_bn: data.title_bn,
+                title_en: data.title_en,
+                url: data.audio_url
+            });
         }
-        setIsPlaying(!isPlaying);
-    };
-
-    const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const audio = audioRef.current;
-        if (!audio) return;
-        const time = Number(e.target.value);
-        audio.currentTime = time;
-        setCurrentTime(time);
     };
 
     const formatTime = (time: number) => {
@@ -158,15 +132,14 @@ export default function SurahCard({ data }: { data: SurahDuaData }) {
 
             {/* Audio Player */}
             {data.audio_url ? (
-                <div className="border-t border-emerald-50 bg-gradient-to-r from-emerald-50/50 to-white px-5 py-3.5 dark:border-dark-border dark:from-emerald-950/20 dark:to-dark-card sm:px-6">
-                    <audio ref={audioRef} src={data.audio_url} preload="metadata" />
+                <div className={`border-t border-emerald-50 bg-gradient-to-r px-5 py-3.5 transition-all duration-300 sm:px-6 ${isThisPlaying ? "from-emerald-50/80 to-emerald-100/30 dark:from-emerald-950/40 dark:to-emerald-900/10" : "from-emerald-50/50 to-white dark:from-emerald-950/20 dark:to-dark-card"}`}>
                     <div className="flex items-center gap-3">
                         <button
-                            onClick={togglePlay}
-                            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 text-white shadow-md shadow-emerald-200 transition-all hover:shadow-lg hover:scale-105 active:scale-95 dark:shadow-emerald-900/30"
-                            aria-label={isPlaying ? "Pause" : "Play"}
+                            onClick={handleToggle}
+                            className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-white shadow-md transition-all hover:scale-105 active:scale-95 ${isThisPlaying && isPlaying ? "bg-gold-500 shadow-gold-200 dark:shadow-gold-900/20" : "bg-gradient-to-br from-emerald-500 to-emerald-700 shadow-emerald-200 dark:shadow-emerald-900/30"}`}
+                            aria-label={isThisPlaying && isPlaying ? "Pause" : "Play"}
                         >
-                            {isPlaying ? (
+                            {isThisPlaying && isPlaying ? (
                                 <Pause className="h-4 w-4" />
                             ) : (
                                 <Play className="ml-0.5 h-4 w-4" />
@@ -175,23 +148,22 @@ export default function SurahCard({ data }: { data: SurahDuaData }) {
 
                         <div className="flex flex-1 items-center gap-2.5">
                             <span className="w-10 text-right text-xs tabular-nums text-gray-400 dark:text-dark-text-muted">
-                                {formatTime(currentTime)}
+                                {formatTime(isThisPlaying ? progress : 0)}
                             </span>
-                            <input
-                                type="range"
-                                min={0}
-                                max={duration || 0}
-                                value={currentTime}
-                                onChange={handleSeek}
-                                className="h-1 flex-1 cursor-pointer"
-                                aria-label="Audio progress"
-                            />
+                            <div className="relative flex-1">
+                                <div className="h-1 w-full rounded-full bg-gray-200 dark:bg-dark-bg">
+                                    <div
+                                        className="h-full rounded-full bg-emerald-500 transition-all duration-300"
+                                        style={{ width: `${(isThisPlaying ? progress / duration : 0) * 100}%` }}
+                                    />
+                                </div>
+                            </div>
                             <span className="w-10 text-xs tabular-nums text-gray-400 dark:text-dark-text-muted">
-                                {formatTime(duration)}
+                                {formatTime(isThisPlaying ? duration : 0)}
                             </span>
                         </div>
 
-                        <Volume2 className="h-4 w-4 shrink-0 text-emerald-400 dark:text-emerald-500" />
+                        <Volume2 className={`h-4 w-4 shrink-0 transition-colors ${isThisPlaying && isPlaying ? "text-gold-500 animate-pulse" : "text-emerald-400 dark:text-emerald-500"}`} />
                     </div>
                 </div>
             ) : (
