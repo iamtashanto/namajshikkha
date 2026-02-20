@@ -27,6 +27,13 @@ const notoSansBengali = Noto_Sans_Bengali({
   display: "swap",
 });
 
+export const viewport = {
+  themeColor: "#059669",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
+
 export const metadata: Metadata = {
   title: {
     default: "নামাজ শিক্ষা — Namaj Shikkha | সঠিক নামাজ শিখুন",
@@ -50,6 +57,14 @@ export const metadata: Metadata = {
     description: "সঠিকভাবে নামাজ পড়া শিখুন। সূরা, দোয়া, নিয়্যত, হাদিস সবকিছু আরবি ও বাংলায়।",
     type: "website",
     locale: "bn_BD",
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "নামাজ শিক্ষা",
+  },
+  formatDetection: {
+    telephone: false,
   },
 };
 
