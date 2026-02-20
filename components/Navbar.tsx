@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Menu, X, BookOpen, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
+import { InstallButton } from "./InstallButton";
 
 const navLinks = [
     { href: "/", label: "হোম", labelEn: "Home" },
@@ -39,7 +40,7 @@ export default function Navbar() {
                     </Link>
 
                     {/* Desktop Nav + Theme Toggle */}
-                    <div className="hidden md:flex items-center gap-1">
+                    <div className="hidden md:flex items-center gap-2">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.href}
@@ -49,6 +50,8 @@ export default function Navbar() {
                                 {link.label}
                             </Link>
                         ))}
+
+                        <InstallButton />
 
                         {/* Theme Toggle */}
                         <button
@@ -66,6 +69,7 @@ export default function Navbar() {
 
                     {/* Mobile: Theme Toggle + Menu Button */}
                     <div className="md:hidden flex items-center gap-1">
+                        <InstallButton />
                         <button
                             onClick={toggleTheme}
                             className="flex h-10 w-10 items-center justify-center rounded-lg text-gray-500 transition-colors hover:bg-emerald-50 hover:text-emerald-700 dark:text-dark-text-muted dark:hover:bg-emerald-900/20 dark:hover:text-emerald-400"
