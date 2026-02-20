@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { AudioProvider } from "@/components/AudioProvider";
 import { GlobalAudioPlayer } from "@/components/GlobalAudioPlayer";
+import { MobileInstallPrompt } from "@/components/MobileInstallPrompt";
 import "./globals.css";
 
 const inter = Inter({
@@ -96,6 +97,7 @@ export default function RootLayout({
             <Navbar />
             <main className="flex-1 pb-32">{children}</main>
             <GlobalAudioPlayer />
+            <MobileInstallPrompt />
             <Footer />
           </AudioProvider>
         </ThemeProvider>
