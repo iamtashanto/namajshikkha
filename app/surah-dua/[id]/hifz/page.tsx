@@ -49,3 +49,4 @@ export default async function HifzPage({ params }: PageProps) {
 
   return <HifzMemorizeClient initialSurahId={surah.id} />;
 }
+

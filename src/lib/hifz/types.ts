@@ -33,3 +33,4 @@ export const DEFAULT_HIFZ_SETTINGS: HifzSettings = {
   pauseGapSeconds: 2,
   hideMode: "normal",
 };
+

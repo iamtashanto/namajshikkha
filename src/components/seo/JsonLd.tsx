@@ -22,3 +22,4 @@ export function JsonLd({ schema }: JsonLdProps) {
 }
 
 export default JsonLd;
+

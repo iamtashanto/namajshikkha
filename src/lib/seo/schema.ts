@@ -156,3 +156,4 @@ export function buildArticleSchema(params: {
     dateModified: params.dateModified || new Date().toISOString().split("T")[0],
   };
 }
+

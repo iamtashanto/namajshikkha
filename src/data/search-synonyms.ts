@@ -131,3 +131,4 @@ export function expandQueryWithSynonyms(query: string): string[] {
 
   return Array.from(terms);
 }
+
