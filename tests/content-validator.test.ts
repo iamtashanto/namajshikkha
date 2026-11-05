@@ -6,6 +6,7 @@ import {
   prayerDuas,
   salahRulings,
   prayerHadiths,
+  taharatSections,
   getPrayerBySlug,
   getSurahByNumber,
 } from "@/src/data";
@@ -166,6 +167,39 @@ describe("Canonical Religious Content Validator", () => {
     }
   });
 
+  it("verifies all 5 Taharat topics, farz counts, and step illustrations", () => {
+    expect(taharatSections).toHaveLength(5);
+
+    // Wudu
+    const wudu = taharatSections.find((s) => s.slug === "wudu");
+    expect(wudu).toBeDefined();
+    expect(wudu?.farzList).toHaveLength(4);
+    expect(wudu?.steps).toBeDefined();
+    expect(wudu?.steps!.length).toBeGreaterThanOrEqual(8);
+    for (const step of wudu!.steps!) {
+      expect(step.illustrationKey).toBeDefined();
+      expect(step.titleBn.trim().length).toBeGreaterThan(0);
+    }
+
+    // Ghusl
+    const ghusl = taharatSections.find((s) => s.slug === "ghusl");
+    expect(ghusl).toBeDefined();
+    expect(ghusl?.farzList).toHaveLength(3);
+    expect(ghusl?.steps).toBeDefined();
+
+    // Tayammum
+    const tayammum = taharatSections.find((s) => s.slug === "tayammum");
+    expect(tayammum).toBeDefined();
+    expect(tayammum?.farzList).toHaveLength(3);
+    expect(tayammum?.steps).toBeDefined();
+
+    // Najasat & Masah on socks
+    const najasat = taharatSections.find((s) => s.slug === "najasat");
+    expect(najasat).toBeDefined();
+    const masah = taharatSections.find((s) => s.slug === "masah-on-socks");
+    expect(masah).toBeDefined();
+  });
+
   it("verifies no duplicate IDs exist across any religious content", () => {
     const allIds = [
       ...prayers.map((p) => p.slug),
@@ -174,10 +208,10 @@ describe("Canonical Religious Content Validator", () => {
       ...prayerDuas.map((d) => d.id),
       ...salahRulings.map((r) => r.id),
       ...prayerHadiths.map((h) => String(h.id)),
+      ...taharatSections.map((t) => `taharat-${t.slug}`),
     ];
 
     const uniqueIds = new Set(allIds);
     expect(allIds.length).toBe(uniqueIds.size);
   });
 });
-

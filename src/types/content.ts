@@ -294,3 +294,54 @@ export interface HadithItem {
   reviewStatus: ReviewStatus;
 }
 
+export type TaharatIllustrationKey =
+  | "hands-wash"
+  | "mouth-rinse"
+  | "nose-clean"
+  | "face-wash"
+  | "arms-wash"
+  | "head-masah"
+  | "ears-neck-masah"
+  | "feet-wash"
+  | "ghusl-intent"
+  | "ghusl-wudu"
+  | "ghusl-head"
+  | "ghusl-body"
+  | "tayammum-strike-1"
+  | "tayammum-face"
+  | "tayammum-strike-2"
+  | "tayammum-arms"
+  | "masah-khuff";
+
+export interface TaharatStep {
+  stepNumber: number;
+  titleBn: string;
+  titleEn: string;
+  descriptionBn: string;
+  isFard?: boolean;
+  isSunnah?: boolean;
+  illustrationKey: TaharatIllustrationKey;
+  recitationId?: string;
+  recitationCustom?: Recitation;
+  tipsBn?: string;
+  reference?: Reference;
+}
+
+export interface TaharatSection {
+  slug: "wudu" | "ghusl" | "tayammum" | "najasat" | "masah-on-socks";
+  titleBn: string;
+  titleAr: string;
+  titleEn: string;
+  summaryBn: string;
+  farzList?: { title: string; description: string; reference?: Reference }[];
+  sunnahList?: { title: string; description: string; reference?: Reference }[];
+  mustahabList?: string[];
+  makruhList?: string[];
+  breakersList?: { title: string; description: string; reference?: Reference }[];
+  steps?: TaharatStep[];
+  specialCases?: { title: string; bodyBn: string; reference?: Reference }[];
+  faqs: { question: string; answer: string }[];
+  references: Reference[];
+}
+
+

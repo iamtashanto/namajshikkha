@@ -10,6 +10,7 @@ import {
   Clock,
   Landmark,
   BookHeart,
+  Droplets,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
 };
 
 const allSections = [
+  { href: "/taharat", label: "পবিত্রতা ও তাহারাত", desc: "অজু, গোসল, তায়াম্মুম ও নাপাকি", icon: Droplets, color: "text-teal-600 bg-teal-50 dark:bg-teal-950/40 dark:text-teal-400" },
   { href: "/namaj-rules", label: "নামাজের নিয়ম", desc: "ধাপে ধাপে নামাজ শেখা", icon: BookOpen, color: "text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 dark:text-emerald-400" },
   { href: "/namaj-details", label: "নামাজের বিবরণ", desc: "কোন নামাজ কত রাকাত ও নিয়ম", icon: ListChecks, color: "text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 dark:text-emerald-400" },
   { href: "/simulator", label: "নামাজ সিমুলেটর", desc: "অ্যানিমেটেড নামাজ গাইড", icon: Sparkles, color: "text-amber-600 bg-amber-50 dark:bg-amber-950/40 dark:text-amber-400" },

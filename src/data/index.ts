@@ -8,6 +8,7 @@ export * from "./surahs";
 export * from "./duas";
 export * from "./rulings";
 export * from "./hadiths";
+export * from "./taharat";
 
 // Lookup helpers
 export function getPrayerBySlug(slug: string) {

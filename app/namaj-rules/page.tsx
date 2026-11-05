@@ -1,4 +1,6 @@
 import { Metadata } from "next";
+import Link from "next/link";
+import { Droplets, ArrowRight } from "lucide-react";
 import namajRules from "@/data/namaj-rules.json";
 import {
   Breadcrumbs,
@@ -101,6 +103,30 @@ export default function NamajRulesPage() {
                   <Callout type="tip" title="পুরুষ ও মহিলার নিয়ম / জরুরি টিপস">
                     {step.tips_bn}
                   </Callout>
+                )}
+
+                {/* Link to Full Taharat & Wudu Guide from Step 1 */}
+                {step.id === 1 && (
+                  <div className="mt-5 rounded-2xl border border-emerald-200 bg-emerald-50/70 p-4 dark:border-emerald-800/40 dark:bg-emerald-950/20">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                      <div>
+                        <h4 className="bangla-text text-sm font-bold text-emerald-900 dark:text-emerald-200 flex items-center gap-1.5">
+                          <Droplets className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                          অজু ও তাহারাতের পূর্ণাঙ্গ নির্দেশিকা
+                        </h4>
+                        <p className="bangla-text text-xs text-emerald-800/80 dark:text-emerald-300/80 mt-0.5">
+                          ৪ ফরজ, সুন্নাত, অজুর দোয়া ও ইন্টারেক্টিভ চেকলিস্ট মোড দেখুন
+                        </p>
+                      </div>
+                      <Link
+                        href="/taharat/wudu"
+                        className="bangla-text inline-flex items-center gap-1.5 self-start sm:self-auto rounded-xl bg-emerald-600 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-emerald-700 transition-colors dark:shadow-none"
+                      >
+                        <span>অজুর বিস্তারিত নিয়ম</span>
+                        <ArrowRight className="h-3.5 w-3.5" />
+                      </Link>
+                    </div>
+                  </div>
                 )}
               </div>
             </div>
