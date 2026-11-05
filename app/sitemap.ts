@@ -20,6 +20,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/simulator/practice',
         '/taharat/wudu/simulator',
         '/prayer-times',
+        '/qibla',
+        '/tracker',
         '/surah-dua',
         '/quran',
         '/masail',

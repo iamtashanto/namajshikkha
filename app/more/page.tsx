@@ -11,6 +11,8 @@ import {
   Landmark,
   BookHeart,
   Droplets,
+  Compass,
+  Calendar,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -27,6 +29,8 @@ const allSections = [
   { href: "/quran", label: "কুরআন মাজীদ", desc: "১১৪টি সূরার তালিকা ও অডিও", icon: BookOpenCheck, color: "text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 dark:text-emerald-400" },
   { href: "/masail", label: "নামাজের মাসায়েল", desc: "তাহরাত, কাজা, সেজদায়ে সাহু", icon: BookMarked, color: "text-blue-600 bg-blue-50 dark:bg-blue-950/40 dark:text-blue-400" },
   { href: "/prayer-times", label: "নামাজের সময়সূচী", desc: "প্রতিদিনের ৫ ওয়াক্ত নামাজের সময়", icon: Clock, color: "text-teal-600 bg-teal-50 dark:bg-teal-950/40 dark:text-teal-400" },
+  { href: "/tracker", label: "নামাজ ট্র্যাকার", desc: "দৈনিক সালাত চেকলিস্ট ও কাযা হিসাব", icon: Calendar, color: "text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 dark:text-emerald-400" },
+  { href: "/qibla", label: "কিবলা কম্পাস", desc: "সরাসরি কাবার সঠিক দিকনির্ণয়", icon: Compass, color: "text-amber-600 bg-amber-50 dark:bg-amber-950/40 dark:text-amber-400" },
   { href: "/islamic-history", label: "ইসলামিক ইতিহাস", desc: "৫৮টি ঐতিহাসিক ঘটনা", icon: Landmark, color: "text-purple-600 bg-purple-50 dark:bg-purple-950/40 dark:text-purple-400" },
   { href: "/hadith-faq", label: "হাদিস ও প্রশ্নোত্তর", desc: "সহীহ হাদিস ও নামাজ FAQ", icon: BookHeart, color: "text-rose-600 bg-rose-50 dark:bg-rose-950/40 dark:text-rose-400" },
 ];

@@ -11,8 +11,12 @@ import {
   BookMarked,
   PlayCircle,
   ArrowRight,
+  Compass,
+  Calendar,
 } from "lucide-react";
 import NavigationCard from "@/components/NavigationCard";
+import { HomePrayerWidget } from "@/src/components/home/HomePrayerWidget";
+import { HomeTrackerWidget } from "@/src/components/home/HomeTrackerWidget";
 
 export default function Home() {
   return (
@@ -76,6 +80,12 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Live Prayer Times & Countdown Widget */}
+      <HomePrayerWidget />
+
+      {/* Active Daily Tracker Widget (if tracking started) */}
+      <HomeTrackerWidget />
+
       {/* Navigation Cards */}
       <section className="mx-auto max-w-6xl px-4 pb-20 sm:px-6 lg:px-8 dark:bg-dark-bg">
         <h2 className="bangla-text mb-8 text-center text-2xl font-bold text-gray-800 dark:text-dark-text sm:text-3xl">
@@ -97,18 +107,32 @@ export default function Home() {
             color="gold"
           />
           <NavigationCard
+            href="/prayer-times"
+            icon={Clock}
+            title="নামাজের সময়সূচী"
+            description="প্রতিদিনের ৫ ওয়াক্ত সালাত, তাহাজ্জুদ ও নিষিদ্ধ সময়"
+            color="blue"
+          />
+          <NavigationCard
+            href="/tracker"
+            icon={Calendar}
+            title="নামাজ ট্র্যাকার"
+            description="দৈনিক সালাত চেকলিস্ট, স্ট্রিক ও কাযা হিসাব"
+            color="emerald"
+          />
+          <NavigationCard
+            href="/qibla"
+            icon={Compass}
+            title="কিবলা কম্পাস"
+            description="সরাসরি ডিভাইস সেন্সরে কাবার দিকনির্ণয়"
+            color="gold"
+          />
+          <NavigationCard
             href="/namaj-details"
             icon={ListChecks}
             title="নামাজের বিবরণ"
             description="কোন নামাজ কত রাকাত, তাকবীর, দোয়া — সব বিস্তারিত"
             color="emerald"
-          />
-          <NavigationCard
-            href="/prayer-times"
-            icon={Clock}
-            title="নামাজের সময়সূচী"
-            description="প্রতিদিনের ৫ ওয়াক্ত নামাজের সঠিক সময়"
-            color="blue"
           />
           <NavigationCard
             href="/surah-dua"
