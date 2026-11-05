@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { siteConfig } from "@/src/config/site";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { PreferencesProvider } from "@/src/context/PreferencesContext";
+import { SearchProvider } from "@/src/context/SearchContext";
 import PreferencesModal from "@/src/components/PreferencesModal";
+import SearchModal from "@/src/components/search/SearchModal";
 import Navbar from "@/components/Navbar";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import Footer from "@/components/Footer";
@@ -63,12 +66,13 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: "নামাজ শিক্ষা — Namaj Shikkha | সঠিক নামাজ শিখুন",
     template: "%s | নামাজ শিক্ষা",
   },
   description:
-    "নামাজ শিক্ষা — সঠিকভাবে নামাজ পড়া শিখুন। সূরা, দোয়া, নিয়্যত, হাদিস সবকিছু আরবি, বাংলা উচ্চারণ, ব্যাংলিশ ও বাংলা অর্থসহ। Learn to pray correctly with Arabic text, Bangla pronunciation, Banglish, and Bangla meanings.",
+    "সহীহ কুরআন ও হাদিসের আলোকে সঠিকভাবে নামাজ শিখুন। আরবি, বাংলা উচ্চারণ, ব্যাংলিশ ও বাংলা অর্থসহ সম্পূর্ণ নামাজ সহায়িকা।",
   keywords: [
     "নামাজ শিক্ষা",
     "namaj shikkha",
@@ -78,13 +82,36 @@ export const metadata: Metadata = {
     "সূরা",
     "দোয়া",
     "হাদিস",
+    "নামাজের নিয়ম",
   ],
   authors: [{ name: "নামাজ শিক্ষা" }],
+  alternates: {
+    canonical: "./",
+    languages: {
+      "bn": "./",
+    },
+  },
   openGraph: {
     title: "নামাজ শিক্ষা — Namaj Shikkha",
-    description: "সঠিকভাবে নামাজ পড়া শিখুন। সূরা, দোয়া, নিয়্যত, হাদিস সবকিছু আরবি ও বাংলায়।",
-    type: "website",
+    description: "সহীহ কুরআন ও হাদিসের আলোকে সঠিকভাবে নামাজ শিখুন। আরবি ও বাংলা অর্থসহ।",
+    url: siteConfig.url,
+    siteName: "নামাজ শিক্ষা",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "নামাজ শিক্ষা — Namaj Shikkha",
+      },
+    ],
     locale: "bn_BD",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "নামাজ শিক্ষা — Namaj Shikkha",
+    description: "সহীহ কুরআন ও হাদিসের আলোকে সঠিকভাবে নামাজ শিখুন। আরবি ও বাংলা অর্থসহ।",
+    images: ["/og-image.png"],
   },
   appleWebApp: {
     capable: true,
@@ -121,15 +148,18 @@ export default function RootLayout({
       <body className="flex min-h-screen flex-col bg-white antialiased dark:bg-dark-bg" suppressHydrationWarning>
         <ThemeProvider>
           <PreferencesProvider>
-            <AudioProvider>
-              <Navbar />
-              <main className="flex-1 pb-24 md:pb-16">{children}</main>
-              <GlobalAudioPlayer />
-              <MobileInstallPrompt />
-              <MobileBottomNav />
-              <PreferencesModal />
-              <Footer />
-            </AudioProvider>
+            <SearchProvider>
+              <AudioProvider>
+                <Navbar />
+                <main className="flex-1 pb-24 md:pb-16">{children}</main>
+                <GlobalAudioPlayer />
+                <MobileInstallPrompt />
+                <MobileBottomNav />
+                <PreferencesModal />
+                <SearchModal />
+                <Footer />
+              </AudioProvider>
+            </SearchProvider>
           </PreferencesProvider>
         </ThemeProvider>
       </body>

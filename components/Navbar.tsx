@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
 import { usePreferences } from "@/src/context/PreferencesContext";
+import { useSearch } from "@/src/context/SearchContext";
 import { InstallButton } from "./InstallButton";
 
 const primaryNavLinks = [
@@ -31,6 +32,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
   const { setPreferencePanelOpen } = usePreferences();
+  const { openSearch } = useSearch();
 
   return (
     <header className="sticky top-0 z-50 border-b border-emerald-100/90 bg-white/95 backdrop-blur-md dark:border-dark-border dark:bg-dark-card/95 transition-colors">
@@ -83,15 +85,18 @@ export default function Navbar() {
 
           {/* Right Action Controls */}
           <div className="flex items-center gap-1.5 sm:gap-2">
-            {/* Search Placeholder */}
-            <Link
-              href="/quran"
-              className="flex h-9 w-9 items-center justify-center rounded-xl border border-gray-200 text-gray-500 transition-colors hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700 dark:border-dark-border dark:text-dark-text-muted dark:hover:bg-dark-card-hover dark:hover:text-emerald-400"
-              title="সূরা বা আয়াত অনুসন্ধান করুন"
+            {/* Global Search Button */}
+            <button
+              onClick={openSearch}
+              className="flex h-9 items-center gap-1.5 px-2 sm:px-2.5 rounded-xl border border-gray-200 text-gray-500 transition-colors hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700 dark:border-dark-border dark:text-dark-text-muted dark:hover:bg-dark-card-hover dark:hover:text-emerald-400"
+              title="সাইট জুড়ে অনুসন্ধান করুন (/ বা ⌘K)"
               aria-label="অনুসন্ধান"
             >
               <Search className="h-4.5 w-4.5" />
-            </Link>
+              <span className="hidden sm:inline-block text-[11px] font-mono text-gray-400 dark:text-dark-text-muted bg-gray-100 dark:bg-dark-bg px-1.5 py-0.5 rounded border border-gray-200 dark:border-dark-border">
+                /
+              </span>
+            </button>
 
             {/* Reading / Salah Preferences Button */}
             <button

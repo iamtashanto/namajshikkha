@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useAudio } from "./AudioProvider";
-import { Play, Pause, Volume2, BookOpenText } from "lucide-react";
+import { Play, Pause, Volume2, BookOpenText, Sparkles } from "lucide-react";
 
 interface SurahDuaData {
     id: number | string;
@@ -109,11 +110,22 @@ export default function SurahCard({ data, playlist }: { data: SurahDuaData; play
                         <p className="text-xs text-gray-400 dark:text-dark-text-muted">{data.title_en}</p>
                     </div>
                 </div>
-                {data.verse_count && (
-                    <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-medium text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400">
-                        {data.verse_count} আয়াত
-                    </span>
-                )}
+                <div className="flex items-center gap-2">
+                    {data.category === "surah" && (
+                        <Link
+                            href={`/surah-dua/${typeof data.id === "string" && (data.id.startsWith("surah-") || data.id === "ayatul-kursi") ? data.id : `surah-${data.id}`}/hifz`}
+                            className="bangla-text inline-flex items-center gap-1 rounded-full border border-emerald-300 bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-800 hover:bg-emerald-100 dark:border-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 transition-colors"
+                        >
+                            <Sparkles className="h-3 w-3 text-emerald-600" />
+                            <span>হিফজ করুন</span>
+                        </Link>
+                    )}
+                    {data.verse_count && (
+                        <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-medium text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400">
+                            {data.verse_count} আয়াত
+                        </span>
+                    )}
+                </div>
             </div>
 
             {/* Tabs */}

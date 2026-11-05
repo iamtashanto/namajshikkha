@@ -17,10 +17,15 @@ import {
 import NavigationCard from "@/components/NavigationCard";
 import { HomePrayerWidget } from "@/src/components/home/HomePrayerWidget";
 import { HomeTrackerWidget } from "@/src/components/home/HomeTrackerWidget";
+import { JsonLd } from "@/src/components/seo/JsonLd";
+import { buildWebSiteSchema } from "@/src/lib/seo/schema";
 
 export default function Home() {
+  const websiteSchema = buildWebSiteSchema();
+
   return (
     <div>
+      <JsonLd schema={websiteSchema} />
       {/* Hero Section */}
       <section className="islamic-pattern relative overflow-hidden bg-gradient-to-b from-emerald-50 via-white to-white dark:from-dark-bg dark:via-dark-bg dark:to-dark-bg">
         {/* Decorative elements */}
@@ -161,6 +166,13 @@ export default function Home() {
             title="হাদিস ও প্রশ্নোত্তর"
             description="নামাজ সম্পর্কিত সহীহ হাদিস ও সচরাচর প্রশ্ন"
             color="purple"
+          />
+          <NavigationCard
+            href="/shikhun"
+            icon={BookOpen}
+            title="শিখুন ও প্রবন্ধ"
+            description="নামাজে মন বসা, নারী-পুরুষ পার্থক্য ও কাযা সালাত গাইড"
+            color="emerald"
           />
           <NavigationCard
             href="/islamic-history"

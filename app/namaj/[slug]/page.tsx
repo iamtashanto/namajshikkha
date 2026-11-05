@@ -22,6 +22,7 @@ import {
 } from "@/src/data";
 import { siteConfig } from "@/src/config/site";
 import { toBengaliNumber } from "@/src/lib/bengali";
+import { buildPrayerHowToSchema } from "@/src/lib/seo/schema";
 import {
   Breadcrumbs,
   Badge,
@@ -55,12 +56,13 @@ export async function generateMetadata({
 
   if (!prayer) {
     return {
-      title: "নামাজ পাওয়া যায়নি — নামাজ শিক্ষা",
+      title: "নামাজ পাওয়া যায়নি",
     };
   }
 
-  const title = `${prayer.nameBn} নামাজের নিয়ম ও বিবরণ — নামাজ শিক্ষা`;
-  const description = `${prayer.nameBn} (${prayer.nameEn}) নামাজের সময়, নিয়্যত, রাকাতের হিসাব, ফযিলত, ধাপে ধাপে সহীহ নিয়ম ও সাধারণ ভুলসমূহ। হানাফি ফিকহ ও হাদিস ভিত্তিক সম্পূর্ণ গাইড।`;
+  const rawTitle = `${prayer.nameBn} নামাজের সম্পূর্ণ নিয়ম ও নিয়ত`;
+  const title = (rawTitle.length <= 60 ? rawTitle : `${prayer.nameBn} নামাজের নিয়ম ও নিয়ত`).slice(0, 60);
+  const description = `${prayer.nameBn} নামাজের সঠিক নিয়ম, নিয়ত, রাকাতের হিসাব ও ফযিলত। হানাফি ফিকহ ও সহীহ হাদিস ভিত্তিক সম্পূর্ণ নির্দেশিকা।`.slice(0, 155);
 
   return {
     title,
@@ -158,12 +160,18 @@ export default async function PrayerDetailPage({ params }: PageProps) {
     ],
   };
 
+  const howToSchema = buildPrayerHowToSchema(prayer);
+
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
       {/* Schema.org Structured Data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
       />
       {faqSchema && (
         <script

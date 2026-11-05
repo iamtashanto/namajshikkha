@@ -4,6 +4,8 @@ import { siteConfig } from "@/src/config/site";
 import { prayers } from "@/src/data/prayers";
 import { salahRulings } from "@/src/data/rulings";
 import { taharatSections } from "@/src/data/taharat";
+import { prayerSurahs } from "@/src/data/surahs";
+import { shikhunArticles } from "@/src/data/shikhun";
 
 export const dynamic = 'force-static';
 
@@ -28,6 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/islamic-history',
         '/hadith-faq',
         '/taharat',
+        '/shikhun',
         '/more',
     ].map((route) => ({
         url: `${baseUrl}${route}`,
@@ -78,5 +81,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
         });
     });
 
-    return [...routes, ...prayerRoutes, ...masailRoutes, ...taharatRoutes, ...historyRoutes];
+    // Dynamic Shikhun routes
+    const shikhunRoutes: MetadataRoute.Sitemap = shikhunArticles.map((a) => ({
+        url: `${baseUrl}/shikhun/${a.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.8,
+    }));
+
+    // Dynamic Hifz routes
+    const hifzRoutes: MetadataRoute.Sitemap = prayerSurahs.map((s) => ({
+        url: `${baseUrl}/surah-dua/${s.id}/hifz`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.85,
+    }));
+
+    return [...routes, ...prayerRoutes, ...masailRoutes, ...taharatRoutes, ...shikhunRoutes, ...hifzRoutes, ...historyRoutes];
 }

@@ -818,5 +818,106 @@ export const prayerSurahs: Surah[] = [
         "number": "সূরা আসর ভূমিকা"
       }
     }
+  },
+  {
+    "id": "ayatul-kursi",
+    "number": 255,
+    "nameBn": "আয়াতুল কুরসী",
+    "nameAr": "آية الكرسي",
+    "nameEn": "Ayatul Kursi",
+    "ayahCount": 9,
+    "ayahs": [
+      {
+        "id": "ayatul-kursi-1",
+        "titleBn": "অংশ ১",
+        "titleEn": "Part 1",
+        "arabic": "اللَّهُ لَا إِلَـٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ",
+        "uccharonBn": "আল্লাহু লা ইলাহা ইল্লা হুওয়াল হাইয়্যুল ক্বাইয়্যুম।",
+        "banglish": "Allahu la ilaha illa huwal hayyul qayyum.",
+        "meaningBn": "আল্লাহ, তিনি ব্যতীত অন্য কোনো সত্য উপাস্য নেই, তিনি চিরঞ্জীব, সর্বসত্তার ধারক।"
+      },
+      {
+        "id": "ayatul-kursi-2",
+        "titleBn": "অংশ ২",
+        "titleEn": "Part 2",
+        "arabic": "لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ",
+        "uccharonBn": "লা তা'খুযুহূ সিনাতুঁও ওয়ালা নাওম।",
+        "banglish": "La ta'khudhuhu sinatuw wala nawm.",
+        "meaningBn": "তন্দ্রা ও নিদ্রা তাঁকে স্পর্শ করে না।"
+      },
+      {
+        "id": "ayatul-kursi-3",
+        "titleBn": "অংশ ৩",
+        "titleEn": "Part 3",
+        "arabic": "لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ",
+        "uccharonBn": "লাহূ মা ফিস সামাওয়াতি ওয়ামা ফিল আরদ।",
+        "banglish": "Lahu ma fis samawati wama fil ard.",
+        "meaningBn": "আকাশমণ্ডলী ও পৃথিবীতে যা কিছু আছে সবকিছু একমাত্র তাঁরই মালিকানাধীন।"
+      },
+      {
+        "id": "ayatul-kursi-4",
+        "titleBn": "অংশ ৪",
+        "titleEn": "Part 4",
+        "arabic": "مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ",
+        "uccharonBn": "মান যাল্লাযী ইয়াশফা'উ ইনদাহূ ইল্লা বি-ইযনিহ্।",
+        "banglish": "Man dhalladhi yashfa'u 'indahu illa bi-idhnih.",
+        "meaningBn": "কে আছে যে তাঁর অনুমতি ব্যতীত তাঁর নিকট সুপারিশ করবে?"
+      },
+      {
+        "id": "ayatul-kursi-5",
+        "titleBn": "অংশ ৫",
+        "titleEn": "Part 5",
+        "arabic": "يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ",
+        "uccharonBn": "ইয়া'লামু মা বাইনা আইদীহিম ওয়ামা খালফাহুম।",
+        "banglish": "Ya'lamu ma bayna aydihim wama khalfahum.",
+        "meaningBn": "তাদের সম্মুখে ও পশ্চাতে যা কিছু আছে তিনি সবকিছুই জানেন।"
+      },
+      {
+        "id": "ayatul-kursi-6",
+        "titleBn": "অংশ ৬",
+        "titleEn": "Part 6",
+        "arabic": "وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ",
+        "uccharonBn": "ওয়ালা ইউহীতূনা বিশাইয়িম মিন 'ইলমিহী ইল্লা বিমা শা-আ।",
+        "banglish": "Wala yuhituna bishay'im min 'ilmihi illa bima sha'.",
+        "meaningBn": "এবং তিনি যতটুকু ইচ্ছা করেন তা ব্যতীত তাঁর জ্ঞানের কোনো কিছুই তারা পরিবেষ্টন করতে পারে না।"
+      },
+      {
+        "id": "ayatul-kursi-7",
+        "titleBn": "অংশ ৭",
+        "titleEn": "Part 7",
+        "arabic": "وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ",
+        "uccharonBn": "ওয়াসি'আ কুরসিইয়্যুহুস সামাওয়াতি ওয়াল আরদ।",
+        "banglish": "Wasi'a kursiyyuhus samawati wal ard.",
+        "meaningBn": "তাঁর কুরসী সমস্ত আকাশমণ্ডলী ও পৃথিবীকে পরিব্যাপ্ত করে রেখেছে।"
+      },
+      {
+        "id": "ayatul-kursi-8",
+        "titleBn": "অংশ ৮",
+        "titleEn": "Part 8",
+        "arabic": "وَلَا يَئُودُهُ حِفْظُهُمَا",
+        "uccharonBn": "ওয়ালা ইয়াউদুহূ হিফযুহুমা।",
+        "banglish": "Wala ya'uduhu hifzuhuma.",
+        "meaningBn": "আর এ দুটির রক্ষণাবেক্ষণ তাঁকে বিন্দুমাত্র ক্লান্ত করে না।"
+      },
+      {
+        "id": "ayatul-kursi-9",
+        "titleBn": "অংশ ৯",
+        "titleEn": "Part 9",
+        "arabic": "وَهُوَ الْعَلِيُّ الْعَظِيمُ",
+        "uccharonBn": "ওয়াহুয়াল 'আলিয়্যুল 'আজীম।",
+        "banglish": "Wa huwal 'aliyyul 'adheem.",
+        "meaningBn": "তিনি সুউচ্চ, সর্বশ্রেষ্ঠ ও মহান।"
+      }
+    ],
+    "audioSrc": "https://server8.mp3quran.net/afs/002.mp3",
+    "revelation": "madani",
+    "fazilat": {
+      "textBn": "রাসূলুল্লাহ (সা.) বলেছেন: যে ব্যক্তি প্রত্যেক ফরজ নামাজের পর আয়াতুল কুরসী পাঠ করবে, তার জান্নাতে প্রবেশের পথে মৃত্যু ছাড়া আর কোনো বাধা থাকবে না।",
+      "reference": {
+        "type": "hadith",
+        "source": "সুনানে নাসায়ী ও সহীহ ইবনে হিব্বান",
+        "number": "হাদিস ১০০৪৬"
+      }
+    }
   }
 ];

@@ -4,15 +4,31 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Calendar, BookOpen, Star, Users, ChevronRight } from "lucide-react";
 import type { Metadata } from "next";
+import { siteConfig } from "@/src/config/site";
+import { JsonLd } from "@/src/components/seo/JsonLd";
+import { buildArticleSchema, buildBreadcrumbSchema } from "@/src/lib/seo/schema";
 
 export async function generateMetadata({ params }: { params: Promise<{ eraId: string; slug: string }> }): Promise<Metadata> {
     const { eraId, slug } = await params;
     const era = historyData.find(e => e.id === eraId);
     const event = era?.events.find((e: any) => e.slug === slug) as any;
-    if (!era || !event) return { title: "ইসলামের ইতিহাস — নামাজ শিক্ষা" };
+    if (!era || !event) return { title: "ইসলামের ইতিহাস" };
+
+    const title = `${event.title_bn} — ${era.name_bn}`.slice(0, 60);
+    const description = (event.short_desc_bn || event.description_bn || "").slice(0, 155);
+
     return {
-        title: `${event.title_bn} | ${era.name_bn} — নামাজ শিক্ষা`,
-        description: event.description_bn,
+        title,
+        description,
+        alternates: {
+            canonical: `${siteConfig.url}/islamic-history/${eraId}/${slug}`,
+        },
+        openGraph: {
+            title,
+            description,
+            url: `${siteConfig.url}/islamic-history/${eraId}/${slug}`,
+            type: "article",
+        },
     };
 }
 
@@ -79,8 +95,22 @@ export default async function HistoryDetailPage({ params }: { params: Promise<{ 
         // No detailed content available
     }
 
+    const articleSchema = buildArticleSchema({
+        title: event.title_bn,
+        description: (event.short_desc_bn || event.description_bn || "").slice(0, 155),
+        url: `/islamic-history/${eraId}/${slug}`,
+    });
+
+    const breadcrumbSchema = buildBreadcrumbSchema([
+        { name: "হোম", url: "/" },
+        { name: "ইসলামিক ইতিহাস", url: "/islamic-history" },
+        { name: era.name_bn, url: `/islamic-history#era-${eraId}` },
+        { name: event.title_bn, url: `/islamic-history/${eraId}/${slug}` },
+    ]);
+
     return (
         <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8">
+            <JsonLd schema={[articleSchema, breadcrumbSchema]} />
             {/* Back navigation */}
             <Link href="/islamic-history" className="mb-6 inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm text-gray-500 transition-all hover:border-emerald-200 hover:text-emerald-600 dark:border-dark-border dark:bg-dark-card dark:text-dark-text-muted dark:hover:border-emerald-700 dark:hover:text-emerald-400">
                 <ArrowLeft className="h-4 w-4" />

@@ -38,6 +38,7 @@ import {
   BookOpen,
 } from "lucide-react";
 import { prayers, prayerSurahs, getPrayerBySlug } from "@/src/data";
+import { getMasteredSurahIds } from "@/src/lib/hifz/storage";
 import { PrayerGroup, PrayerType, RakatUnit } from "@/src/types/content";
 import {
   buildTimeline,
@@ -218,6 +219,23 @@ export function NamajSimulatorClient() {
     4: getDefaultSurahForRakat(4),
   });
   const [includeMunajat, setIncludeMunajat] = useState<boolean>(false);
+  const [masteredSurahIdSet, setMasteredSurahIdSet] = useState<Set<string>>(
+    () => new Set()
+  );
+
+  useEffect(() => {
+    let cancelled = false;
+    async function loadMastered() {
+      const ids = await getMasteredSurahIds();
+      if (!cancelled && ids.length > 0) {
+        setMasteredSurahIdSet(new Set(ids));
+      }
+    }
+    loadMastered();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   // Setup search/filter state
   const [prayerSearch, setPrayerSearch] = useState<string>("");
@@ -1260,14 +1278,42 @@ export function NamajSimulatorClient() {
                                 }
                                 className="bangla-text w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-xs font-medium text-gray-900 focus:border-emerald-500 focus:outline-none dark:border-dark-border dark:bg-dark-bg dark:text-white"
                               >
-                                {prayerSurahs
-                                  .filter((s) => s.number !== 1)
-                                  .map((s) => (
-                                    <option key={s.id} value={s.id}>
-                                      {toBengaliNumber(s.number)}. সূরা{" "}
-                                      {s.nameBn} ({s.nameAr})
-                                    </option>
-                                  ))}
+                                {masteredSurahIdSet.size > 0 && (
+                                  <optgroup label="★ আমার মুখস্থ সূরা (হিফজ রেকর্ড):">
+                                    {prayerSurahs
+                                      .filter(
+                                        (s) =>
+                                          s.number !== 1 &&
+                                          masteredSurahIdSet.has(s.id)
+                                      )
+                                      .map((s) => (
+                                        <option key={`mem-${s.id}`} value={s.id}>
+                                          ★ {toBengaliNumber(s.number)}. সূরা{" "}
+                                          {s.nameBn} ({s.nameAr})
+                                        </option>
+                                      ))}
+                                  </optgroup>
+                                )}
+                                <optgroup
+                                  label={
+                                    masteredSurahIdSet.size > 0
+                                      ? "অন্যান্য সূরাসমূহ:"
+                                      : "নামাজে পঠিত সূরাসমূহ:"
+                                  }
+                                >
+                                  {prayerSurahs
+                                    .filter(
+                                      (s) =>
+                                        s.number !== 1 &&
+                                        !masteredSurahIdSet.has(s.id)
+                                    )
+                                    .map((s) => (
+                                      <option key={s.id} value={s.id}>
+                                        {toBengaliNumber(s.number)}. সূরা{" "}
+                                        {s.nameBn} ({s.nameAr})
+                                      </option>
+                                    ))}
+                                </optgroup>
                               </select>
                             </div>
                           );

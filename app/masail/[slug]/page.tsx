@@ -44,12 +44,12 @@ export async function generateMetadata({
 
   if (!ruling) {
     return {
-      title: "মাসায়েল পাওয়া যায়নি — নামাজ শিক্ষা",
+      title: "মাসায়েল পাওয়া যায়নি",
     };
   }
 
-  const title = `${ruling.titleBn} — হানাফি ফিকহ ও হাদিস বিধান`;
-  const description = `${ruling.summaryBn} হানাফি মাযহাবের প্রামাণ্য ফতোয়া, বিশুদ্ধ হাদিস ও বাস্তব উদাহরণসহ সম্পূর্ণ নির্দেশিকা।`;
+  const title = `${ruling.titleBn} — মাসায়েল ও বিধান`;
+  const description = `${ruling.summaryBn} হানাফি ফিকহ ও সহীহ হাদিস ভিত্তিক সম্পূর্ণ প্রামাণ্য নির্দেশিকা।`.slice(0, 155);
 
   return {
     title,

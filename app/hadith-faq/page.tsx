@@ -6,6 +6,8 @@ import { Breadcrumbs, ReferenceChip } from "@/src/components/ui";
 import { prayerHadiths } from "@/src/data/hadiths";
 import faqs from "@/data/faqs.json";
 import { ChevronDown, BookHeart, MessageCircleQuestion } from "lucide-react";
+import { JsonLd } from "@/src/components/seo/JsonLd";
+import { buildBreadcrumbSchema } from "@/src/lib/seo/schema";
 
 type ViewType = "hadith" | "faq";
 
@@ -36,8 +38,27 @@ export default function HadithFaqPage() {
             f.category?.includes(normalizedQuery)
     );
 
+    const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.slice(0, 30).map((f) => ({
+            "@type": "Question",
+            name: f.question_bn,
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: f.answer_bn,
+            },
+        })),
+    };
+
+    const breadcrumbSchema = buildBreadcrumbSchema([
+        { name: "হোম", url: "/" },
+        { name: "হাদিস ও প্রশ্নোত্তর", url: "/hadith-faq" },
+    ]);
+
     return (
         <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+            <JsonLd schema={[faqSchema, breadcrumbSchema]} />
             {/* Breadcrumbs */}
             <Breadcrumbs items={[{ label: "হাদিস ও প্রশ্নোত্তর" }]} />
 
