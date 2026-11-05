@@ -558,5 +558,54 @@ export const prayerDuas: Dua[] = [
       "grade": "sahih"
     },
     "reviewStatus": "verified"
+  },
+  {
+    "id": "dua-taawwuz",
+    "titleBn": "তাআউয (আউযুবিল্লাহ)",
+    "titleEn": "Ta'awwuz (Seeking Refuge)",
+    "arabic": "أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ",
+    "uccharonBn": "আউযু বিল্লাহি মিনাশ শাইতানির রাজীম।",
+    "banglish": "A'udhu billahi minash-shaytanir-rajeem.",
+    "meaningBn": "আমি বিতাড়িত শয়তান থেকে আল্লাহর নিকট আশ্রয় প্রার্থনা করছি।",
+    "category": "in-salah",
+    "reference": {
+      "type": "quran",
+      "source": "সূরা আন-নাহল",
+      "number": "১৬:৯৮"
+    },
+    "reviewStatus": "verified"
+  },
+  {
+    "id": "dua-tasmiyah",
+    "titleBn": "তাসমিয়াহ (বিসমিল্লাহ)",
+    "titleEn": "Tasmiyah (Bismillah)",
+    "arabic": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+    "uccharonBn": "বিসমিল্লাহির রহমানির রাহীম।",
+    "banglish": "Bismillahir-Rahmanir-Raheem.",
+    "meaningBn": "পরম করুণাময় অসীম দয়ালু আল্লাহর নামে শুরু করছি।",
+    "category": "in-salah",
+    "reference": {
+      "type": "quran",
+      "source": "সূরা আল-ফাতিহা",
+      "number": "১:১"
+    },
+    "reviewStatus": "verified"
+  },
+  {
+    "id": "dua-salam",
+    "titleBn": "সালাম (নামাজ সমাপ্তি)",
+    "titleEn": "Tasleem (Concluding Salam)",
+    "arabic": "السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ",
+    "uccharonBn": "আসসালামু আলাইকুম ওয়া রাহমাতুল্লাহ।",
+    "banglish": "Assalamu 'alaykum wa rahmatullah.",
+    "meaningBn": "আপনাদের ওপর শান্তি এবং আল্লাহর রহমত বর্ষিত হোক।",
+    "category": "in-salah",
+    "reference": {
+      "type": "hadith",
+      "source": "সুনানে আবু দাউদ",
+      "number": "৯৯৬",
+      "grade": "sahih"
+    },
+    "reviewStatus": "verified"
   }
 ];
