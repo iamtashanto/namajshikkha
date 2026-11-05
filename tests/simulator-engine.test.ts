@@ -3,6 +3,9 @@ import {
   buildTimeline,
   Posture,
   Timeline,
+  MALE_POSES,
+  FEMALE_POSES,
+  interpolatePose,
 } from "@/src/lib/simulator";
 import {
   prayers,
@@ -402,6 +405,40 @@ describe("Namaj Simulator Engine (Pure TypeScript)", () => {
         }
       }
     }
+  });
+
+  it("11. defines valid articulated joint poses for all 16 postures for both male and female", () => {
+    const allPostures = Object.values(Posture);
+    expect(allPostures).toHaveLength(16);
+
+    for (const posture of allPostures) {
+      expect(MALE_POSES[posture]).toBeDefined();
+      expect(FEMALE_POSES[posture]).toBeDefined();
+    }
+
+    // Male Ruku has a straight horizontal back (-90 deg) level with head (-90 deg)
+    expect(MALE_POSES[Posture.RUKU].torsoAngle).toBe(-90);
+    expect(MALE_POSES[Posture.RUKU].headAngle).toBe(-90);
+
+    // Sajda has bent toes and grounded knees/palms/forehead
+    expect(MALE_POSES[Posture.SAJDA].toesBent).toBe(true);
+    expect(FEMALE_POSES[Posture.SAJDA].toesBent).toBe(true);
+
+    // Tashahhud finger raised
+    expect(MALE_POSES[Posture.TASHAHHUD_FINGER_RAISED].fingerRaised).toBe(true);
+    expect(FEMALE_POSES[Posture.TASHAHHUD_FINGER_RAISED].fingerRaised).toBe(true);
+
+    // Salam head turns
+    expect(MALE_POSES[Posture.SALAM_RIGHT].headTurn).toBe(1);
+    expect(MALE_POSES[Posture.SALAM_LEFT].headTurn).toBe(-1);
+
+    // Joint interpolation midpoint
+    const mid = interpolatePose(
+      MALE_POSES[Posture.STANDING],
+      MALE_POSES[Posture.RUKU],
+      0.5
+    );
+    expect(mid.torsoAngle).toBe(-45);
   });
 });
 

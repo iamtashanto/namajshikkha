@@ -7,7 +7,9 @@ export type BadgeVariant =
   | "wajib"
   | "mustahab"
   | "neutral"
-  | "gold";
+  | "gold"
+  | "purple"
+  | "rose";
 
 interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   variant?: BadgeVariant;
@@ -50,6 +52,16 @@ const variantStyles: Record<BadgeVariant, { container: string; dot: string }> = 
     container:
       "bg-gray-100 text-gray-700 border-gray-200 dark:bg-dark-card-hover dark:text-dark-text-secondary dark:border-dark-border",
     dot: "bg-gray-400 dark:bg-dark-text-muted",
+  },
+  purple: {
+    container:
+      "bg-purple-50 text-purple-800 border-purple-200 dark:bg-purple-950/50 dark:text-purple-300 dark:border-purple-800/40",
+    dot: "bg-purple-500",
+  },
+  rose: {
+    container:
+      "bg-rose-50 text-rose-800 border-rose-200 dark:bg-rose-950/50 dark:text-rose-300 dark:border-rose-800/40",
+    dot: "bg-rose-500",
   },
 };
 
