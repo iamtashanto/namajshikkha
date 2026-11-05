@@ -88,7 +88,7 @@ export interface Ruling {
 
 export interface ExtraTakbir {
   count: number;
-  position: "before-ruku" | "after-qirat";
+  position: "before-ruku" | "after-qirat" | "after-sana";
   rakat: number;
 }
 
@@ -125,22 +125,66 @@ export type PrayerCategory =
   | "nafl"
   | "special";
 
+export interface PrayerStepDetail {
+  stepNumber: number;
+  rakatLabel: string; // e.g. "১ম রাকাত", "২য় রাকাত", "৩য় ও ৪র্থ রাকাত"
+  rakatsApplicable?: number[];
+  titleBn: string;
+  descriptionBn: string;
+  recitationId?: string; // ID linking to Recitation in duas or surahs
+  recitationCustom?: Recitation; // Or embedded Recitation
+  maleRule?: string;
+  femaleRule?: string;
+  tips?: string;
+}
+
+export interface PrayerFAQ {
+  question: string;
+  answer: string;
+}
+
+export interface SpecialRule {
+  title: string;
+  description: string;
+  reference?: Reference;
+}
+
+export type PrayerGroup =
+  | "daily-fard"
+  | "wajib"
+  | "jumuah-eid"
+  | "janaza"
+  | "sunnah-nafl"
+  | "special";
+
 export interface PrayerType {
-  slug: string; // "fajr", "dhuhr", "asr", "maghrib", "isha", "jumuah", "witr"
+  slug: string; // "fajr", "dhuhr", "asr", "maghrib", "isha", "jumuah", "witr", "eid-ul-fitr", "eid-ul-adha", "janaza", "tahajjud", "tarawih", "chasht", "istikhara"
   nameBn: string;
   nameAr: string;
   nameEn: string;
   category: PrayerCategory;
+  group: PrayerGroup;
   timeDescriptionBn: string;
   rakatUnits: RakatUnit[];
   totalRakats: number;
+  niyyat: Recitation;
   fazilat?: {
     textBn: string;
     reference?: Reference;
   };
+  steps: PrayerStepDetail[];
+  genderDifferences?: {
+    male: string[];
+    female: string[];
+    note?: string;
+  };
+  commonMistakes: string[];
+  faqs: PrayerFAQ[];
   references: Reference[];
+  relatedPrayers?: string[]; // Slugs of related prayers
   relatedRulings?: string[]; // IDs of related rulings
   simulatorConfigId: string;
+  specialRules?: SpecialRule[];
 }
 
 export interface HadithItem {

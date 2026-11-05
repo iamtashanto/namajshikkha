@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import historyData from "@/data/islamic-history.json";
 import { siteConfig } from "@/src/config/site";
+import { prayers } from "@/src/data/prayers";
 
 export const dynamic = 'force-static';
 
@@ -10,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Static routes
     const routes = [
         '',
+        '/namaj',
         '/namaj-rules',
         '/namaj-details',
         '/simulator',
@@ -25,6 +27,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: route === '' ? 1 : 0.8,
+    }));
+
+    // Dynamic Prayer routes
+    const prayerRoutes: MetadataRoute.Sitemap = prayers.map((p) => ({
+        url: `${baseUrl}/namaj/${p.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: p.category === 'fard' ? 0.9 : 0.8,
     }));
 
     // Dynamic History routes
@@ -45,5 +55,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
         });
     });
 
-    return [...routes, ...historyRoutes];
+    return [...routes, ...prayerRoutes, ...historyRoutes];
 }

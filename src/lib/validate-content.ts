@@ -82,6 +82,10 @@ export function validateContent(): ValidationResult {
   for (const prayer of prayers) {
     checkId(prayer.slug, "PrayerType");
 
+    if (prayer.niyyat) {
+      checkArabic(prayer.niyyat.arabic, `${prayer.slug}-niyyat`, "Niyyat");
+    }
+
     if (prayer.fazilat?.reference) {
       checkReference(prayer.fazilat.reference, prayer.slug);
     }
@@ -130,7 +134,7 @@ export function validateContent(): ValidationResult {
         });
       }
 
-      if (cfg.sajdaCount < 1) {
+      if (!cfg.isJanaza && cfg.sajdaCount < 1) {
         errors.push({
           type: "invalid_config",
           entityId: `${prayer.slug}-unit-${uIdx}`,
@@ -138,7 +142,11 @@ export function validateContent(): ValidationResult {
         });
       }
 
-      if (cfg.firstSittingAfter !== null && (cfg.firstSittingAfter < 1 || cfg.firstSittingAfter > cfg.rakats)) {
+      if (
+        !cfg.isJanaza &&
+        cfg.firstSittingAfter !== null &&
+        (cfg.firstSittingAfter < 1 || cfg.firstSittingAfter > cfg.rakats)
+      ) {
         errors.push({
           type: "invalid_config",
           entityId: `${prayer.slug}-unit-${uIdx}`,
@@ -147,7 +155,7 @@ export function validateContent(): ValidationResult {
       }
 
       for (const qRakat of cfg.qiratRakats) {
-        if (qRakat < 1 || qRakat > cfg.rakats) {
+        if (!cfg.isJanaza && (qRakat < 1 || qRakat > cfg.rakats)) {
           errors.push({
             type: "invalid_config",
             entityId: `${prayer.slug}-unit-${uIdx}`,

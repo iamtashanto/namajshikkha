@@ -10,7 +10,7 @@ export function MobileBottomNav() {
 
   const navItems = [
     { label: "হোম", href: "/", icon: Home },
-    { label: "নামাজ", href: "/namaj-rules", icon: BookOpen },
+    { label: "নামাজ", href: "/namaj", icon: BookOpen },
     { label: "সিমুলেটর", href: "/simulator", icon: PlayCircle },
     { label: "সময়", href: "/prayer-times", icon: Clock },
     { label: "আরো", href: "/more", icon: Grid },

@@ -341,5 +341,87 @@ export const prayerDuas: Dua[] = [
       "grade": "sahih"
     },
     "reviewStatus": "verified"
+  },
+  {
+    "id": "dua-sana-janaza",
+    "titleBn": "জানাজার নামাজের সানা",
+    "titleEn": "Sana for Janazah",
+    "arabic": "سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ وَتَبَارَكَ اسْمُكَ وَتَعَالَىٰ جَدُّكَ وَجَلَّ ثَنَاؤُكَ وَلَا إِلَٰهَ غَيْرُكَ",
+    "uccharonBn": "সুবহানাকাল্লাহুম্মা ওয়া বিহামদিকা ওয়া তাবারাকাসমুকা ওয়া তা'আলা জাদ্দুকা ওয়া জাল্লা সানাউকা ওয়া লা ইলাহা গাইরুক।",
+    "banglish": "Subhanakallahumma wa bihamdika wa tabarakasmuka wa ta'ala jadduka wa jalla thana'uka wa la ilaha ghairuk.",
+    "meaningBn": "হে আল্লাহ! তুমি পাক-পবিত্র, তোমার প্রশংসার সাথে তোমার নাম বরকতময়, তোমার মর্যাদা সুমহান, তোমার প্রশংসা অতি উচ্চ এবং তুমি ছাড়া কোনো উপাস্য নেই।",
+    "category": "janaza",
+    "reference": {
+      "type": "fiqh",
+      "source": "ফাতাওয়ায়ে শামী ও আল-হিদায়া",
+      "number": "জানাজা অধ্যায়"
+    },
+    "reviewStatus": "verified"
+  },
+  {
+    "id": "dua-janaza-boy",
+    "titleBn": "নাবালেগ ছেলে শিশুর জানাজার দোয়া",
+    "titleEn": "Dua for Deceased Boy",
+    "arabic": "اللَّهُمَّ اجْعَلْهُ لَنَا فَرَطًا وَاجْعَلْهُ لَنَا أَجْرًا وَذُخْرًا وَاجْعَلْهُ لَنَا شَافِعًا وَمُشَفَّعًا",
+    "uccharonBn": "আল্লাহুম্মাজ'আলহু লানা ফারাতাওঁ ওয়াজ'আলহু লানা আজরাওঁ ওয়া জুখরাওঁ ওয়াজ'আলহু লানা শাফি'আওঁ ওয়া মুশাফ্ফা'আ।",
+    "banglish": "Allahummaj-alhu lana faratan waj-alhu lana ajran wa dhukhran waj-alhu lana shafi'an wa mushaffa'a.",
+    "meaningBn": "হে আল্লাহ! এই শিশুকে আমাদের জন্য অগ্রগামী সুপারিশকারী বানান, তাকে আমাদের জন্য প্রতিদান ও সঞ্চয় বানান এবং তাকে আমাদের পক্ষে এমন সুপারিশকারী বানান যার সুপারিশ কবুল করা হবে।",
+    "category": "janaza",
+    "reference": {
+      "type": "fiqh",
+      "source": "আল-হিদায়া ও রদ্দুল মুহতার",
+      "number": "জানাজার সালাত"
+    },
+    "reviewStatus": "verified"
+  },
+  {
+    "id": "dua-janaza-girl",
+    "titleBn": "নাবালেগ মেয়ে শিশুর জানাজার দোয়া",
+    "titleEn": "Dua for Deceased Girl",
+    "arabic": "اللَّهُمَّ اجْعَلْهَا لَنَا فَرَطًا وَاجْعَلْهَا لَنَا أَجْرًا وَذُخْرًا وَاجْعَلْهَا لَنَا شَافِعَةً وَمُشَفَّعَةً",
+    "uccharonBn": "আল্লাহুম্মাজ'আলহা লানা ফারাতাওঁ ওয়াজ'আলহা লানা আজরাওঁ ওয়া জুখরাওঁ ওয়াজ'আলহা লানা শাফি'আতাওঁ ওয়া মুশাফ্ফা'আ।",
+    "banglish": "Allahummaj-alha lana faratan waj-alha lana ajran wa dhukhran waj-alha lana shafi'atan wa mushaffa'ah.",
+    "meaningBn": "হে আল্লাহ! এই শিশুকন্যাকে আমাদের জন্য অগ্রগামী সুপারিশকারী বানান, তাকে আমাদের জন্য প্রতিদান ও সঞ্চয় বানান এবং তাকে আমাদের পক্ষে এমন সুপারিশকারী বানান যার সুপারিশ কবুল করা হবে।",
+    "category": "janaza",
+    "reference": {
+      "type": "fiqh",
+      "source": "আল-হিদায়া ও রদ্দুল মুহতার",
+      "number": "জানাজার সালাত"
+    },
+    "reviewStatus": "verified"
+  },
+  {
+    "id": "dua-takbir-tashreeq",
+    "titleBn": "তাকবীরে তাশরীক",
+    "titleEn": "Takbeer-e-Tashreeq",
+    "arabic": "اللَّهُ أَكْبَرُ اللَّهُ أَكْبَرُ، لَا إِلَٰهَ إِلَّا اللَّهُ، وَاللَّهُ أَكْبَرُ اللَّهُ أَكْبَرُ وَلِلَّهِ الْحَمْدُ",
+    "uccharonBn": "আল্লাহু আকবার, আল্লাহু আকবার, লা ইলাহা ইল্লাল্লাহু ওয়াল্লাহু আকবার, আল্লাহু আকবার ওয়া লিল্লাহিল হামদ।",
+    "banglish": "Allahu Akbar, Allahu Akbar, La ilaha illallahu wallahu Akbar, Allahu Akbar wa lillahil hamd.",
+    "meaningBn": "আল্লাহ মহানতম, আল্লাহ মহানতম; আল্লাহ ছাড়া কোনো উপাস্য নেই; আল্লাহ মহানতম, আল্লাহ মহানতম এবং সমস্ত প্রশংসা একমাত্র আল্লাহর জন্য।",
+    "category": "after-salah",
+    "reference": {
+      "type": "hadith",
+      "source": "মুসান্নাফ ইবনে আবি শায়বাহ",
+      "number": "৫৬৯৮",
+      "grade": "sahih"
+    },
+    "reviewStatus": "verified"
+  },
+  {
+    "id": "dua-eid-takbir",
+    "titleBn": "ঈদের তাকবীর",
+    "titleEn": "Eid Takbeer",
+    "arabic": "اللَّهُ أَكْبَرُ اللَّهُ أَكْبَرُ، لَا إِلَٰهَ إِلَّا اللَّهُ، وَاللَّهُ أَكْبَرُ اللَّهُ أَكْبَرُ وَلِلَّهِ الْحَمْدُ، اللَّهُ أَكْبَرُ كَبِيرًا وَالْحَمْدُ لِلَّهِ كَثِيرًا وَسُبْحَانَ اللَّهِ بُكْرَةً وَأَصِيلًا",
+    "uccharonBn": "আল্লাহু আকবার আল্লাহু আকবার, লা ইলাহা ইল্লাল্লাহু ওয়াল্লাহু আকবার, আল্লাহু আকবার ওয়া লিল্লাহিল হামদ। আল্লাহু আকবার কাবিরা, ওয়ালহামদু লিল্লাহি কাসীরা, ওয়া সুবহানাল্লাহি বুকরাতাওঁ ওয়া আসীলা।",
+    "banglish": "Allahu Akbar Allahu Akbar, La ilaha illallahu wallahu Akbar, Allahu Akbar wa lillahil hamd. Allahu Akbaru kabeera, walhamdu lillahi kaseera, wa subhanallahi bukratan wa aseela.",
+    "meaningBn": "আল্লাহ সবচেয়ে মহান, আল্লাহ সবচেয়ে মহান; আল্লাহ ছাড়া কোনো উপাস্য নেই; আল্লাহ সবচেয়ে মহান, আল্লাহ সবচেয়ে মহান এবং সমস্ত প্রশংসা আল্লাহর। আল্লাহ সর্বশ্রেষ্ঠ, আল্লাহর জন্য প্রচুর প্রশংসা এবং সকাল-সন্ধ্যায় আল্লাহর পবিত্রতা ঘোষণা করছি।",
+    "category": "in-salah",
+    "reference": {
+      "type": "hadith",
+      "source": "সহীহ মুসলিম",
+      "number": "৬০১",
+      "grade": "sahih"
+    },
+    "reviewStatus": "verified"
   }
 ];

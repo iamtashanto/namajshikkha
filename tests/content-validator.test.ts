@@ -80,6 +80,31 @@ describe("Canonical Religious Content Validator", () => {
     // Verify 4-rakat Sunnah prayer has qirat in all 4 rakats: [1, 2, 3, 4]
     const dhuhrSunnah = dhuhr!.rakatUnits.find((u) => u.status === "sunnah");
     expect(dhuhrSunnah?.config.qiratRakats).toEqual([1, 2, 3, 4]);
+
+    // Verify Eid extra takbirs (Hanafi: 3 in 1st rakat after-sana, 3 in 2nd rakat before-ruku)
+    const eidFitr = getPrayerBySlug("eid-ul-fitr");
+    expect(eidFitr).toBeDefined();
+    const eidWajibUnit = eidFitr!.rakatUnits[0];
+    expect(eidWajibUnit.config.extraTakbirs).toHaveLength(2);
+    expect(eidWajibUnit.config.extraTakbirs?.[0]).toEqual({
+      rakat: 1,
+      count: 3,
+      position: "after-sana",
+    });
+    expect(eidWajibUnit.config.extraTakbirs?.[1]).toEqual({
+      rakat: 2,
+      count: 3,
+      position: "before-ruku",
+    });
+
+    // Verify Janaza configuration (isJanaza: true, 4 takbirs standing only, no ruku/sajda)
+    const janaza = getPrayerBySlug("janaza");
+    expect(janaza).toBeDefined();
+    const janazaUnit = janaza!.rakatUnits[0];
+    expect(janazaUnit.config.isJanaza).toBe(true);
+    expect(janazaUnit.config.rakats).toBe(0);
+    expect(janazaUnit.config.sajdaCount).toBe(0);
+    expect(janazaUnit.config.endsWithSalam).toBe(true);
   });
 
   it("verifies that Surah Al-Fatihah is configured per-ayah for memorization mode", () => {

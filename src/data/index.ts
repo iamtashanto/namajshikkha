@@ -11,6 +11,9 @@ export * from "./hadiths";
 
 // Lookup helpers
 export function getPrayerBySlug(slug: string) {
+  if (slug === "zuhr") {
+    return prayers.find((p) => p.slug === "dhuhr");
+  }
   return prayers.find((p) => p.slug === slug);
 }
 

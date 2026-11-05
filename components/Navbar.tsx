@@ -18,7 +18,7 @@ import { InstallButton } from "./InstallButton";
 
 const primaryNavLinks = [
   { href: "/", label: "হোম", labelEn: "Home" },
-  { href: "/namaj-rules", label: "নামাজ", labelEn: "Namaj" },
+  { href: "/namaj", label: "নামাজ", labelEn: "Namaj" },
   { href: "/simulator", label: "সিমুলেটর", labelEn: "Simulator" },
   { href: "/surah-dua", label: "সূরা ও দোয়া", labelEn: "Surah & Dua" },
   { href: "/quran", label: "কুরআন", labelEn: "Quran" },
