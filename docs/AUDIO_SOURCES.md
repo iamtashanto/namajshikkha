@@ -37,6 +37,8 @@ All short in-salah recitations are self-hosted in `/public/audio/*.mp3` so they 
 | `/audio/janaza-dua.mp3` | `dua-janaza` | জানাজার দোয়া (`Janazah Dua for Adults`) | Generated in-house (`ar_001`) + FFmpeg LAME MP3. **CC0 1.0 Universal**. |
 | `/audio/salatut-tasbih.mp3` | `dua-tasbih` | সালাতুত তাসবীহের তাসবীহ (`Salatut Tasbih Formula`) | Generated in-house (`ar_001`) + FFmpeg LAME MP3. **CC0 1.0 Universal**. |
 | `/audio/after-salah-dhikr.mp3` | `dua-after-salah-astaghfirullah` | সালাম পর ইস্তিগফার ও জিকির (`After-Salah Dhikr`) | Generated in-house (`ar_001`) + FFmpeg LAME MP3. **CC0 1.0 Universal**. |
+| `/audio/wudu-before.mp3` | `dua-wudu-before` | অযু শুরুর দোয়া (`Bismillah`) | Generated in-house (`ar_001`) + FFmpeg LAME MP3. **CC0 1.0 Universal**. |
+| `/audio/wudu-after.mp3` | `dua-wudu-after` | অযু সমাপ্তির কালিমা শাহাদাত ও দোয়া (`Dua After Wudu`) | Generated in-house (`ar_001`) + FFmpeg LAME MP3. **CC0 1.0 Universal**. |
 
 ---
 

@@ -920,6 +920,13 @@ export function NamajSimulatorClient() {
               <span>৩. সম্পন্ন</span>
             </span>
           )}
+
+          <Link
+            href={`/simulator/practice?prayer=${selectedPrayer.slug}&unit=${selectedUnit.status}&gender=${gender}`}
+            className="bangla-text inline-flex items-center gap-1.5 rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs font-bold text-emerald-800 hover:bg-emerald-100 dark:border-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300"
+          >
+            <span>কুইজ ও অনুশীলন</span>
+          </Link>
         </div>
       </div>
 
@@ -1903,14 +1910,13 @@ export function NamajSimulatorClient() {
 
             {/* Primary Completion CTA Buttons */}
             <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-              <button
-                type="button"
-                onClick={() => startSimulation("manual", false)}
+              <Link
+                href={`/simulator/practice?prayer=${selectedPrayer.slug}&unit=${selectedUnit.status}&gender=${gender}`}
                 className="bangla-text inline-flex items-center gap-2 rounded-2xl bg-emerald-600 px-5 py-3 text-sm font-bold text-white shadow-md shadow-emerald-200 transition-all hover:bg-emerald-700 dark:shadow-emerald-950/40"
               >
                 <RotateCcw className="h-4 w-4" />
-                <span>অনুশীলন মোড (Practice Mode)</span>
-              </button>
+                <span>অনুশীলন মোড (Practice Quiz)</span>
+              </Link>
 
               <button
                 type="button"

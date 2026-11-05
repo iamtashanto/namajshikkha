@@ -8,6 +8,11 @@ import {
   MALE_POSES,
   FEMALE_POSES,
   interpolatePose,
+  generatePracticeQuestions,
+  buildWuduTimeline,
+  validateWuduStepOrder,
+  generateWuduQuizQuestions,
+  WuduPosture,
 } from "@/src/lib/simulator";
 import {
   resolveStepRecitations,
@@ -18,6 +23,7 @@ import {
   getPrayerBySlug,
   prayerDuas,
   prayerSurahs,
+  salahRulings,
 } from "@/src/data";
 
 /**
@@ -496,6 +502,105 @@ describe("Namaj Simulator Engine (Pure TypeScript)", () => {
           }
         }
       }
+    }
+  });
+
+  it("13. generates rotating practice quiz questions (posture, recitation, repeat count, surah required) with Masail ruling links and fiqh consequences", () => {
+    const maghrib = getPrayerBySlug("maghrib")!;
+    const fardUnit = maghrib.rakatUnits.find((u) => u.status === "fard")!;
+    const timeline = buildTimeline(fardUnit.config, {
+      gender: "male",
+      role: "alone",
+      prayerSlug: "maghrib",
+      unitLabel: fardUnit.label,
+    });
+
+    const questions = generatePracticeQuestions(
+      timeline,
+      fardUnit.config,
+      maghrib
+    );
+    expect(questions).toHaveLength(timeline.steps.length);
+
+    const seenTypes = new Set(questions.map((q) => q.type));
+    expect(seenTypes.has("next-posture")).toBe(true);
+    expect(seenTypes.has("next-recitation")).toBe(true);
+    expect(seenTypes.has("repeat-count")).toBe(true);
+    expect(seenTypes.has("surah-required")).toBe(true);
+
+    const validMasailSlugs = new Set(salahRulings.map((r) => r.slug));
+
+    for (const q of questions) {
+      expect(q.options.length).toBeGreaterThanOrEqual(2);
+      expect(q.options.some((o) => o.id === q.correctOptionId)).toBe(true);
+      expect(q.explanationBn.trim().length).toBeGreaterThan(0);
+      expect(q.fiqhImpactBn.trim().length).toBeGreaterThan(0);
+      expect(validMasailSlugs.has(q.rulingSlug)).toBe(true);
+
+      if (q.type === "next-posture") {
+        expect(q.options.every((o) => o.posture !== undefined)).toBe(true);
+      }
+    }
+  });
+
+  it("14. builds Wudu timeline with water animation targets, 3x counts, before/after duas, and validates Wudu step order", () => {
+    // Full Sunnah + Fard Wudu (9 steps)
+    const fullWudu = buildWuduTimeline({
+      includeSunnahSteps: true,
+      isFasting: false,
+      hasKhuffMasah: false,
+      gender: "male",
+    });
+
+    expect(fullWudu.steps).toHaveLength(9);
+    expect(fullWudu.metadata.fardCount).toBe(4);
+    expect(fullWudu.steps[0].posture).toBe(WuduPosture.NIYYAT_BISMILLAH);
+    expect(fullWudu.steps[0].recitationId).toBe("dua-wudu-before");
+    expect(fullWudu.steps[8].posture).toBe(WuduPosture.DUA_AFTER_WUDU);
+    expect(fullWudu.steps[8].recitationId).toBe("dua-wudu-after");
+
+    // Verify 4 Fard steps exist and Washing steps have 3x count & water animation
+    const fardSteps = fullWudu.steps.filter((s) => s.isFard);
+    expect(fardSteps).toHaveLength(4);
+    expect(fardSteps.map((s) => s.fardNumber)).toEqual([1, 2, 3, 4]);
+
+    const washHands = fullWudu.steps.find(
+      (s) => s.posture === WuduPosture.WASH_HANDS
+    )!;
+    expect(washHands.repeat).toBe(3);
+    expect(washHands.hasWaterAnimation).toBe(true);
+
+    // 4-Fard-Only Wudu
+    const fardOnlyWudu = buildWuduTimeline({
+      includeSunnahSteps: false,
+      gender: "female",
+    });
+    expect(fardOnlyWudu.steps).toHaveLength(4);
+    expect(fardOnlyWudu.steps.every((s) => s.isFard)).toBe(true);
+
+    // Validate canonical Wudu step order vs out-of-order steps
+    const canonicalIds = fullWudu.steps.map((s) => s.id);
+    const validCheck = validateWuduStepOrder(canonicalIds, {
+      includeSunnahSteps: true,
+    });
+    expect(validCheck.isValid).toBe(true);
+    expect(validCheck.firstErrorIndex).toBeNull();
+
+    const swappedIds = [...canonicalIds];
+    [swappedIds[1], swappedIds[2]] = [swappedIds[2], swappedIds[1]];
+    const invalidCheck = validateWuduStepOrder(swappedIds, {
+      includeSunnahSteps: true,
+    });
+    expect(invalidCheck.isValid).toBe(false);
+    expect(invalidCheck.firstErrorIndex).toBe(1);
+    expect(invalidCheck.explanationBn.length).toBeGreaterThan(0);
+
+    // Wudu Practice Quiz questions
+    const wuduQuiz = generateWuduQuizQuestions(fullWudu);
+    expect(wuduQuiz).toHaveLength(9);
+    for (const q of wuduQuiz) {
+      expect(q.options.length).toBeGreaterThanOrEqual(3);
+      expect(q.options.some((o) => o.id === q.correctOptionId)).toBe(true);
     }
   });
 });

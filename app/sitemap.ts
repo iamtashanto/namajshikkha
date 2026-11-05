@@ -17,6 +17,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/namaj-rules',
         '/namaj-details',
         '/simulator',
+        '/simulator/practice',
+        '/taharat/wudu/simulator',
         '/prayer-times',
         '/surah-dua',
         '/quran',

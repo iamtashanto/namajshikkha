@@ -99,6 +99,16 @@ export default function WuduPage() {
         <p className="bangla-text mx-auto max-w-2xl text-base text-gray-600 dark:text-dark-text-secondary">
           {section.summaryBn}
         </p>
+
+        <div className="mt-5 flex flex-wrap justify-center gap-3">
+          <Link
+            href="/taharat/wudu/simulator"
+            className="bangla-text inline-flex items-center gap-2 rounded-2xl bg-emerald-600 px-5 py-2.5 text-xs sm:text-sm font-bold text-white shadow-md shadow-emerald-200 hover:bg-emerald-700 dark:shadow-emerald-950/40"
+          >
+            <span>💧 অযু সিমুলেটরে দেখুন ও কুইজ দিন</span>
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
       </div>
 
       {/* Quranic Ayah of Wudu */}

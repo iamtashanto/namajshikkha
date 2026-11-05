@@ -291,6 +291,7 @@ export const prayerDuas: Dua[] = [
     "uccharonBn": "বিসমিল্লাহ।",
     "banglish": "Bismillah.",
     "meaningBn": "আল্লাহর নামে শুরু করছি।",
+    "audioSrc": "/audio/wudu-before.mp3",
     "category": "wudu",
     "reference": {
       "type": "hadith",
@@ -308,6 +309,7 @@ export const prayerDuas: Dua[] = [
     "uccharonBn": "আশহাদু আল্লা ইলাহা ইল্লাল্লাহু ওয়াহদাহু লা শারীকা লাহু ওয়া আশহাদু আন্না মুহাম্মাদান আবদুহু ওয়া রাসূলুহু। আল্লাহুম্মাজ'আলনী মিনাত তাউওয়াবীনা ওয়াজ'আলনী মিনাল মুতাতাহহিরীন।",
     "banglish": "Ashhadu alla ilaha illallahu wahdahu la shareeka lahu wa ashhadu anna Muhammadan abduhu wa rasooluhu. Allahummaj-alni minat-tawwabeena waj-alni minal-mutatahhireen.",
     "meaningBn": "আমি সাক্ষ্য দিচ্ছি আল্লাহ ছাড়া কোনো উপাস্য নেই, তিনি একক, তাঁর কোনো অংশীদার নেই এবং মুহাম্মদ (সা.) তাঁর বান্দা ও রাসূল। হে আল্লাহ! আমাকে তওবাকারীদের অন্তর্ভুক্ত করুন এবং পবিত্রতা অর্জনকারীদের অন্তর্ভুক্ত করুন।",
+    "audioSrc": "/audio/wudu-after.mp3",
     "category": "wudu",
     "reference": {
       "type": "hadith",
