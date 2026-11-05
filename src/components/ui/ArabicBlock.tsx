@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Play, Pause, Volume2, Copy, Check, Type, Layers } from "lucide-react";
-import { usePreferences, ArabicFontSize } from "@/src/context/PreferencesContext";
+import { usePreferences, ArabicFontSize, LayerVisibility } from "@/src/context/PreferencesContext";
 import { useAudio } from "@/components/AudioProvider";
 import ReferenceChip from "./ReferenceChip";
 
@@ -18,6 +18,16 @@ export interface ArabicBlockProps {
   hadithNumber?: string | number;
   className?: string;
   initialShowAll?: boolean;
+  /** Optional 0..1 progress for word/line highlighting synced with audio in Simulator */
+  highlightProgress?: number;
+  /** Whether live word highlighting is active */
+  isHighlighting?: boolean;
+  /** Optional controlled layer visibility from Simulator toolbar */
+  externalLayers?: LayerVisibility;
+  /** Optional callback when user toggles a layer while controlled */
+  onToggleExternalLayer?: (layer: keyof LayerVisibility) => void;
+  /** Optional compact padding for Simulator viewports */
+  compact?: boolean;
 }
 
 const fontSizeClasses: Record<ArabicFontSize, string> = {
@@ -38,17 +48,24 @@ export function ArabicBlock({
   reference,
   hadithNumber,
   className = "",
+  highlightProgress,
+  isHighlighting = false,
+  externalLayers,
+  onToggleExternalLayer,
+  compact = false,
 }: ArabicBlockProps) {
   const { preferences } = usePreferences();
   const { activeTrack, isPlaying, play, toggle } = useAudio();
 
   // Local overrides for visibility and size, initialized from user preferences
-  const [visibleLayers, setVisibleLayers] = useState({
+  const [localLayers, setLocalLayers] = useState<LayerVisibility>({
     arabic: preferences.layers.arabic,
     uccharon: preferences.layers.uccharon,
     banglish: preferences.layers.banglish,
     meaning: preferences.layers.meaning,
   });
+
+  const visibleLayers = externalLayers ?? localLayers;
 
   const [fontSize, setFontSize] = useState<ArabicFontSize>(preferences.arabicFontSize);
   const [copied, setCopied] = useState(false);
@@ -56,8 +73,12 @@ export function ArabicBlock({
 
   const isThisPlaying = Boolean(audioUrl && activeTrack?.url === audioUrl && isPlaying);
 
-  const toggleLayer = (layer: keyof typeof visibleLayers) => {
-    setVisibleLayers((prev) => ({
+  const toggleLayer = (layer: keyof LayerVisibility) => {
+    if (onToggleExternalLayer) {
+      onToggleExternalLayer(layer);
+      return;
+    }
+    setLocalLayers((prev) => ({
       ...prev,
       [layer]: !prev[layer],
     }));
@@ -97,15 +118,89 @@ export function ArabicBlock({
     }
   };
 
+  // Word-level highlight calculation when synced with simulator audio/timer
+  const clampedProgress =
+    typeof highlightProgress === "number"
+      ? Math.max(0, Math.min(0.999, highlightProgress))
+      : null;
+
+  const renderHighlightedWords = (
+    text: string,
+    activeClass: string,
+    passedClass: string
+  ) => {
+    if (!isHighlighting || clampedProgress === null) {
+      return text.split("\n").map((line, idx) => (
+        <p key={idx} className="mb-1.5 last:mb-0">
+          {line}
+        </p>
+      ));
+    }
+
+    const lines = text.split("\n");
+    const allWords: { lineIdx: number; wordIdx: number; text: string }[] = [];
+    lines.forEach((line, lIdx) => {
+      const words = line.trim().split(/\s+/).filter(Boolean);
+      words.forEach((w, wIdx) => {
+        allWords.push({ lineIdx: lIdx, wordIdx: wIdx, text: w });
+      });
+    });
+
+    if (allWords.length === 0) return null;
+    const activeGlobalIndex = Math.floor(clampedProgress * allWords.length);
+
+    let globalCounter = 0;
+    return lines.map((line, lIdx) => {
+      const words = line.trim().split(/\s+/).filter(Boolean);
+      const lineStartIdx = globalCounter;
+      const lineEndIdx = lineStartIdx + words.length - 1;
+      const isLineActive =
+        activeGlobalIndex >= lineStartIdx && activeGlobalIndex <= lineEndIdx;
+
+      return (
+        <p
+          key={lIdx}
+          className={`mb-1.5 last:mb-0 rounded-lg px-1.5 py-0.5 transition-colors duration-200 ${
+            lines.length > 1 && isLineActive
+              ? "bg-emerald-100/60 dark:bg-emerald-900/30"
+              : ""
+          }`}
+        >
+          {words.map((word, wIdx) => {
+            const currentGlobal = globalCounter++;
+            const isCurrent = currentGlobal === activeGlobalIndex;
+            const isPassed = currentGlobal < activeGlobalIndex;
+
+            return (
+              <React.Fragment key={wIdx}>
+                <span
+                  className={`inline-block rounded px-0.5 transition-colors duration-150 ${
+                    isCurrent ? activeClass : isPassed ? passedClass : ""
+                  }`}
+                >
+                  {word}
+                </span>{" "}
+              </React.Fragment>
+            );
+          })}
+        </p>
+      );
+    });
+  };
+
   return (
     <div
       className={`overflow-hidden rounded-2xl border border-emerald-100/90 bg-white shadow-sm transition-all dark:border-dark-border dark:bg-dark-card ${className}`}
     >
       {/* Block Header */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-emerald-50 bg-gradient-to-r from-emerald-50/70 to-white px-4 py-3 dark:border-dark-border dark:from-emerald-950/25 dark:to-dark-card sm:px-5">
+      <div
+        className={`flex flex-wrap items-center justify-between gap-2 border-b border-emerald-50 bg-gradient-to-r from-emerald-50/70 to-white dark:border-dark-border dark:from-emerald-950/25 dark:to-dark-card ${
+          compact ? "px-3.5 py-2" : "px-4 py-3 sm:px-5"
+        }`}
+      >
         <div className="flex items-center gap-2">
           {title && (
-            <h3 className="bangla-text text-base font-bold text-gray-900 dark:text-white">
+            <h3 className="bangla-text text-sm sm:text-base font-bold text-gray-900 dark:text-white">
               {title}
             </h3>
           )}
@@ -245,18 +340,18 @@ export function ArabicBlock({
       )}
 
       {/* Layer Contents */}
-      <div className="space-y-4 p-5 sm:p-6">
+      <div className={compact ? "space-y-3 p-3.5 sm:p-4" : "space-y-4 p-5 sm:p-6"}>
         {/* Layer 1: Arabic */}
         {visibleLayers.arabic && (
-          <div className="rounded-xl bg-emerald-50/40 p-4 dark:bg-emerald-950/20">
+          <div className="rounded-xl bg-emerald-50/40 p-3.5 sm:p-4 dark:bg-emerald-950/20">
             <div
               className={`arabic-text font-arabic text-gray-900 dark:text-emerald-100 ${fontSizeClasses[fontSize]}`}
             >
-              {arabic.split("\n").map((line, idx) => (
-                <p key={idx} className="mb-2 last:mb-0">
-                  {line}
-                </p>
-              ))}
+              {renderHighlightedWords(
+                arabic,
+                "bg-emerald-300/90 text-emerald-950 dark:bg-emerald-600 dark:text-white shadow-2xs",
+                "text-emerald-800 dark:text-emerald-300"
+              )}
             </div>
           </div>
         )}
@@ -268,11 +363,11 @@ export function ArabicBlock({
               বাংলা উচ্চারণ:
             </span>
             <div className="bangla-text text-base leading-relaxed text-gray-800 dark:text-dark-text sm:text-lg">
-              {uccharon.split("\n").map((line, idx) => (
-                <p key={idx} className="mb-1 last:mb-0">
-                  {line}
-                </p>
-              ))}
+              {renderHighlightedWords(
+                uccharon,
+                "bg-emerald-200/90 text-emerald-950 dark:bg-emerald-700/80 dark:text-white",
+                "text-emerald-800/90 dark:text-emerald-300/90"
+              )}
             </div>
           </div>
         )}
@@ -314,4 +409,3 @@ export function ArabicBlock({
 }
 
 export default ArabicBlock;
-

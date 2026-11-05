@@ -71,6 +71,8 @@ export const siteConfig: SiteConfig = {
       {
         title: "নামাজ শিক্ষা",
         links: [
+          { label: "নামাজ সিমুলেটর", href: "/simulator" },
+          { label: "সকল নামাজের তালিকা", href: "/namaj" },
           { label: "পবিত্রতা ও তাহারাত", href: "/taharat" },
           { label: "নামাজের নিয়ম", href: "/namaj-rules" },
           { label: "নামাজের বিবরণ", href: "/namaj-details" },

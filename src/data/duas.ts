@@ -9,6 +9,7 @@ export const prayerDuas: Dua[] = [
     "uccharonBn": "সুবহানাকাল্লাহুম্মা ওয়া বিহামদিকা ওয়া তাবারাকাসমুকা ওয়া তা'আলা জাদ্দুকা ওয়া লা ইলাহা গাইরুক।",
     "banglish": "Subhanakallaahumma Wa Bihamdika Wa Tabarakasmuka Wa Ta'ala Jadduka Wa La Ilaha Ghairuk.",
     "meaningBn": "হে আল্লাহ! তুমি পাক-পবিত্র। তোমার প্রশংসার সাথে, তোমার নাম বরকতময়, তোমার মর্যাদা সুমহান, আর তুমি ছাড়া কোনো মা'বুদ নেই।",
+    "audioSrc": "/audio/sana.mp3",
     "category": "in-salah",
     "reference": {
       "type": "hadith",
@@ -26,6 +27,7 @@ export const prayerDuas: Dua[] = [
     "uccharonBn": "আত্তাহিয়্যাতু লিল্লাহি ওয়াস সালাওয়াতু ওয়াত তায়্যিবাতু। আসসালামু আলাইকা আইয়্যুহান নাবিয়্যু ওয়া রাহমাতুল্লাহি ওয়া বারাকাতুহু। আসসালামু আলাইনা ওয়া আলা ইবাদিল্লাহিস সালিহীন। আশহাদু আল্লা ইলাহা ইল্লাল্লাহু ওয়া আশহাদু আন্না মুহাম্মাদান আবদুহু ওয়া রাসূলুহু।",
     "banglish": "Attahiyyatu Lillahi Was-Salawatu Wat-Tayyibatu. Assalamu Alaika Ayyuhan Nabiyyu Wa Rahmatullahi Wa Barakatuhu. Assalamu Alaina Wa Ala Ibadillahis Salihin. Ashhadu Alla Ilaha Illallahu Wa Ashhadu Anna Muhammadan Abduhu Wa Rasuluh.",
     "meaningBn": "সমস্ত মৌখিক, শারীরিক ও আর্থিক ইবাদত আল্লাহর জন্য। হে নবী! আপনার উপর সালাম, আল্লাহর রহমত ও বরকত বর্ষিত হোক। আমাদের উপর এবং আল্লাহর নেক বান্দাদের উপর সালাম। আমি সাক্ষ্য দিচ্ছি যে, আল্লাহ ছাড়া কোনো মা'বুদ নেই এবং আমি আরো সাক্ষ্য দিচ্ছি যে, মুহাম্মাদ (সা.) তাঁর বান্দা ও রাসূল।",
+    "audioSrc": "/audio/tashahhud.mp3",
     "category": "in-salah",
     "reference": {
       "type": "hadith",
@@ -43,6 +45,7 @@ export const prayerDuas: Dua[] = [
     "uccharonBn": "আল্লাহুম্মা সাল্লি আলা মুহাম্মাদিন ওয়া আলা আলি মুহাম্মাদ, কামা সাল্লাইতা আলা ইব্রাহীমা ওয়া আলা আলি ইব্রাহীম, ইন্নাকা হামীদুম মাজীদ। আল্লাহুম্মা বারিক আলা মুহাম্মাদিন ওয়া আলা আলি মুহাম্মাদ, কামা বারাকতা আলা ইব্রাহীমা ওয়া আলা আলি ইব্রাহীম, ইন্নাকা হামীদুম মাজীদ।",
     "banglish": "Allahumma Salli Ala Muhammadin Wa Ala Ali Muhammad, Kama Sallaita Ala Ibrahima Wa Ala Ali Ibrahim, Innaka Hamidun Majid. Allahumma Barik Ala Muhammadin Wa Ala Ali Muhammad, Kama Barakta Ala Ibrahima Wa Ala Ali Ibrahim, Innaka Hamidun Majid.",
     "meaningBn": "হে আল্লাহ! মুহাম্মাদ (সা.) ও তাঁর বংশধরদের উপর রহমত বর্ষণ করুন, যেমন আপনি ইব্রাহীম (আ.) ও তাঁর বংশধরদের উপর রহমত বর্ষণ করেছেন। নিশ্চয়ই আপনি প্রশংসিত ও মহিমান্বিত। হে আল্লাহ! মুহাম্মাদ (সা.) ও তাঁর বংশধরদের উপর বরকত নাযিল করুন, যেমন আপনি ইব্রাহীম (আ.) ও তাঁর বংশধরদের উপর বরকত নাযিল করেছেন। নিশ্চয়ই আপনি প্রশংসিত ও মহিমান্বিত।",
+    "audioSrc": "/audio/durood.mp3",
     "category": "in-salah",
     "reference": {
       "type": "hadith",
@@ -60,6 +63,7 @@ export const prayerDuas: Dua[] = [
     "uccharonBn": "আল্লাহুম্মা ইন্নী যালামতু নাফসী যুলমান কাসীরাও ওয়ালা ইয়াগফিরুয যুনূবা ইল্লা আনতা, ফাগফিরলী মাগফিরাতাম মিন ইনদিকা ওয়ারহামনী ইন্নাকা আনতাল গাফূরুর রাহীম।",
     "banglish": "Allahumma Inni Zalamtu Nafsi Zulman Kathiran, Wa La Yaghfirudh-Dhunuba Illa Anta, Faghfirli Maghfiratan Min Indika Warhamni, Innaka Antal Ghafurur Rahim.",
     "meaningBn": "হে আল্লাহ! আমি আমার নিজের উপর অনেক জুলুম করেছি। তুমি ছাড়া গুনাহ ক্ষমা করার কেউ নেই। তুমি তোমার পক্ষ থেকে আমাকে ক্ষমা করে দাও এবং আমার প্রতি রহম কর। নিশ্চয়ই তুমি ক্ষমাশীল ও দয়ালু।",
+    "audioSrc": "/audio/dua-masura.mp3",
     "category": "in-salah",
     "reference": {
       "type": "hadith",
@@ -77,6 +81,7 @@ export const prayerDuas: Dua[] = [
     "uccharonBn": "আল্লাহুম্মা ইন্না নাস্তাঈনুকা ওয়া নাস্তাগফিরুকা ওয়া নু'মিনু বিকা ওয়া নাতাওয়াক্কালু আলাইকা ওয়া নুসনী আলাইকাল খাইরা ওয়া নাশকুরুকা ওয়া লা নাকফুরুকা ওয়া নাখলাউ ওয়া নাতরুকু মাই ইয়াফজুরুক। আল্লাহুম্মা ইয়্যাকা না'বুদু ওয়া লাকা নুসাল্লী ওয়া নাসজুদু ওয়া ইলাইকা নাস'আ ওয়া নাহফিদু ওয়া নারজু রাহমাতাকা ওয়া নাখশা আযাবাকা ইন্না আযাবাকা বিলকুফফারি মুলহিক।",
     "banglish": "Allahumma Inna Nasta'inuka Wa Nastaghfiruka Wa Nu'minu Bika Wa Natawakkalu Alaika Wa Nuthni Alaikal Khaira Wa Nashkuruka Wa La Nakfuruka Wa Nakhla'u Wa Natruku Mai Yafjuruk. Allahumma Iyyaka Na'budu Wa Laka Nusalli Wa Nasjudu Wa Ilaika Nas'a Wa Nahfidu Wa Narju Rahmataka Wa Nakhsha Adhabaka Inna Adhabaka Bil-Kuffari Mulhiq.",
     "meaningBn": "হে আল্লাহ! আমরা তোমারই সাহায্য চাই, তোমারই কাছে ক্ষমা চাই, তোমার প্রতি ঈমান রাখি, তোমারই ওপর ভরসা করি, তোমার প্রশংসা করি, তোমার শুকরিয়া আদায় করি, তোমার সাথে কুফরি করি না, এবং যে তোমার অবাধ্য তাকে পরিত্যাগ করি। হে আল্লাহ! আমরা তোমারই ইবাদত করি, তোমারই জন্য নামাজ পড়ি ও সেজদা করি, তোমারই দিকে দৌড়াই ও তৎপর হই, তোমার রহমতের আশা করি এবং তোমার আযাবকে ভয় করি। নিশ্চয়ই তোমার আযাব কাফেরদের উপর আপতিত হবে।",
+    "audioSrc": "/audio/qunut.mp3",
     "category": "qunut",
     "reference": {
       "type": "hadith",
@@ -94,6 +99,7 @@ export const prayerDuas: Dua[] = [
     "uccharonBn": "সুবহানা রাব্বিয়াল আযীম।",
     "banglish": "Subhana Rabbiyal Azim.",
     "meaningBn": "আমার মহান রবের পবিত্রতা বর্ণনা করছি।",
+    "audioSrc": "/audio/ruku-tasbih.mp3",
     "category": "in-salah",
     "reference": {
       "type": "hadith",
@@ -111,6 +117,7 @@ export const prayerDuas: Dua[] = [
     "uccharonBn": "সুবহানা রাব্বিয়াল আ'লা।",
     "banglish": "Subhana Rabbiyal A'la.",
     "meaningBn": "আমার সর্বোচ্চ রবের পবিত্রতা বর্ণনা করছি।",
+    "audioSrc": "/audio/sajda-tasbih.mp3",
     "category": "in-salah",
     "reference": {
       "type": "hadith",
@@ -248,6 +255,7 @@ export const prayerDuas: Dua[] = [
     "uccharonBn": "সামি'আল্লাহু লিমান হামিদাহ। রাব্বানা লাকাল হামদু হামদান কাসীরান তাইয়্যেবাম মুবারাকান ফীহ।",
     "banglish": "Sami Allahu liman hamidah. Rabbana lakal hamdu hamdan kaseeran tayyiban mubarakan feeh.",
     "meaningBn": "যে আল্লাহর প্রশংসা করে আল্লাহ তার কথা শোনেন। হে আমাদের প্রতিপালক! আপনার জন্যই সমস্ত প্রশংসা—এমন প্রশংসা যা প্রচুর, পবিত্র ও বরকতপূর্ণ।",
+    "audioSrc": "/audio/qawmah.mp3",
     "category": "in-salah",
     "reference": {
       "type": "hadith",
@@ -265,6 +273,7 @@ export const prayerDuas: Dua[] = [
     "uccharonBn": "রাব্বিগফির লী, রাব্বিগফির লী।",
     "banglish": "Rabbighfir lee, Rabbighfir lee.",
     "meaningBn": "হে আমার প্রতিপালক! আমাকে ক্ষমা করুন, হে আমার প্রতিপালক! আমাকে ক্ষমা করুন।",
+    "audioSrc": "/audio/jalsah.mp3",
     "category": "in-salah",
     "reference": {
       "type": "hadith",
@@ -316,6 +325,7 @@ export const prayerDuas: Dua[] = [
     "uccharonBn": "আস্তাগফিরুল্লাহ (৩ বার)। আল্লাহুম্মা আনতাস সালামু ওয়া মিনকাস সালাম, তাবারাকতা ইয়া যাল জালালি ওয়াল ইকরাম।",
     "banglish": "Astaghfirullah (3 times). Allahumma antas-salamu wa minkas-salam, tabarakta ya dhal-jalali wal-ikram.",
     "meaningBn": "আমি আল্লাহর কাছে ক্ষমা চাই (৩ বার)। হে আল্লাহ! আপনিই শান্তিময় এবং আপনার নিকট থেকেই শান্তি আসে। হে মহিমাময় ও মর্যাদাবান! আপনি বরকতময়।",
+    "audioSrc": "/audio/after-salah-dhikr.mp3",
     "category": "after-salah",
     "reference": {
       "type": "hadith",
@@ -333,6 +343,7 @@ export const prayerDuas: Dua[] = [
     "uccharonBn": "আল্লাহুম্মাগফির লিহাইয়্যিনা ওয়া মাইয়্যিতিনা, ওয়া শাহিদিনা ওয়া গায়িবিনা, ওয়া সাগীরিনা ওয়া কাবীরিনা, ওয়া জাকারিনা ওয়া উনসানা।",
     "banglish": "Allahummaghfir lihayyina wa mayyitina, wa shahidina wa gha-ibina, wa sagheerina wa kabeerina, wa dhakarina wa unthana.",
     "meaningBn": "হে আল্লাহ! আমাদের জীবিত ও মৃতদের ক্ষমা করুন, আমাদের উপস্থিত ও অনুপস্থিতদের, ছোট ও বড়দের এবং আমাদের পুরুষ ও মহিলাদের ক্ষমা করুন।",
+    "audioSrc": "/audio/janaza-dua.mp3",
     "category": "janaza",
     "reference": {
       "type": "hadith",
@@ -350,6 +361,7 @@ export const prayerDuas: Dua[] = [
     "uccharonBn": "সুবহানাকাল্লাহুম্মা ওয়া বিহামদিকা ওয়া তাবারাকাসমুকা ওয়া তা'আলা জাদ্দুকা ওয়া জাল্লা সানাউকা ওয়া লা ইলাহা গাইরুক।",
     "banglish": "Subhanakallahumma wa bihamdika wa tabarakasmuka wa ta'ala jadduka wa jalla thana'uka wa la ilaha ghairuk.",
     "meaningBn": "হে আল্লাহ! তুমি পাক-পবিত্র, তোমার প্রশংসার সাথে তোমার নাম বরকতময়, তোমার মর্যাদা সুমহান, তোমার প্রশংসা অতি উচ্চ এবং তুমি ছাড়া কোনো উপাস্য নেই।",
+    "audioSrc": "/audio/janaza-sana.mp3",
     "category": "janaza",
     "reference": {
       "type": "fiqh",
@@ -415,6 +427,7 @@ export const prayerDuas: Dua[] = [
     "uccharonBn": "আল্লাহু আকবার আল্লাহু আকবার, লা ইলাহা ইল্লাল্লাহু ওয়াল্লাহু আকবার, আল্লাহু আকবার ওয়া লিল্লাহিল হামদ। আল্লাহু আকবার কাবিরা, ওয়ালহামদু লিল্লাহি কাসীরা, ওয়া সুবহানাল্লাহি বুকরাতাওঁ ওয়া আসীলা।",
     "banglish": "Allahu Akbar Allahu Akbar, La ilaha illallahu wallahu Akbar, Allahu Akbar wa lillahil hamd. Allahu Akbaru kabeera, walhamdu lillahi kaseera, wa subhanallahi bukratan wa aseela.",
     "meaningBn": "আল্লাহ সবচেয়ে মহান, আল্লাহ সবচেয়ে মহান; আল্লাহ ছাড়া কোনো উপাস্য নেই; আল্লাহ সবচেয়ে মহান, আল্লাহ সবচেয়ে মহান এবং সমস্ত প্রশংসা আল্লাহর। আল্লাহ সর্বশ্রেষ্ঠ, আল্লাহর জন্য প্রচুর প্রশংসা এবং সকাল-সন্ধ্যায় আল্লাহর পবিত্রতা ঘোষণা করছি।",
+    "audioSrc": "/audio/eid-takbir.mp3",
     "category": "in-salah",
     "reference": {
       "type": "hadith",
@@ -466,6 +479,7 @@ export const prayerDuas: Dua[] = [
     "uccharonBn": "সুবহানাল্লাহি ওয়াল হামদুলিল্লাহি ওয়া লা ইলাহা ইল্লাল্লাহু ওয়াল্লাহু আকবার।",
     "banglish": "Subhanallahi wal-hamdulillahi wa la ilaha illallahu wallahu Akbar.",
     "meaningBn": "আল্লাহ পরম পবিত্র, সমস্ত প্রশংসা একমাত্র আল্লাহর, আল্লাহ ছাড়া কোনো উপাস্য নেই এবং আল্লাহ সর্বশ্রেষ্ঠ।",
+    "audioSrc": "/audio/salatut-tasbih.mp3",
     "category": "in-salah",
     "reference": {
       "type": "hadith",
@@ -567,6 +581,7 @@ export const prayerDuas: Dua[] = [
     "uccharonBn": "আউযু বিল্লাহি মিনাশ শাইতানির রাজীম।",
     "banglish": "A'udhu billahi minash-shaytanir-rajeem.",
     "meaningBn": "আমি বিতাড়িত শয়তান থেকে আল্লাহর নিকট আশ্রয় প্রার্থনা করছি।",
+    "audioSrc": "/audio/taawwuz.mp3",
     "category": "in-salah",
     "reference": {
       "type": "quran",
@@ -583,6 +598,7 @@ export const prayerDuas: Dua[] = [
     "uccharonBn": "বিসমিল্লাহির রহমানির রাহীম।",
     "banglish": "Bismillahir-Rahmanir-Raheem.",
     "meaningBn": "পরম করুণাময় অসীম দয়ালু আল্লাহর নামে শুরু করছি।",
+    "audioSrc": "/audio/tasmiyah.mp3",
     "category": "in-salah",
     "reference": {
       "type": "quran",
@@ -599,6 +615,7 @@ export const prayerDuas: Dua[] = [
     "uccharonBn": "আসসালামু আলাইকুম ওয়া রাহমাতুল্লাহ।",
     "banglish": "Assalamu 'alaykum wa rahmatullah.",
     "meaningBn": "আপনাদের ওপর শান্তি এবং আল্লাহর রহমত বর্ষিত হোক।",
+    "audioSrc": "/audio/salam.mp3",
     "category": "in-salah",
     "reference": {
       "type": "hadith",

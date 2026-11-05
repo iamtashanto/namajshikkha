@@ -14,6 +14,12 @@ export function usePWAInstall() {
     const [isInstallable, setIsInstallable] = useState(false);
 
     useEffect(() => {
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("/sw.js").catch(() => {
+                // Ignore service worker registration errors in dev
+            });
+        }
+
         // If already installed, we don't need to listen for the prompt
         if (window.matchMedia("(display-mode: standalone)").matches) {
             return;

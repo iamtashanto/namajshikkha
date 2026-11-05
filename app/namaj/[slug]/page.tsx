@@ -271,17 +271,20 @@ export default async function PrayerDetailPage({ params }: PageProps) {
                   label: unit.status,
                 };
                 return (
-                  <div
+                  <Link
                     key={index}
-                    className="flex items-center justify-between rounded-xl border border-emerald-100 bg-white p-3 dark:border-dark-border dark:bg-dark-card-hover"
+                    href={`/simulator?prayer=${prayer.slug}&unit=${index}`}
+                    title={`${unit.label} সিমুলেটরে দেখুন`}
+                    className="group flex items-center justify-between rounded-xl border border-emerald-100 bg-white p-3 transition-colors hover:border-emerald-300 hover:bg-emerald-50/40 dark:border-dark-border dark:bg-dark-card-hover"
                   >
-                    <span className="bangla-text text-sm font-semibold text-gray-800 dark:text-white">
-                      {unit.label}
+                    <span className="bangla-text flex items-center gap-2 text-sm font-semibold text-gray-800 group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-400">
+                      <PlayCircle className="h-4 w-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                      <span>{unit.label}</span>
                     </span>
                     <Badge variant={uBadge.variant} dot>
                       {uBadge.label}
                     </Badge>
-                  </div>
+                  </Link>
                 );
               })}
             </div>

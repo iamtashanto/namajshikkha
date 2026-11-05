@@ -1,4 +1,6 @@
 import { describe, it, expect } from "vitest";
+import fs from "node:fs";
+import path from "node:path";
 import {
   buildTimeline,
   Posture,
@@ -7,6 +9,10 @@ import {
   FEMALE_POSES,
   interpolatePose,
 } from "@/src/lib/simulator";
+import {
+  resolveStepRecitations,
+  collectTimelineAudioUrls,
+} from "@/src/lib/simulator/recitations";
 import {
   prayers,
   getPrayerBySlug,
@@ -439,6 +445,58 @@ describe("Namaj Simulator Engine (Pure TypeScript)", () => {
       0.5
     );
     expect(mid.torsoAngle).toBe(-45);
+  });
+
+  it("12. resolves 4-layer recitations and local audio files for Fajr, Maghrib, Zuhr, Witr, Eid, and Janaza across both genders", () => {
+    const requiredSlugs = [
+      "fajr",
+      "maghrib",
+      "zuhr",
+      "witr",
+      "eid-ul-fitr",
+      "janaza",
+    ];
+
+    for (const slug of requiredSlugs) {
+      const prayer = getPrayerBySlug(slug);
+      expect(prayer).toBeDefined();
+
+      const unit =
+        prayer!.rakatUnits.find(
+          (u) => u.status === "fard" || u.status === "wajib"
+        ) || prayer!.rakatUnits[0];
+
+      for (const gender of ["male", "female"] as const) {
+        const timeline = buildTimeline(unit.config, {
+          gender,
+          role: "alone",
+          prayerSlug: prayer!.slug,
+          unitLabel: unit.label,
+        });
+
+        expect(timeline.steps.length).toBeGreaterThan(0);
+
+        for (const step of timeline.steps) {
+          const recitations = resolveStepRecitations(step, prayer!);
+          for (const rec of recitations) {
+            expect(rec.arabic.trim().length).toBeGreaterThan(0);
+            expect(rec.uccharonBn.trim().length).toBeGreaterThan(0);
+            expect(rec.banglish.trim().length).toBeGreaterThan(0);
+            expect(rec.meaningBn.trim().length).toBeGreaterThan(0);
+          }
+        }
+
+        const audioUrls = collectTimelineAudioUrls(timeline.steps, prayer!);
+        expect(audioUrls.length).toBeGreaterThan(0);
+
+        for (const url of audioUrls) {
+          if (url.startsWith("/audio/")) {
+            const diskPath = path.join(process.cwd(), "public", url);
+            expect(fs.existsSync(diskPath)).toBe(true);
+          }
+        }
+      }
+    }
   });
 });
 

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   BookOpen,
   BookHeart,
@@ -8,6 +9,8 @@ import {
   Sparkles,
   Clock,
   BookMarked,
+  PlayCircle,
+  ArrowRight,
 } from "lucide-react";
 import NavigationCard from "@/components/NavigationCard";
 
@@ -39,10 +42,29 @@ export default function Home() {
             </p>
 
             {/* Subtitle */}
-            <p className="bangla-text mx-auto mb-10 max-w-2xl text-base leading-relaxed text-gray-500 dark:text-dark-text-secondary sm:text-lg">
+            <p className="bangla-text mx-auto mb-8 max-w-2xl text-base leading-relaxed text-gray-500 dark:text-dark-text-secondary sm:text-lg">
               সঠিকভাবে নামাজ পড়া শিখুন। সূরা, দোয়া, নিয়্যত, হাদিস —
               সবকিছু আরবি, বাংলা উচ্চারণ, ব্যাংলিশ ও বাংলা অর্থসহ।
             </p>
+
+            {/* Hero Primary CTA */}
+            <div className="mb-10 flex flex-wrap items-center justify-center gap-3.5">
+              <Link
+                href="/simulator"
+                className="bangla-text inline-flex items-center gap-2.5 rounded-2xl bg-emerald-600 px-6 py-3.5 text-base font-bold text-white shadow-lg shadow-emerald-200 transition-all hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-xl dark:shadow-emerald-950/50"
+              >
+                <PlayCircle className="h-5 w-5" />
+                <span>নামাজ শিখুন — ধাপে ধাপে দেখে</span>
+              </Link>
+
+              <Link
+                href="/namaj"
+                className="bangla-text inline-flex items-center gap-2 rounded-2xl border border-emerald-200 bg-white px-5 py-3.5 text-base font-semibold text-emerald-800 shadow-xs transition-all hover:bg-emerald-50 dark:border-dark-border dark:bg-dark-card dark:text-emerald-300 dark:hover:bg-dark-card-hover"
+              >
+                <span>সকল নামাজের তালিকা</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
 
             {/* Decorative divider */}
             <div className="mb-12 flex items-center gap-3">
