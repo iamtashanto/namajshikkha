@@ -17,8 +17,11 @@ import {
   prayers,
   getPrayerBySlug,
   prayerDuas,
+  getRulingById,
+  getRulingBySlug,
 } from "@/src/data";
 import { siteConfig } from "@/src/config/site";
+import { toBengaliNumber } from "@/src/lib/bengali";
 import {
   Breadcrumbs,
   Badge,
@@ -249,7 +252,9 @@ export default async function PrayerDetailPage({ params }: PageProps) {
               <p className="bangla-text text-lg font-bold text-emerald-700 dark:text-emerald-400 mt-1">
                 {prayer.slug === "janaza"
                   ? "৪ তাকবীর (দাঁড়িয়ে আদায়, রুকু-সেজদাবিহীন)"
-                  : `${prayer.totalRakats} রাকাত`}
+                  : prayer.rakatUnits[0]?.config.rakatRange
+                  ? `${toBengaliNumber(prayer.totalRakats)} রাকাত (ঐচ্ছিক সীমা: ${toBengaliNumber(prayer.rakatUnits[0].config.rakatRange[0])}–${toBengaliNumber(prayer.rakatUnits[0].config.rakatRange[1])} রাকাত)`
+                  : `${toBengaliNumber(prayer.totalRakats)} রাকাত`}
               </p>
             </div>
           </div>
@@ -282,6 +287,51 @@ export default async function PrayerDetailPage({ params }: PageProps) {
             </div>
           </div>
         </Card>
+
+        {/* সালাতুত তাসবীহ ৩০০ তাসবীহের বণ্টন ছক */}
+        {prayer.rakatUnits[0]?.config.tasbihDistribution && (
+          <Card className="border-purple-200 bg-purple-50/40 dark:border-purple-900/40 dark:bg-purple-950/20">
+            <div className="border-b border-purple-200 pb-3 dark:border-dark-border">
+              <h3 className="bangla-text text-lg font-bold text-purple-950 dark:text-purple-300">
+                সালাতুত তাসবীহ: প্রতি রাকাতে ৭৫ বার ও মোট ৩০০ তাসবীহের অবস্থান বণ্টন
+              </h3>
+              <p className="bangla-text text-xs text-purple-900/80 dark:text-purple-200 mt-1">
+                প্রতি রাকাতে নিম্নোক্ত ৭টি স্থানে মোট ৭৫ বার তাসবীহ (&ldquo;সুবহানাল্লাহি ওয়াল হামদুলিল্লাহি ওয়া লা ইলাহা ইল্লাল্লাহু ওয়াল্লাহু আকবার&rdquo;) পড়তে হয় (৪ রাকাতে মোট ৩০০ বার):
+              </p>
+            </div>
+            <div className="overflow-x-auto mt-4">
+              <table className="w-full text-left text-xs sm:text-sm">
+                <thead>
+                  <tr className="border-b border-purple-200 text-purple-950 dark:border-dark-border dark:text-purple-300">
+                    <th className="py-2.5 px-3 font-bold">নামাজের অবস্থান</th>
+                    <th className="py-2.5 px-3 font-bold text-center">তাসবীহ সংখ্যা</th>
+                    <th className="py-2.5 px-3 font-bold text-right">মোট (৪ রাকাতে)</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-purple-100 dark:divide-dark-border">
+                  {prayer.rakatUnits[0].config.tasbihDistribution.map((item, idx) => (
+                    <tr key={idx} className="text-gray-800 dark:text-dark-text-secondary">
+                      <td className="py-2 px-3 font-medium bangla-text">
+                        {idx + 1}. {item.labelBn}
+                      </td>
+                      <td className="py-2 px-3 text-center font-bold text-emerald-700 dark:text-emerald-400">
+                        {item.count} বার
+                      </td>
+                      <td className="py-2 px-3 text-right font-semibold">
+                        {item.count * 4} বার
+                      </td>
+                    </tr>
+                  ))}
+                  <tr className="bg-purple-100/70 font-bold text-purple-950 dark:bg-purple-950/50 dark:text-purple-300">
+                    <td className="py-2.5 px-3 bangla-text">সর্বমোট তাসবীহ সংখ্যা</td>
+                    <td className="py-2.5 px-3 text-center">৭৫ বার (প্রতি রাকাতে)</td>
+                    <td className="py-2.5 px-3 text-right">৩০০ বার</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </Card>
+        )}
 
         {/* ফযিলত ও গুরুত্ব (Fazilat Section) */}
         {prayer.fazilat && (
@@ -532,6 +582,42 @@ export default async function PrayerDetailPage({ params }: PageProps) {
                       </p>
                     </div>
                     <ArrowRight className="h-4 w-4 text-emerald-600 dark:text-emerald-400 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                );
+              })}
+            </div>
+          </section>
+        )}
+
+        {/* প্রাসঙ্গিক জরুরি মাসায়েল (Related Masail) */}
+        {prayer.relatedRulings && prayer.relatedRulings.length > 0 && (
+          <section className="space-y-4">
+            <div className="border-b border-emerald-100 pb-3 dark:border-dark-border">
+              <h2 className="bangla-text text-xl font-bold text-gray-900 dark:text-white">
+                প্রাসঙ্গিক জরুরি মাসায়েল ও বিধান
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {prayer.relatedRulings.map((rulingId) => {
+                const ruling = getRulingById(rulingId) || getRulingBySlug(rulingId);
+                if (!ruling) return null;
+
+                return (
+                  <Link
+                    key={ruling.id}
+                    href={`/masail/${ruling.slug}`}
+                    className="group flex items-center justify-between rounded-xl border border-emerald-100 bg-white p-4 transition-all hover:border-emerald-300 hover:shadow-xs dark:border-dark-border dark:bg-dark-card dark:hover:border-emerald-800"
+                  >
+                    <div>
+                      <h3 className="bangla-text text-base font-bold text-gray-900 group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-400">
+                        {ruling.titleBn}
+                      </h3>
+                      <p className="bangla-text text-xs text-gray-500 dark:text-dark-text-muted line-clamp-1 mt-0.5">
+                        {ruling.summaryBn}
+                      </p>
+                    </div>
+                    <ArrowRight className="h-4 w-4 text-emerald-600 dark:text-emerald-400 group-hover:translate-x-1 transition-transform shrink-0 ml-3" />
                   </Link>
                 );
               })}

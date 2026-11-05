@@ -105,6 +105,49 @@ describe("Canonical Religious Content Validator", () => {
     expect(janazaUnit.config.rakats).toBe(0);
     expect(janazaUnit.config.sajdaCount).toBe(0);
     expect(janazaUnit.config.endsWithSalam).toBe(true);
+
+    // Verify Salatut Tasbih per-position counting
+    const tasbih = getPrayerBySlug("salatut-tasbih");
+    expect(tasbih).toBeDefined();
+    const tasbihUnit = tasbih!.rakatUnits[0];
+    expect(tasbihUnit.config.tasbihDistribution).toBeDefined();
+    expect(tasbihUnit.config.tasbihDistribution).toHaveLength(7);
+    const sumTasbih = tasbihUnit.config.tasbihDistribution!.reduce(
+      (sum, item) => sum + item.count,
+      0
+    );
+    expect(sumTasbih).toBe(75); // 75 per rakat * 4 = 300
+
+    // Verify flexible prayers have rakatRange
+    const tahajjud = getPrayerBySlug("tahajjud");
+    expect(tahajjud?.rakatUnits[0].config.rakatRange).toEqual([2, 12]);
+    const chasht = getPrayerBySlug("chasht");
+    expect(chasht?.rakatUnits[0].config.rakatRange).toEqual([2, 12]);
+  });
+
+  it("verifies all 17 Masail topics, decision trees, and tilawat ayahs", () => {
+    expect(salahRulings.length).toBeGreaterThanOrEqual(17);
+
+    // Verify Sajda Sahu decision tree
+    const sajdaSahu = salahRulings.find((r) => r.slug === "sajda-sahu");
+    expect(sajdaSahu).toBeDefined();
+    expect(sajdaSahu?.decisionTree).toBeDefined();
+    expect(sajdaSahu?.decisionTree?.rootNodeId).toBe("node-root");
+
+    // Verify Sajda Tilawat 14 ayahs
+    const sajdaTilawat = salahRulings.find((r) => r.slug === "sajda-tilawat");
+    expect(sajdaTilawat).toBeDefined();
+    expect(sajdaTilawat?.tilawatAyahs).toHaveLength(14);
+
+    // Verify Sick Person decision tree
+    const sickPerson = salahRulings.find((r) => r.slug === "salah-of-the-sick");
+    expect(sickPerson).toBeDefined();
+    expect(sickPerson?.decisionTree).toBeDefined();
+
+    // Verify Masbuq worked examples
+    const masbuq = salahRulings.find((r) => r.slug === "masbuq-and-lahiq");
+    expect(masbuq).toBeDefined();
+    expect(masbuq?.bodyBn).toContain("Worked Examples");
   });
 
   it("verifies that Surah Al-Fatihah is configured per-ayah for memorization mode", () => {

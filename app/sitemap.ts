@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next';
 import historyData from "@/data/islamic-history.json";
 import { siteConfig } from "@/src/config/site";
 import { prayers } from "@/src/data/prayers";
+import { salahRulings } from "@/src/data/rulings";
 
 export const dynamic = 'force-static';
 
@@ -37,6 +38,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: p.category === 'fard' ? 0.9 : 0.8,
     }));
 
+    // Dynamic Masail routes
+    const masailRoutes: MetadataRoute.Sitemap = salahRulings.map((r) => ({
+        url: `${baseUrl}/masail/${r.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: r.status === 'fard' || r.status === 'wajib' ? 0.85 : 0.75,
+    }));
+
     // Dynamic History routes
     const historyRoutes: MetadataRoute.Sitemap = [];
 
@@ -55,5 +64,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
         });
     });
 
-    return [...routes, ...prayerRoutes, ...historyRoutes];
+    return [...routes, ...prayerRoutes, ...masailRoutes, ...historyRoutes];
 }

@@ -163,6 +163,17 @@ export function validateContent(): ValidationResult {
           });
         }
       }
+
+      if (cfg.tasbihDistribution) {
+        const tasbihSum = cfg.tasbihDistribution.reduce((sum, item) => sum + item.count, 0);
+        if (tasbihSum !== 75) {
+          errors.push({
+            type: "invalid_config",
+            entityId: `${prayer.slug}-unit-${uIdx}`,
+            message: `Tasbih distribution per rakat must sum to 75, received ${tasbihSum} in "${unit.label}"`,
+          });
+        }
+      }
     }
   }
 

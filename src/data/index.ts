@@ -28,3 +28,7 @@ export function getDuaById(id: string) {
 export function getRulingById(id: string) {
   return salahRulings.find((r) => r.id === id);
 }
+
+export function getRulingBySlug(slug: string) {
+  return salahRulings.find((r) => r.slug === slug || r.id === slug);
+}

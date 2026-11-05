@@ -69,6 +69,7 @@ export type RulingStatus =
   | "fard"
   | "wajib"
   | "sunnah"
+  | "nafl"
   | "mustahab"
   | "makruh"
   | "haram"
@@ -76,13 +77,88 @@ export type RulingStatus =
 
 export type AppliesToGender = "male" | "female" | "both";
 
+export interface RulingFAQ {
+  question: string;
+  answer: string;
+}
+
+export interface RulingExample {
+  title: string;
+  situation: string;
+  ruling: string;
+  action: string;
+}
+
+export interface DecisionResult {
+  status: "valid" | "sajda_sahu" | "repeat" | "mustahab" | "prohibited";
+  title: string;
+  description: string;
+  action: string;
+}
+
+export interface DecisionOption {
+  label: string;
+  description?: string;
+  nextId?: string;
+  result?: DecisionResult;
+}
+
+export interface DecisionNode {
+  id: string;
+  question: string;
+  hint?: string;
+  options: DecisionOption[];
+}
+
+export interface DecisionTree {
+  id: string;
+  title: string;
+  description: string;
+  rootNodeId: string;
+  nodes: Record<string, DecisionNode>;
+}
+
+export interface TilawatAyah {
+  serial: number;
+  surahNumber: number;
+  surahNameBn: string;
+  surahNameAr: string;
+  ayahNumber: number;
+  ayahRef: string;
+  textAr: string;
+  meaningBn: string;
+}
+
+export type RulingCategory =
+  | "fundamentals"
+  | "mistakes-corrections"
+  | "congregation"
+  | "special-circumstances"
+  | "lifestyle-etiquette";
+
 export interface Ruling {
   id: string;
+  slug: string;
   titleBn: string;
-  bodyBn: string; // Markdown formatted content
+  titleEn: string;
+  summaryBn: string;
+  category: RulingCategory;
   status: RulingStatus;
   appliesTo: AppliesToGender;
+  bodyBn: string; // Markdown formatted content
+  genderDifferences?: {
+    male: string[];
+    female: string[];
+    note?: string;
+  };
+  examples?: RulingExample[];
+  decisionTree?: DecisionTree;
+  tilawatAyahs?: TilawatAyah[];
+  workedExamples?: RulingExample[];
+  faqs?: RulingFAQ[];
   references: Reference[];
+  relatedTopics?: string[];
+  relatedPrayers?: string[];
   reviewStatus: ReviewStatus;
 }
 
@@ -98,12 +174,29 @@ export interface QunutConfig {
   position: "before-ruku" | "after-ruku";
 }
 
+export interface TasbihDistribution {
+  position:
+    | "after-sana"
+    | "after-surah"
+    | "ruku"
+    | "qawmah"
+    | "sajda-1"
+    | "jalsah"
+    | "sajda-2"
+    | "sitting-before-standing";
+  count: number;
+  labelBn: string;
+}
+
 export interface SalahConfig {
   rakats: number;
+  rakatRange?: [number, number]; // Allowed range for flexible prayers (e.g. [2, 12] for Tahajjud, [2, 8] for Chasht)
   qiratRakats: number[]; // Rakats where an extra surah is recited after Fatiha
   firstSittingAfter: number | null; // Rakat index after which first sitting occurs (e.g. 2), or null
   hasQunut: QunutConfig | boolean;
   extraTakbirs?: ExtraTakbir[]; // For Eid or special prayers
+  tasbihDistribution?: TasbihDistribution[]; // For Salatut Tasbih per-position counting
+  tasbihFormula?: string; // Arabic formula of tasbih
   isJanaza: boolean; // True for Janaza (standing only, 4 takbirs, no ruku/sajda)
   jahr: number[]; // Rakats recited loudly by Imam (e.g. [1, 2] for Fajr)
   sajdaCount: number; // Number of prostrations per rakat (standard 2)
@@ -120,6 +213,7 @@ export interface RakatUnit {
 export type PrayerCategory =
   | "fard"
   | "wajib"
+  | "sunnah"
   | "sunnah-muakkadah"
   | "sunnah-ghair-muakkadah"
   | "nafl"

@@ -1510,7 +1510,7 @@ export const prayers: PrayerType[] = [
     "nameEn": "Tahajjud",
     "category": "nafl",
     "group": "sunnah-nafl",
-    "timeDescriptionBn": "ইশার পর কিছুক্ষণ ঘুমিয়ে মধ্যরাতের পর থেকে সুবহে সাদিকের পূর্ব পর্যন্ত (রাতের শেষ তৃতীয়াংশে সর্বোত্তম)।",
+    "timeDescriptionBn": "ইশার নামাজের পর কিছু সময় ঘুমিয়ে উঠে সুবহে সাদিকের পূর্ব পর্যন্ত। রাতের শেষ তৃতীয়াংশ (সর্বশ্রেষ্ঠ সময়)।",
     "totalRakats": 8,
     "simulatorConfigId": "tahajjud-main",
     "niyyat": {
@@ -1547,7 +1547,11 @@ export const prayers: PrayerType[] = [
           "isJanaza": false,
           "jahr": [],
           "sajdaCount": 2,
-          "endsWithSalam": true
+          "endsWithSalam": true,
+          "rakatRange": [
+            2,
+            12
+          ]
         }
       },
       {
@@ -1646,7 +1650,18 @@ export const prayers: PrayerType[] = [
       "isha"
     ],
     "relatedRulings": [
-      "ruling-salah-arkan"
+      "ruling-conditions-and-arkan",
+      "ruling-sunnahs-of-salah"
+    ],
+    "specialRules": [
+      {
+        "title": "তাহাজ্জুদ ও বিতর নামাজের সম্পর্ক",
+        "description": "বিতর নামাজকে রাতের সর্বশেষ নামাজ বানানো মুস্তাহাব (সহীহ বুখারী ৯৯৮)। তবে কেউ যদি ইশার পর বিতর পড়ে ঘুমিয়ে যায়, তবুও সে শেষ রাতে তাহাজ্জুদ আদায় করতে পারবে; তখন আর দ্বিতীয়বার বিতর পড়তে হবে না—কারণ হাদিসে এসেছে: 'এক রাতে দুই বিতর নেই' (তিরমিযী ৪৭০)।"
+      },
+      {
+        "title": "রাকাত সংখ্যা ও আদায়ের নিয়ম",
+        "description": "তাহাজ্জুদ কমপক্ষে ২ রাকাত থেকে সর্বোচ্চ ১২ রাকাত পর্যন্ত পড়া যায়। রাসুলুল্লাহ (সা.) সাধারণত বিতরসহ মোট ১১ বা ১৩ রাকাত আদায় করতেন। প্রতি দুই রাকাত করে পৃথক নিয়্যতে সালাম ফিরিয়ে পড়া উত্তম।"
+      }
     ]
   },
   {
@@ -1656,7 +1671,7 @@ export const prayers: PrayerType[] = [
     "nameEn": "Tarawih",
     "category": "sunnah-muakkadah",
     "group": "sunnah-nafl",
-    "timeDescriptionBn": "পবিত্র রমজান মাসে ইশার ফরজ ও সুন্নাতের পর থেকে সুবহে সাদিকের পূর্ব পর্যন্ত।",
+    "timeDescriptionBn": "রমজান মাসে ইশার ফরজ ও ২ রাকাত সুন্নাত আদায়ের পর থেকে বিতরের পূর্বে বা সুবহে সাদিক পর্যন্ত।",
     "totalRakats": 20,
     "simulatorConfigId": "tarawih-main",
     "niyyat": {
@@ -1721,13 +1736,18 @@ export const prayers: PrayerType[] = [
     "steps": [
       {
         "stepNumber": 1,
-        "rakatLabel": "২ রাকাত করে ১০ সালাম",
-        "rakatsApplicable": [
-          1,
-          2
-        ],
-        "titleBn": "প্রতি চার রাকাত পর বিশ্রাম ও দোয়া",
-        "descriptionBn": "দুই রাকাত করে সালাম ফিরিয়ে মোট ২০ রাকাত আদায় করা হানাফি ফিকহের সুন্নাত। প্রতি ৪ রাকাত পর সামান্য সময় বিশ্রাম নেওয়া বা তাসবীহ পড়া মুস্তাহাব।"
+        "rakatLabel": "প্রতি ২ রাকাত",
+        "titleBn": "তাকবীর ও কিরাত",
+        "descriptionBn": "প্রতি দুই রাকাতের জন্য পৃথক নিয়্যত করে স্বাভাবিক নামাজের মতো সূরা ফাতিহা ও অন্য সূরা বা কুরআনের অংশ তিলাওয়াত করে রুকু-সেজদা সম্পন্ন করুন এবং শেষ বৈঠকে সালাম ফেরান।",
+        "recitationId": "dua-1"
+      },
+      {
+        "stepNumber": 2,
+        "rakatLabel": "প্রতি ৪ রাকাত পর",
+        "titleBn": "বিশ্রাম ও তাসবীহ পাঠ",
+        "descriptionBn": "প্রতি চার রাকাত শেষে কিছুক্ষণ বিশ্রাম নিন এবং তাসবীহ ও দোয়া পাঠ করুন।",
+        "recitationId": "dua-tarawih-tasbih",
+        "tips": "বিশ্রামের সময় নির্দিষ্ট কোনো দোয়া পড়া ফরজ বা ওয়াজিব নয়; যেকোনো যিকির ও কুরআন তিলাওয়াত পড়া জায়েজ।"
       }
     ],
     "commonMistakes": [
@@ -1760,7 +1780,26 @@ export const prayers: PrayerType[] = [
       "tahajjud"
     ],
     "relatedRulings": [
-      "ruling-salah-sunnah"
+      "ruling-sunnahs-of-salah",
+      "ruling-jamaat-and-imamat"
+    ],
+    "specialRules": [
+      {
+        "title": "২০ রাকাত ও সাহাবায়ে কেরামের ইজমা (ঐকমত্য)",
+        "description": "হানাফি ফিকহ এবং বাংলাদেশসহ মুসলিম বিশ্বের সংখ্যাগরিষ্ঠ ওলামায়ে কেরামের মতে খলীফাতুল মুসলিমীন হযরত উমর (রা.), উসমান (রা.), আলী (রা.) ও সাহাবায়ে কেরামের সর্বসম্মত আমল অনুযায়ী তারাবীহ নামাজ ২০ রাকাত সুন্নাতে মুয়াক্কাদাহ। এটি প্রতি দুই রাকাত করে মোট ১০ সালামে আদায় করা হয়।"
+      },
+      {
+        "title": "৮ রাকাতের অভিমত প্রসঙ্গে নিরপেক্ষ দৃষ্টিভঙ্গি",
+        "description": "কিছু আলেম ও সালাফী মাযহাবের ভাইগণ ৮ রাকাত পড়ার পক্ষে মতামত পোষণ করেন। এটি ফিকহী ইখতিলাফ বা শাখাগত মতভেদ। এই নিয়ে পারস্পরিক কাদা ছোঁড়াছুঁড়ি ও বিতর্ক সম্পূর্ণ পরিহার করে বিনম্রতা ও একাগ্রতার সাথে কিয়ামুল লাইল পালন করাই মুমিনের কর্তব্য।"
+      },
+      {
+        "title": "প্রতি চার রাকাত পর পর বিশ্রাম ও দোয়া",
+        "description": "তারাবীহ শব্দের অর্থ বিশ্রাম নেওয়া। প্রতি চার রাকাত পর পর কিছুক্ষণ বসে বিশ্রাম নেওয়া মুস্তাহাব। এ সময় প্রচলিত তাসবীহ ('সুবহানা যিল মুলকি ওয়াল মালাকূত...') অথবা যেকোনো যিকির, দরূদ ও ইস্তিগফার পড়া যায়।"
+      },
+      {
+        "title": "কুরআন খতমের সুন্নাত",
+        "description": "পূর্ণ রমজান মাসে তারাবীহ নামাজে অন্তত একবার পূর্ণ কুরআন কারীম খতম করা সুন্নাতে মুয়াক্কাদাহ।"
+      }
     ]
   },
   {
@@ -1807,7 +1846,11 @@ export const prayers: PrayerType[] = [
           "isJanaza": false,
           "jahr": [],
           "sajdaCount": 2,
-          "endsWithSalam": true
+          "endsWithSalam": true,
+          "rakatRange": [
+            2,
+            12
+          ]
         }
       },
       {
@@ -1863,7 +1906,13 @@ export const prayers: PrayerType[] = [
       "dhuhr"
     ],
     "relatedRulings": [
-      "ruling-salah-sunnah"
+      "ruling-sunnahs-of-salah"
+    ],
+    "specialRules": [
+      {
+        "title": "৩৬০টি হাড়ের জোড়ার সদকা",
+        "description": "মানুষের শরীরে ৩৬০টি জোড়া রয়েছে। প্রতিদিন প্রতিটি জোড়ার পক্ষ থেকে একটি সদকা আদায় করা আবশ্যক। চাশতের দুই বা চার রাকাত নামাজ এই ৩৬০টি সদকার স্থলাভিষিক্ত হয়ে যায় (সহীহ মুসলিম ৭২০)।"
+      }
     ]
   },
   {
@@ -1917,13 +1966,17 @@ export const prayers: PrayerType[] = [
     "steps": [
       {
         "stepNumber": 1,
-        "rakatLabel": "২ রাকাত নফল ও দোয়া",
-        "rakatsApplicable": [
-          1,
-          2
-        ],
-        "titleBn": "নামাজ শেষে ইস্তিখারার দোয়া",
-        "descriptionBn": "দুই রাকাত নফল নামাজ পড়ে আল্লাহর প্রশংসা ও দুরূদ শরীফ পাঠ করার পর হাদিসে বর্ণিত বিশেষ ইস্তিখারার দোয়া পড়ুন এবং যে বিষয়ে সিদ্ধান্ত নিতে চান মনে মনে তা উল্লেখ করুন।"
+        "rakatLabel": "১ম ও ২য় রাকাত",
+        "titleBn": "দুই রাকাত নফল নামাজ",
+        "descriptionBn": "সাধারণ নফল নামাজের মতো দুই রাকাত নামাজ আদায় করুন। সূরা ফাতিহার পর প্রথম রাকাতে সূরা কাফিরূন এবং দ্বিতীয় রাকাতে সূরা ইখলাস পড়া মুস্তাহাব। এরপর সালাম ফিরিয়ে শেষ করুন।",
+        "recitationId": "dua-1"
+      },
+      {
+        "stepNumber": 2,
+        "rakatLabel": "নামাজ শেষে",
+        "titleBn": "ইস্তিখারার মাসনূন দোয়া পাঠ",
+        "descriptionBn": "সালাম ফেরানোর পর অত্যন্ত একাগ্রতার সাথে বুখারী শরিফে বর্ণিত ইস্তিখারার পূর্ণ দোয়াটি পাঠ করুন। দোয়ার মধ্যে 'হাযাল আমরা' (এই বিষয়টি) স্থানে নিজের কাঙ্ক্ষিত বিষয়ের কথা নিয়্যত বা স্মরণ করবেন।",
+        "recitationId": "dua-istikhara"
       }
     ],
     "commonMistakes": [
@@ -1949,7 +2002,17 @@ export const prayers: PrayerType[] = [
       "chasht"
     ],
     "relatedRulings": [
-      "ruling-salah-sunnah"
+      "ruling-sunnahs-of-salah"
+    ],
+    "specialRules": [
+      {
+        "title": "ইস্তিখারার ফলাফল কীভাবে বুঝবেন?",
+        "description": "স্বপ্নে কোনো বিশেষ ইঙ্গিত, সাদা বা সবুজ রঙ দেখা অথবা কোনো গায়েবী আওয়াজ শুনা ইস্তিখারার শর্ত নয়! বরং ইস্তিখারার পর আপনার অন্তর যে সিদ্ধান্তের প্রতি তৃপ্ত হয় এবং আল্লাহ যে কাজের সুযোগকে সহজ করে দেন, সেটাই কল্যাণকর ফয়সালা। কাজটিতে বাধা আসলে বুঝে নিতে হবে এতে অকল্যাণ ছিল।"
+      },
+      {
+        "title": "কখন ইস্তিখারা করা যায়?",
+        "description": "বিয়ে, ব্যবসা, চাকরি, শিক্ষা বা ভ্রমণের মতো যেকোনো গুরুত্বপূর্ণ ও হালাল সিদ্ধান্তের পূর্বে ইস্তিখারা করা সুন্নাত। তবে ফরজ বা ওয়াজিব কাজ (যেমন নামাজ পড়া বা না পড়া) এবং হারাম কাজের ক্ষেত্রে ইস্তিখারা নেই।"
+      }
     ]
   },
   {
@@ -1998,22 +2061,62 @@ export const prayers: PrayerType[] = [
           "isJanaza": false,
           "jahr": [],
           "sajdaCount": 2,
-          "endsWithSalam": true
+          "endsWithSalam": true,
+          "tasbihDistribution": [
+            {
+              "position": "after-sana",
+              "count": 15,
+              "labelBn": "সানার পর (কিরাতের পূর্বে)"
+            },
+            {
+              "position": "after-surah",
+              "count": 10,
+              "labelBn": "সূরা মিলানোর পর (রুকুর পূর্বে)"
+            },
+            {
+              "position": "ruku",
+              "count": 10,
+              "labelBn": "রুকু অবস্থায় (রুকুর তাসবীহের পর)"
+            },
+            {
+              "position": "qawmah",
+              "count": 10,
+              "labelBn": "রুকু থেকে দাঁড়িয়ে (কওমায়)"
+            },
+            {
+              "position": "sajda-1",
+              "count": 10,
+              "labelBn": "১ম সেজদায় (সেজদার তাসবীহের পর)"
+            },
+            {
+              "position": "jalsah",
+              "count": 10,
+              "labelBn": "দুই সেজদার মাঝখানে বসে (জালসায়)"
+            },
+            {
+              "position": "sajda-2",
+              "count": 10,
+              "labelBn": "২য় সেজদায় (সেজদার তাসবীহের পর)"
+            }
+          ],
+          "tasbihFormula": "سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ وَلَا إِلَٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ"
         }
       }
     ],
     "steps": [
       {
         "stepNumber": 1,
-        "rakatLabel": "প্রতি রাকাতে ৭৫ বার তাসবীহ",
-        "rakatsApplicable": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "titleBn": "তাসবীহ পাঠের নিয়ম",
-        "descriptionBn": "তাসবীহ: 'সুবহানাল্লাহি ওয়ালহামদু লিল্লাহি ওয়া লা ইলাহা ইল্লাল্লাহু ওয়াল্লাহু আকবার'। ১ম রাকাতে সানার পর ১৫ বার, কিরাতের পর ১০ বার, রুকুতে ১০ বার, রুকু থেকে সোজা হয়ে ১০ বার, ১ম সেজদায় ১০ বার, দুই সেজদার মাঝে ১০ বার, ২য় সেজদায় ১০ বার = মোট ৭৫ বার। এভাবে চার রাকাতে মোট ৩০০ বার পাঠ করতে হয়।"
+        "rakatLabel": "১ম রাকাত",
+        "titleBn": "তাকবীর, সানা ও ১ম ৭৫ তাসবীহ",
+        "descriptionBn": "তাকবীরে তাহরীমা বেঁধে সানা পড়ুন, এরপর ১৫ বার তাসবীহ পড়ুন। সূরা ফাতিহা ও অন্য সূরা পড়ে রুকুতে যাওয়ার পূর্বে ১০ বার তাসবীহ পড়ুন। রুকুতে 'সুবহানা রাব্বিয়াল আযীম' পড়ে ১০ বার পড়ুন। রুকু থেকে দাঁড়িয়ে 'রাব্বানা লাকাল হামদ' পড়ে ১০ বার পড়ুন। ১ম সেজদায় 'সুবহানা রাব্বিয়াল আ'লা' পড়ে ১০ বার পড়ুন। দুই সেজদার মাঝে বসে ১০ বার পড়ুন। ২য় সেজদায় ১০ বার পড়ুন। (মোট ৭৫ বার)।",
+        "recitationId": "dua-tasbih"
+      },
+      {
+        "stepNumber": 2,
+        "rakatLabel": "২য়, ৩য় ও ৪র্থ রাকাত",
+        "titleBn": "অবশিষ্ট ২২৫ তাসবীহ ও সালাম",
+        "descriptionBn": "পরবর্তী তিন রাকাতেও অনুরূপ প্রতি রাকাতে ৭৫ বার করে তাসবীহ আদায় করুন। ২য় ও ৪র্থ রাকাত শেষে তাশাহহুদ, দরূদ ও দোয়া মাসূরা পড়ে সালাম ফিরিয়ে চার রাকাত সম্পন্ন করুন।",
+        "recitationId": "dua-tasbih"
       }
     ],
     "commonMistakes": [
@@ -2038,7 +2141,17 @@ export const prayers: PrayerType[] = [
       "istikhara"
     ],
     "relatedRulings": [
-      "ruling-salah-sunnah"
+      "ruling-sunnahs-of-salah"
+    ],
+    "specialRules": [
+      {
+        "title": "প্রতি রাকাতে ৭৫ বার ও মোট ৩০০ তাসবীহের হিসাব",
+        "description": "চার রাকাতের প্রতি রাকাতে ৭টি নির্দিষ্ট অবস্থানে মোট ৭৫ বার তাসবীহ পাঠ করা হয় (১৫+১০+১০+১০+১০+১০+১০ = ৭৫ বার)। চার রাকাতে মোট ৪ × ৭৫ = ৩০০ বার তাসবীহ সম্পন্ন হয়।"
+      },
+      {
+        "title": "হাদিসের মান ও গ্রহণযোগ্যতা (নিরপেক্ষ ফিকহী আলোচনা)",
+        "description": "মুহাদ্দিসীনদের মধ্যে ইমাম বুখারী ও ইবনুল জাওযী হাদিসটিকে যয়ীফ বা দুর্বল বললেও হাফেজ ইবনে হাজার আসকালানী, ইমাম যাহাবী, ইমাম তিরমিযী, ইমাম হাকিম এবং আল্লামা নাসিরুদ্দীন আল-বানী হাদিসটিকে 'হাসান' বা আমলযোগ্য বলে স্বীকৃতি দিয়েছেন। চার মাযহাবের ফিকহে এটি অত্যন্ত ফজিলতপূর্ণ নফল নামাজ হিসেবে গণ্য।"
+      }
     ]
   },
   {
@@ -2248,6 +2361,1211 @@ export const prayers: PrayerType[] = [
     ],
     "relatedRulings": [
       "ruling-salah-fard"
+    ]
+  },
+  {
+    "slug": "ishraq",
+    "nameBn": "ইশরাকের নামাজ",
+    "nameAr": "صَلَاةُ الإِشْرَاقِ",
+    "nameEn": "Salatul Ishraq",
+    "category": "nafl",
+    "group": "sunnah-nafl",
+    "timeDescriptionBn": "সূর্য উদিত হয়ে এক বর্শা পরিমাণ ওপরে ওঠার পর (সূর্যোদয়ের আনুমানিক ১৫–২০ মিনিট পর থেকে চাশতের পূর্ব পর্যন্ত)।",
+    "totalRakats": 2,
+    "simulatorConfigId": "ishraq-main",
+    "niyyat": {
+      "id": "niyyat-ishraq",
+      "titleBn": "ইশরাক নামাজের নিয়্যত",
+      "titleEn": "Niyyah for Ishraq Prayer",
+      "arabic": "نَوَيْتُ أَنْ أُصَلِّيَ لِلَّهِ تَعَالَىٰ رَكْعَتَيْ صَلَاةِ الْإِشْرَاقِ نَفْلًا مُتَوَجِّهًا إِلَىٰ جِهَةِ الْكَعْبَةِ الشَّرِيفَةِ",
+      "uccharonBn": "নাওয়াইতু আন উসাল্লিয়া লিল্লাহি তা'আলা রাক'আতাই সালাতিল ইশরাকি নাফলান মুতাওয়াজ্জিহান ইলা জিহাতিল কা'বাতিশ শারীফাহ।",
+      "banglish": "Nawaytu an usalliya lillahi ta'ala rak'atay salatil-ishraqi naflan mutawajjihan ila jihatil-ka'batish-shareefah.",
+      "meaningBn": "আমি আল্লাহর সন্তুষ্টির উদ্দেশ্যে কিবলামুখী হয়ে ইশরাকের দুই রাকাত নফল নামাজ আদায়ের সংকল্প করছি।"
+    },
+    "fazilat": {
+      "textBn": "যে ব্যক্তি ফজরের নামাজ জামাতে আদায় করে সূর্যোদয় পর্যন্ত বসে আল্লাহর যিকিরে মগ্ন থাকে, এরপর দুই রাকাত ইশরাকের নামাজ পড়ে, সে একটি পূর্ণ হজ্জ ও একটি পূর্ণ উমরার সাওয়াব লাভ করে।",
+      "reference": {
+        "type": "hadith",
+        "source": "সুনানে তিরমিযী",
+        "number": "৫৮৬",
+        "grade": "hasan"
+      }
+    },
+    "rakatUnits": [
+      {
+        "label": "২ রাকাত নফল (২ বা ৪ রাকাত পড়া যায়)",
+        "count": 2,
+        "status": "nafl",
+        "config": {
+          "rakats": 2,
+          "rakatRange": [
+            2,
+            4
+          ],
+          "qiratRakats": [
+            1,
+            2
+          ],
+          "firstSittingAfter": null,
+          "hasQunut": false,
+          "isJanaza": false,
+          "jahr": [],
+          "sajdaCount": 2,
+          "endsWithSalam": true
+        }
+      }
+    ],
+    "steps": [
+      {
+        "stepNumber": 1,
+        "rakatLabel": "১ম রাকাত",
+        "titleBn": "তাকবীর ও কিরাত",
+        "descriptionBn": "তাকবীরে তাহরীমা বেঁধে সানা, আউযুবিল্লাহ, বিসমিল্লাহ পড়ে সূরা ফাতিহা ও অন্য সূরা মেলাবেন। রুকু ও সেজদা করে দ্বিতীয় রাকাতের জন্য দাঁড়াবেন।",
+        "recitationId": "dua-1"
+      },
+      {
+        "stepNumber": 2,
+        "rakatLabel": "২য় রাকাত",
+        "titleBn": "কিরাত ও শেষ বৈঠক",
+        "descriptionBn": "বিসমিল্লাহ পড়ে সূরা ফাতিহা ও অন্য সূরা পাঠ করবেন। রুকু-সেজদা শেষে শেষ বৈঠকে তাশাহহুদ, দরূদ ও দোয়া মাসূরা পড়ে সালাম ফেরাবেন।",
+        "recitationId": "dua-2"
+      }
+    ],
+    "commonMistakes": [
+      "সূর্যোদয়ের সময় লালচে আলো থাকতেই নামাজ শুরু করা (সূর্যোদয়ের সময় নামাজ হারাম; কমপক্ষে ১৫-২০ মিনিট অপেক্ষা করতে হবে)।"
+    ],
+    "faqs": [
+      {
+        "question": "ফজরের পর ঘুমিয়ে পড়লে কি পরে উঠে ইশরাক পড়া যাবে?",
+        "answer": "ঘুমিয়ে যাওয়ার পর সূর্য ওঠার ১৫-২০ মিনিট পর উঠে পড়লেও নফল হিসেবে পড়া যাবে এবং সাওয়াব মিলবে; তবে ফজরের পর বসে যিকির করে অপেক্ষা করার যে পূর্ণ হজ্জ-উমরার বিশেষ ফজিলত, তা মসজিদে বা জায়নামাজে বসে থাকার সাথে সম্পর্কিত।"
+      }
+    ],
+    "references": [
+      {
+        "type": "hadith",
+        "source": "সুনানে তিরমিযী",
+        "number": "৫৮৬",
+        "grade": "hasan"
+      }
+    ],
+    "relatedPrayers": [
+      "fajr",
+      "chasht"
+    ],
+    "relatedRulings": [
+      "ruling-forbidden-and-makruh-times"
+    ]
+  },
+  {
+    "slug": "awwabin",
+    "nameBn": "আউওয়াবীন নামাজ",
+    "nameAr": "صَلَاةُ الأَوَّابِينَ",
+    "nameEn": "Salatul Awwabin",
+    "category": "nafl",
+    "group": "sunnah-nafl",
+    "timeDescriptionBn": "মাগরিবের ফরজ ও ২ রাকাত সুন্নাত আদায়ের পর থেকে ইশার ওয়াক্ত হওয়ার পূর্ব পর্যন্ত।",
+    "totalRakats": 6,
+    "simulatorConfigId": "awwabin-main",
+    "niyyat": {
+      "id": "niyyat-awwabin",
+      "titleBn": "আউওয়াবীন নামাজের নিয়্যত",
+      "titleEn": "Niyyah for Awwabin Prayer",
+      "arabic": "نَوَيْتُ أَنْ أُصَلِّيَ لِلَّهِ تَعَالَىٰ رَكْعَتَيْ صَلَاةِ الْأَوَّابِينَ نَفْلًا مُتَوَجِّهًا إِلَىٰ جِهَةِ الْكَعْبَةِ الشَّرِيفَةِ",
+      "uccharonBn": "নাওয়াইতু আন উসাল্লিয়া লিল্লাহি তা'আলা রাক'আতাই সালাতিল আওওয়াবীনা নাফলান মুতাওয়াজ্জিহান ইলা জিহাতিল কা'বাতিশ শারীফাহ।",
+      "banglish": "Nawaytu an usalliya lillahi ta'ala rak'atay salatil-awwabeena naflan mutawajjihan ila jihatil-ka'batish-shareefah.",
+      "meaningBn": "আমি আল্লাহর সন্তুষ্টির উদ্দেশ্যে কিবলামুখী হয়ে আউওয়াবীনের দুই রাকাত নফল নামাজ আদায়ের সংকল্প করছি।"
+    },
+    "fazilat": {
+      "textBn": "যে ব্যক্তি মাগরিবের পর কোনো অনর্থক কথা না বলে ৬ রাকাত নফল নামাজ পড়ে, আল্লাহ তার জন্য ১২ বছরের নফল ইবাদতের সমপরিমাণ সাওয়াব লিখে দেন।",
+      "reference": {
+        "type": "hadith",
+        "source": "সুনানে তিরমিযী",
+        "number": "৪৩৫",
+        "grade": "daif"
+      }
+    },
+    "rakatUnits": [
+      {
+        "label": "৬ রাকাত নফল (২ রাকাত করে ৩ সালামে আদায় করা উত্তম)",
+        "count": 6,
+        "status": "nafl",
+        "config": {
+          "rakats": 6,
+          "qiratRakats": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "firstSittingAfter": 2,
+          "hasQunut": false,
+          "isJanaza": false,
+          "jahr": [],
+          "sajdaCount": 2,
+          "endsWithSalam": true
+        }
+      }
+    ],
+    "steps": [
+      {
+        "stepNumber": 1,
+        "rakatLabel": "১ম ও ২য় রাকাত",
+        "titleBn": "প্রথম জোড়া",
+        "descriptionBn": "মাগরিবের সুন্নাতের পর দুই রাকাত নফল নামাজের নিয়্যতে তাকবীর বেঁধে ফাতিহা ও অন্য সূরা মিলিয়ে রুকু-সেজদা শেষে সালাম ফেরাবেন।",
+        "recitationId": "dua-1"
+      },
+      {
+        "stepNumber": 2,
+        "rakatLabel": "৩য় ও ৪র্থ রাকাত",
+        "titleBn": "দ্বিতীয় জোড়া",
+        "descriptionBn": "নতুন নিয়্যতে দুই রাকাত নামাজ পড়ে সালাম ফেরাবেন।",
+        "recitationId": "dua-1"
+      },
+      {
+        "stepNumber": 3,
+        "rakatLabel": "৫ম ও ৬ষ্ঠ রাকাত",
+        "titleBn": "তৃতীয় জোড়া",
+        "descriptionBn": "সর্বশেষ দুই রাকাত নামাজ পড়ে সালাম ফিরিয়ে ৬ রাকাত সম্পন্ন করবেন।",
+        "recitationId": "dua-2"
+      }
+    ],
+    "commonMistakes": [
+      "মাগরিবের পর অনর্থক গল্পগুজব করে আউওয়াবীনের মূল্যবান সময় নষ্ট করা।"
+    ],
+    "faqs": [
+      {
+        "question": "মাগরিবের ২ রাকাত সুন্নাত কি এই ৬ রাকাতের অন্তর্ভুক্ত?",
+        "answer": "হানাফি ফিকহে কিছু ফকীহের মতে মাগরিবের ২ রাকাত সুন্নাতসহ অতিরিক্ত ৪ রাকাত পড়লে ৬ রাকাত পূর্ণ হয়। তবে সুন্নাতের পর পৃথকভাবে ৬ রাকাত নফল পড়াই সর্বাপেক্ষা উত্তম।"
+      }
+    ],
+    "references": [
+      {
+        "type": "hadith",
+        "source": "সুনানে তিরমিযী",
+        "number": "৪৩৫",
+        "grade": "daif"
+      },
+      {
+        "type": "fiqh",
+        "source": "রদ্দুল মুহতার (ফাতওয়ায়ে শামী)",
+        "number": "নওয়াফিল অধ্যায়"
+      }
+    ],
+    "relatedPrayers": [
+      "maghrib",
+      "isha"
+    ],
+    "relatedRulings": [
+      "ruling-sunnahs-of-salah"
+    ]
+  },
+  {
+    "slug": "tahiyyatul-wudu",
+    "nameBn": "তাহিয়্যাতুল ওযু",
+    "nameAr": "تَحِيَّةُ الوُضُوءِ",
+    "nameEn": "Tahiyyatul Wudu",
+    "category": "nafl",
+    "group": "sunnah-nafl",
+    "timeDescriptionBn": "ওযু সম্পন্ন করার পর অঙ্গ-প্রত্যঙ্গ শুকিয়ে যাওয়ার পূর্বে (মাকরূহ ৩টি সময় ব্যতীত)।",
+    "totalRakats": 2,
+    "simulatorConfigId": "tahiyyatul-wudu-main",
+    "niyyat": {
+      "id": "niyyat-tahiyyatul-wudu",
+      "titleBn": "তাহিয়্যাতুল ওযুর নিয়্যত",
+      "titleEn": "Niyyah for Tahiyyatul Wudu",
+      "arabic": "نَوَيْتُ أَنْ أُصَلِّيَ لِلَّهِ تَعَالَىٰ رَكْعَتَيْ صَلَاةِ تَحِيَّةِ الْوُضُوءِ نَفْلًا مُتَوَجِّهًا إِلَىٰ جِهَةِ الْكَعْبَةِ الشَّرِيفَةِ",
+      "uccharonBn": "নাওয়াইতু আন উসাল্লিয়া লিল্লাহি তা'আলা রাক'আতাই সালাতি তাহিয়্যাতিল উযূয়ি নাফলান মুতাওয়াজ্জিহান ইলা জিহাতিল কা'বাতিশ শারীফাহ।",
+      "banglish": "Nawaytu an usalliya lillahi ta'ala rak'atay salati tahiyyatil-wudu'i naflan mutawajjihan ila jihatil-ka'batish-shareefah.",
+      "meaningBn": "আমি আল্লাহর সন্তুষ্টির উদ্দেশ্যে কিবলামুখী হয়ে তাহিয়্যাতুল ওযুর দুই রাকাত নফল নামাজ আদায়ের সংকল্প করছি।"
+    },
+    "fazilat": {
+      "textBn": "রাসুলুল্লাহ (সা.) হযরত বিলাল (রা.)-কে জিজ্ঞেস করেছিলেন, 'হে বিলাল! জান্নাতে আমি আমার সামনে তোমার জুতার আওয়াজ শুনেছি। কোন আমলের দ্বারা তুমি এ মর্যাদা পেলে?' বিলাল (রা.) বললেন, 'আমি রাত বা দিনে যখনই ওযু করি, তখনই সাধ্যমতো দুই রাকাত তাহিয়্যাতুল ওযু আদায় করি।'",
+      "reference": {
+        "type": "hadith",
+        "source": "সহীহ বুখারী",
+        "number": "১১৪৯",
+        "grade": "sahih"
+      }
+    },
+    "rakatUnits": [
+      {
+        "label": "২ রাকাত নফল",
+        "count": 2,
+        "status": "nafl",
+        "config": {
+          "rakats": 2,
+          "qiratRakats": [
+            1,
+            2
+          ],
+          "firstSittingAfter": null,
+          "hasQunut": false,
+          "isJanaza": false,
+          "jahr": [],
+          "sajdaCount": 2,
+          "endsWithSalam": true
+        }
+      }
+    ],
+    "steps": [
+      {
+        "stepNumber": 1,
+        "rakatLabel": "১ম রাকাত",
+        "titleBn": "তাকবীর ও কিরাত",
+        "descriptionBn": "ওযুর পানি শুকিয়ে যাওয়ার আগেই জায়নামাজে দাঁড়িয়ে দুই রাকাত নফল নামাজের নিয়্যতে নামাজ শুরু করুন।",
+        "recitationId": "dua-1"
+      },
+      {
+        "stepNumber": 2,
+        "rakatLabel": "২য় রাকাত",
+        "titleBn": "কিরাত ও সালাম",
+        "descriptionBn": "দ্বিতীয় রাকাতে ফাতিহা ও অন্য সূরা পড়ে রুকু-সেজদা শেষে তাশাহহুদ, দরূদ ও দোয়া পড়ে সালাম ফেরাবেন।",
+        "recitationId": "dua-2"
+      }
+    ],
+    "commonMistakes": [
+      "মাকরূহ ৩টি সময়ে (সূর্যোদয়, ঠিক দুপুর, সূর্যাস্ত) তাহিয়্যাতুল ওযু পড়া (মাকরূহ সময়ে কোনো নফল নামাজ পড়া জায়েজ নেই)।"
+    ],
+    "faqs": [
+      {
+        "question": "ওযুর পর ফরজ নামাজ পড়লে কি তাহিয়্যাতুল ওযুর সাওয়াব মিলবে?",
+        "answer": "হ্যাঁ, ওযুর পর সরাসরি ফরজ নামাজ আদায় করলেও তাহিয়্যাতুল ওযুর সওয়াব লাভ হয়ে যায়।"
+      }
+    ],
+    "references": [
+      {
+        "type": "hadith",
+        "source": "সহীহ বুখারী",
+        "number": "১১৪৯",
+        "grade": "sahih"
+      },
+      {
+        "type": "hadith",
+        "source": "সহীহ মুসলিম",
+        "number": "২৪৫৮",
+        "grade": "sahih"
+      }
+    ],
+    "relatedPrayers": [
+      "fajr",
+      "dhuhr"
+    ],
+    "relatedRulings": [
+      "ruling-forbidden-and-makruh-times"
+    ]
+  },
+  {
+    "slug": "tahiyyatul-masjid",
+    "nameBn": "তাহিয়্যাতুল মসজিদ",
+    "nameAr": "تَحِيَّةُ المَسْجِدِ",
+    "nameEn": "Tahiyyatul Masjid",
+    "category": "sunnah-ghair-muakkadah",
+    "group": "sunnah-nafl",
+    "timeDescriptionBn": "মসজিদে প্রবেশ করে বসার পূর্বে (মাকরূহ সময় ব্যতীত)।",
+    "totalRakats": 2,
+    "simulatorConfigId": "tahiyyatul-masjid-main",
+    "niyyat": {
+      "id": "niyyat-tahiyyatul-masjid",
+      "titleBn": "তাহিয়্যাতুল মসজিদের নিয়্যত",
+      "titleEn": "Niyyah for Tahiyyatul Masjid",
+      "arabic": "نَوَيْتُ أَنْ أُصَلِّيَ لِلَّهِ تَعَالَىٰ رَكْعَتَيْ صَلَاةِ تَحِيَّةِ الْمَسْجِدِ سُنَّةً مُتَوَجِّهًا إِلَىٰ جِهَةِ الْكَعْبَةِ الشَّرِيفَةِ",
+      "uccharonBn": "নাওয়াইতু আন উসাল্লিয়া লিল্লাহি তা'আলা রাক'আতাই সালাতি তাহিয়্যাতিল মাসজিদি সুন্নাতান মুতাওয়াজ্জিহান ইলা জিহাতিল কা'বাতিশ শারীফাহ।",
+      "banglish": "Nawaytu an usalliya lillahi ta'ala rak'atay salati tahiyyatil-masjidi sunnatan mutawajjihan ila jihatil-ka'batish-shareefah.",
+      "meaningBn": "আমি আল্লাহর সন্তুষ্টির উদ্দেশ্যে কিবলামুখী হয়ে তাহিয়্যাতুল মসজিদের দুই রাকাত সুন্নাত নামাজ আদায়ের সংকল্প করছি।"
+    },
+    "fazilat": {
+      "textBn": "তোমাদের কেউ যখন মসজিদে প্রবেশ করে, সে যেন দুই রাকাত নামাজ না পড়া পর্যন্ত না বসে।",
+      "reference": {
+        "type": "hadith",
+        "source": "সহীহ বুখারী",
+        "number": "৪৪৪",
+        "grade": "sahih"
+      }
+    },
+    "specialRules": [
+      {
+        "title": "মাকরূহ সময়ে মসজিদে প্রবেশ করলে করণীয়",
+        "description": "হানাফি ফিকহ অনুযায়ী সূর্যোদয়, ঠিক দুপুর এবং আসরের পর বা সূর্যাস্তের সময় নফল নামাজ পড়া নিষিদ্ধ। তাই এ সময়ে মসজিদে প্রবেশ করলে তাহিয়্যাতুল মসজিদ পড়বে না; বরং বসে পড়বে এবং চার তাসবীহ ('সুবহানাল্লাহ, আলহামদুলিল্লাহ, লা ইলাহা ইল্লাল্লাহ, আল্লাহু আকবার') ও দরূদ শরিফ পাঠ করবে।"
+      }
+    ],
+    "rakatUnits": [
+      {
+        "label": "২ রাকাত সুন্নাত / নফল",
+        "count": 2,
+        "status": "sunnah",
+        "config": {
+          "rakats": 2,
+          "qiratRakats": [
+            1,
+            2
+          ],
+          "firstSittingAfter": null,
+          "hasQunut": false,
+          "isJanaza": false,
+          "jahr": [],
+          "sajdaCount": 2,
+          "endsWithSalam": true
+        }
+      }
+    ],
+    "steps": [
+      {
+        "stepNumber": 1,
+        "rakatLabel": "১ম রাকাত",
+        "titleBn": "প্রবেশ ও তাকবীর",
+        "descriptionBn": "মসজিদে ডান পা দিয়ে প্রবেশ করে দোয়া পড়বেন এবং না বসে সরাসরি দুই রাকাত তাহিয়্যাতুল মসজিদের নিয়্যত বাঁধবেন।",
+        "recitationId": "dua-1"
+      },
+      {
+        "stepNumber": 2,
+        "rakatLabel": "২য় রাকাত",
+        "titleBn": "কিরাত ও সালাম",
+        "descriptionBn": "দ্বিতীয় রাকাতে ফাতিহা ও অন্য সূরা পড়ে রুকু-সেজদা শেষে সালাম ফিরিয়ে নামাজ শেষ করবেন।",
+        "recitationId": "dua-2"
+      }
+    ],
+    "commonMistakes": [
+      "আসরের পর মসজিদে ঢুকে তাহিয়্যাতুল মসজিদ পড়া (হানাফি মাযহাবে আসরের পর নফল পড়া মাকরূহে তাহরীমী)।"
+    ],
+    "faqs": [
+      {
+        "question": "মসজিদে ঢুকেই কি তাহিয়্যাতুল মসজিদ পড়া বাধ্যতামূলক?",
+        "answer": "এটি ওয়াজিব নয়, বরং অত্যন্ত ফজিলতপূর্ণ সুন্নাত ও আদব। তবে মসজিদে ঢুকেই ফরজ বা অন্য কোনো সুন্নাত নামাজ পড়ে নিলে তাহিয়্যাতুল মসজিদের হক আদায় হয়ে যায়।"
+      }
+    ],
+    "references": [
+      {
+        "type": "hadith",
+        "source": "সহীহ বুখারী",
+        "number": "৪৪৪",
+        "grade": "sahih"
+      },
+      {
+        "type": "hadith",
+        "source": "সহীহ মুসলিম",
+        "number": "৭১৪",
+        "grade": "sahih"
+      }
+    ],
+    "relatedPrayers": [
+      "jumuah",
+      "dhuhr"
+    ],
+    "relatedRulings": [
+      "ruling-forbidden-and-makruh-times"
+    ]
+  },
+  {
+    "slug": "salatul-hajat",
+    "nameBn": "সালাতুল হাজত",
+    "nameAr": "صَلَاةُ الحَاجَةِ",
+    "nameEn": "Salatul Hajah",
+    "category": "nafl",
+    "group": "special",
+    "timeDescriptionBn": "যেকোনো বৈধ পার্থিব বা পরকালীন প্রয়োজন ও সংকট উপস্থিত হলে (মাকরূহ সময় ছাড়া দিন বা রাতে)।",
+    "totalRakats": 2,
+    "simulatorConfigId": "salatul-hajat-main",
+    "niyyat": {
+      "id": "niyyat-salatul-hajat",
+      "titleBn": "সালাতুল হাজতের নিয়্যত",
+      "titleEn": "Niyyah for Salatul Hajah",
+      "arabic": "نَوَيْتُ أَنْ أُصَلِّيَ لِلَّهِ تَعَالَىٰ رَكْعَتَيْ صَلَاةِ الْحَاجَةِ نَفْلًا مُتَوَجِّهًا إِلَىٰ جِهَةِ الْكَعْبَةِ الشَّرِيفَةِ",
+      "uccharonBn": "নাওয়াইতু আন উসাল্লিয়া লিল্লাহি তা'আলা রাক'আতাই সালাতিল হাজাতি নাফলান মুতাওয়াজ্জিহান ইলা জিহাতিল কা'বাতিশ শারীফাহ।",
+      "banglish": "Nawaytu an usalliya lillahi ta'ala rak'atay salatil-hajati naflan mutawajjihan ila jihatil-ka'batish-shareefah.",
+      "meaningBn": "আমি আল্লাহর সন্তুষ্টির উদ্দেশ্যে কিবলামুখী হয়ে সালাতুল হাজতের দুই রাকাত নফল নামাজ আদায়ের সংকল্প করছি।"
+    },
+    "fazilat": {
+      "textBn": "যার আল্লাহর কাছে বা বনি আদমের কারো কাছে কোনো প্রয়োজন দেখা দেয়, সে যেন সুন্দরভাবে ওযু করে দুই রাকাত নামাজ পড়ে আল্লাহর প্রশংসা ও রাসুলের ওপর দরূদ পাঠ করে দোয়া করে।",
+      "reference": {
+        "type": "hadith",
+        "source": "সুনানে তিরমিযী",
+        "number": "৪৭৯",
+        "grade": "hasan"
+      }
+    },
+    "rakatUnits": [
+      {
+        "label": "২ রাকাত নফল (২ বা ৪ রাকাত)",
+        "count": 2,
+        "status": "nafl",
+        "config": {
+          "rakats": 2,
+          "rakatRange": [
+            2,
+            4
+          ],
+          "qiratRakats": [
+            1,
+            2
+          ],
+          "firstSittingAfter": null,
+          "hasQunut": false,
+          "isJanaza": false,
+          "jahr": [],
+          "sajdaCount": 2,
+          "endsWithSalam": true
+        }
+      }
+    ],
+    "steps": [
+      {
+        "stepNumber": 1,
+        "rakatLabel": "১ম ও ২য় রাকাত",
+        "titleBn": "দুই রাকাত নামাজ আদায়",
+        "descriptionBn": "সুন্দর করে ওযু করে দুই রাকাত নফল নামাজ আদায় করুন।",
+        "recitationId": "dua-1"
+      },
+      {
+        "stepNumber": 2,
+        "rakatLabel": "নামাজ শেষে",
+        "titleBn": "হাজতের বিশেষ দোয়া",
+        "descriptionBn": "সালাম ফিরিয়ে আল্লাহর হামদ ও দরূদ পাঠ করে তিরমিযী শরিফে বর্ণিত হাজতের দোয়াটি পাঠ করুন এবং নিজের প্রয়োজনের কথা ব্যাকুলভাবে প্রার্থনা করুন।",
+        "recitationId": "dua-hajat"
+      }
+    ],
+    "commonMistakes": [
+      "হারাম বা গুনাহের কোনো কাজের উদ্দেশ্যে সালাতুল হাজত পড়া।"
+    ],
+    "faqs": [
+      {
+        "question": "সালাতুল হাজত কয় রাকাত পড়া যায়?",
+        "answer": "বেশিরভাগ হাদিস অনুযায়ী ২ রাকাত পড়া সুন্নাত। কোনো কোনো রেওয়ায়েতে ৪ রাকাত পড়ার কথাও বর্ণিত হয়েছে।"
+      }
+    ],
+    "references": [
+      {
+        "type": "hadith",
+        "source": "সুনানে তিরমিযী",
+        "number": "৪৭৯",
+        "grade": "hasan"
+      },
+      {
+        "type": "hadith",
+        "source": "সুনানে ইবনে মাজাহ",
+        "number": "১৩৮৪",
+        "grade": "hasan"
+      }
+    ],
+    "relatedPrayers": [
+      "istikhara",
+      "tahajjud"
+    ],
+    "relatedRulings": [
+      "ruling-sunnahs-of-salah"
+    ]
+  },
+  {
+    "slug": "salatul-tawbah",
+    "nameBn": "সালাতুত তাওবা",
+    "nameAr": "صَلَاةُ التَّوْبَةِ",
+    "nameEn": "Salatul Tawbah",
+    "category": "nafl",
+    "group": "special",
+    "timeDescriptionBn": "যেকোনো গুনাহ বা পাপ হয়ে যাওয়ার পর অবিলম্বে তওবার উদ্দেশ্যে (মাকরূহ সময় ব্যতীত)।",
+    "totalRakats": 2,
+    "simulatorConfigId": "salatul-tawbah-main",
+    "niyyat": {
+      "id": "niyyat-salatul-tawbah",
+      "titleBn": "সালাতুত তাওবার নিয়্যত",
+      "titleEn": "Niyyah for Salatul Tawbah",
+      "arabic": "نَوَيْتُ أَنْ أُصَلِّيَ لِلَّهِ تَعَالَىٰ رَكْعَتَيْ صَلَاةِ التَّوْبَةِ نَفْلًا مُتَوَجِّهًا إِلَىٰ جِهَةِ الْكَعْبَةِ الشَّرِيفَةِ",
+      "uccharonBn": "নাওয়াইতু আন উসাল্লিয়া লিল্লাহি তা'আলা রাক'আতাই সালাতিত তাওবাতি নাফলান মুতাওয়াজ্জিহান ইলা জিহাতিল কা'বাতিশ শারীফাহ।",
+      "banglish": "Nawaytu an usalliya lillahi ta'ala rak'atay salatit-tawbati naflan mutawajjihan ila jihatil-ka'batish-shareefah.",
+      "meaningBn": "আমি আল্লাহর সন্তুষ্টির উদ্দেশ্যে কিবলামুখী হয়ে সালাতুত তাওবার দুই রাকাত নফল নামাজ আদায়ের সংকল্প করছি।"
+    },
+    "fazilat": {
+      "textBn": "যখনই কোনো বান্দার দ্বারা কোনো গুনাহ হয়ে যায়, অতপর সে উত্তমরূপে পবিত্রতা অর্জন করে দাঁড়ায় এবং দুই রাকাত নামাজ পড়ে আল্লাহর কাছে ক্ষমা প্রার্থনা করে, আল্লাহ তাকে ক্ষমা করে দেন।",
+      "reference": {
+        "type": "hadith",
+        "source": "সুনানে তিরমিযী",
+        "number": "৪০৬",
+        "grade": "sahih"
+      }
+    },
+    "rakatUnits": [
+      {
+        "label": "২ রাকাত নফল",
+        "count": 2,
+        "status": "nafl",
+        "config": {
+          "rakats": 2,
+          "qiratRakats": [
+            1,
+            2
+          ],
+          "firstSittingAfter": null,
+          "hasQunut": false,
+          "isJanaza": false,
+          "jahr": [],
+          "sajdaCount": 2,
+          "endsWithSalam": true
+        }
+      }
+    ],
+    "steps": [
+      {
+        "stepNumber": 1,
+        "rakatLabel": "১ম ও ২য় রাকাত",
+        "titleBn": "দুই রাকাত নামাজ আদায়",
+        "descriptionBn": "একান্তে অনুতপ্ত হৃদয়ে দুই রাকাত নামাজ আদায় করুন।",
+        "recitationId": "dua-1"
+      },
+      {
+        "stepNumber": 2,
+        "rakatLabel": "নামাজ শেষে",
+        "titleBn": "সাইয়্যিদুল ইস্তিগফার ও কান্নাকাটি",
+        "descriptionBn": "সালাম ফিরিয়ে সাইয়্যিদুল ইস্তিগফার পাঠ করুন এবং ভবিষ্যতে কখনো ঐ পাপে লিপ্ত না হওয়ার খাঁটি সংকল্প করে আল্লাহর দরবারে মাগফিরাত চান।",
+        "recitationId": "dua-tawbah-sayyidul-istighfar"
+      }
+    ],
+    "commonMistakes": [
+      "মুখে তওবা পড়া কিন্তু অন্তরে গুনাহ চালিয়ে যাওয়ার ইচ্ছা রাখা (খাঁটি তওবার জন্য পাপ পরিত্যাগ ও ভবিষ্যতে না করার দৃঢ় সংকল্প আবশ্যক)।"
+    ],
+    "faqs": [
+      {
+        "question": "মানুষের হক নষ্ট করলে কি শুধু সালাতুত তাওবা পড়লে মাফ হবে?",
+        "answer": "না। বান্দার হক নষ্ট করলে আগে সংশ্লিষ্ট ব্যক্তির পাওনা ফিরিয়ে দিতে হবে বা তার থেকে ক্ষমা চেয়ে নিতে হবে, এরপর আল্লাহর কাছে তওবা করতে হবে।"
+      }
+    ],
+    "references": [
+      {
+        "type": "hadith",
+        "source": "সুনানে তিরমিযী",
+        "number": "৪০৬",
+        "grade": "sahih"
+      },
+      {
+        "type": "hadith",
+        "source": "সুনানে আবু দাউদ",
+        "number": "১৫২১",
+        "grade": "sahih"
+      }
+    ],
+    "relatedPrayers": [
+      "tahajjud"
+    ],
+    "relatedRulings": [
+      "ruling-conditions-and-arkan"
+    ]
+  },
+  {
+    "slug": "salatul-kusuf",
+    "nameBn": "সালাতুল কুসূফ (সূর্যগ্রহণের নামাজ)",
+    "nameAr": "صَلَاةُ الكُسُوفِ",
+    "nameEn": "Salatul Kusuf",
+    "category": "sunnah",
+    "group": "special",
+    "timeDescriptionBn": "সূর্যগ্রহণ আরম্ভ হওয়ার পর থেকে গ্রহণ শেষ হওয়া পর্যন্ত।",
+    "totalRakats": 2,
+    "simulatorConfigId": "salatul-kusuf-main",
+    "niyyat": {
+      "id": "niyyat-salatul-kusuf",
+      "titleBn": "সালাতুল কুসূফের নিয়্যত",
+      "titleEn": "Niyyah for Solar Eclipse Prayer",
+      "arabic": "نَوَيْتُ أَنْ أُصَلِّيَ لِلَّهِ تَعَالَىٰ رَكْعَتَيْ صَلَاةِ الْكُسُوفِ سُنَّةً مُتَوَجِّهًا إِلَىٰ جِهَةِ الْكَعْبَةِ الشَّرِيفَةِ",
+      "uccharonBn": "নাওয়াইতু আন উসাল্লিয়া লিল্লাহি তা'আলা রাক'আতাই সালাতিল কুসূফি সুন্নাতান মুতাওয়াজ্জিহান ইলা জিহাতিল কা'বাতিশ শারীফাহ।",
+      "banglish": "Nawaytu an usalliya lillahi ta'ala rak'atay salatil-kusufi sunnatan mutawajjihan ila jihatil-ka'batish-shareefah.",
+      "meaningBn": "আমি আল্লাহর সন্তুষ্টির উদ্দেশ্যে কিবলামুখী হয়ে সূর্যগ্রহণের দুই রাকাত সুন্নাত নামাজ আদায়ের সংকল্প করছি।"
+    },
+    "fazilat": {
+      "textBn": "সূর্য ও চন্দ্র কারো জন্ম বা মৃত্যুর কারণে গ্রহণ লাগে না; বরং এ দুটি আল্লাহর মহাশক্তির নিদর্শন। যখন তোমরা গ্রহণ দেখবে, তখন নামাজে দাঁড়িয়ে যাও এবং আল্লাহর কাছে দোয়া করো যতক্ষণ না তা প্রকাশ পায়।",
+      "reference": {
+        "type": "hadith",
+        "source": "সহীহ বুখারী",
+        "number": "১০৪৪",
+        "grade": "sahih"
+      }
+    },
+    "specialRules": [
+      {
+        "title": "হানাফি ফিকহে কুসূফের নিয়ম",
+        "description": "সূর্যগ্রহণের নামাজে কোনো আজান ও ইকামত নেই। হানাফি ফিকহ অনুযায়ী জামাতের সাথে দুই রাকাত সাধারণ নামাজের মতো প্রতি রাকাতে একটি রুকু ও দুটি সেজদায় দীর্ঘ কিরাতে আদায় করা সুন্নাত। ইমাম নিঃশব্দে কিরাত পড়বেন। নামাজ শেষে গ্রহণ শেষ হওয়া পর্যন্ত কিবলামুখী হয়ে হাত তুলে দোয়া ও ইস্তিগফারে রত থাকা মুস্তাহাব।"
+      }
+    ],
+    "rakatUnits": [
+      {
+        "label": "২ রাকাত সুন্নাত (জামাতে আদায়)",
+        "count": 2,
+        "status": "sunnah",
+        "config": {
+          "rakats": 2,
+          "qiratRakats": [
+            1,
+            2
+          ],
+          "firstSittingAfter": null,
+          "hasQunut": false,
+          "isJanaza": false,
+          "jahr": [],
+          "sajdaCount": 2,
+          "endsWithSalam": true
+        }
+      }
+    ],
+    "steps": [
+      {
+        "stepNumber": 1,
+        "rakatLabel": "১ম রাকাত",
+        "titleBn": "দীর্ঘ কিরাত ও রুকু",
+        "descriptionBn": "আজান-ইকামত ছাড়া জামাতে দাঁড়ান। ইমাম দীর্ঘ কিরাত তিলাওয়াত করবেন এবং দীর্ঘ রুকু ও সেজদা করবেন।",
+        "recitationId": "dua-1"
+      },
+      {
+        "stepNumber": 2,
+        "rakatLabel": "২য় রাকাত ও মুনাজাত",
+        "titleBn": "২য় রাকাত ও দীর্ঘ দোয়া",
+        "descriptionBn": "দ্বিতীয় রাকাত সম্পন্ন করে সালাম ফেরান এবং গ্রহণ শেষ হওয়া পর্যন্ত হাত তুলে আল্লাহর দরবারে কান্নাকাটি ও দোয়া করুন।",
+        "recitationId": "dua-2"
+      }
+    ],
+    "commonMistakes": [
+      "সূর্যগ্রহণের নামাজে আজান বা ইকামত দেওয়া।"
+    ],
+    "faqs": [
+      {
+        "question": "জামাত না পেলে কি একাকী পড়া যাবে?",
+        "answer": "হ্যাঁ, জামাত না পেলে নিজ ঘরে একাকী সাধারণ দুই বা চার রাকাত নফল হিসেবে সূর্যগ্রহণের নামাজ পড়া জায়েজ।"
+      }
+    ],
+    "references": [
+      {
+        "type": "hadith",
+        "source": "সহীহ বুখারী",
+        "number": "১০৪৪",
+        "grade": "sahih"
+      },
+      {
+        "type": "fiqh",
+        "source": "আল-হিদায়া ১ম খণ্ড",
+        "number": "সালাতুল কুসূফ"
+      }
+    ],
+    "relatedPrayers": [
+      "salatul-khusuf",
+      "salatul-istisqa"
+    ],
+    "relatedRulings": [
+      "ruling-jamaat-and-imamat"
+    ]
+  },
+  {
+    "slug": "salatul-khusuf",
+    "nameBn": "সালাতুল খুসূফ (চন্দ্রগ্রহণের নামাজ)",
+    "nameAr": "صَلَاةُ الخُسُوفِ",
+    "nameEn": "Salatul Khusuf",
+    "category": "nafl",
+    "group": "special",
+    "timeDescriptionBn": "চন্দ্রগ্রহণ আরম্ভ হওয়ার পর থেকে গ্রহণ শেষ হওয়া পর্যন্ত।",
+    "totalRakats": 2,
+    "simulatorConfigId": "salatul-khusuf-main",
+    "niyyat": {
+      "id": "niyyat-salatul-khusuf",
+      "titleBn": "সালাতুল খুসূফের নিয়্যত",
+      "titleEn": "Niyyah for Lunar Eclipse Prayer",
+      "arabic": "نَوَيْتُ أَنْ أُصَلِّيَ لِلَّهِ تَعَالَىٰ رَكْعَتَيْ صَلَاةِ الْخُسُوفِ نَفْلًا مُتَوَجِّهًا إِلَىٰ جِهَةِ الْكَعْبَةِ الشَّرِيفَةِ",
+      "uccharonBn": "নাওয়াইতু আন উসাল্লিয়া লিল্লাহি তা'আলা রাক'আতাই সালাতিল খুসূফি নাফলান মুতাওয়াজ্জিহান ইলা জিহাতিল কা'বাতিশ শারীফাহ।",
+      "banglish": "Nawaytu an usalliya lillahi ta'ala rak'atay salatil-khusufi naflan mutawajjihan ila jihatil-ka'batish-shareefah.",
+      "meaningBn": "আমি আল্লাহর সন্তুষ্টির উদ্দেশ্যে কিবলামুখী হয়ে চন্দ্রগ্রহণের দুই রাকাত নফল নামাজ আদায়ের সংকল্প করছি।"
+    },
+    "fazilat": {
+      "textBn": "যখন তোমরা চন্দ্র বা সূর্যগ্রহণ দেখবে, তখন আতঙ্কিত হয়ে আল্লাহর স্মরণে ও নামাজে দাঁড়িয়ে যাও।",
+      "reference": {
+        "type": "hadith",
+        "source": "সহীহ বুখারী",
+        "number": "১০৫২",
+        "grade": "sahih"
+      }
+    },
+    "specialRules": [
+      {
+        "title": "হানাফি ফিকহে চন্দ্রগ্রহণের নিয়ম",
+        "description": "চন্দ্রগ্রহণের জন্য জামাত সুন্নাত নয়; বরং মানুষ নিজ নিজ ঘরে একাকী দুই বা চার রাকাত নফল নামাজ দীর্ঘ কিরাতে আদায় করবে এবং দোয়া-ইস্তিগফারে মশগুল থাকবে।"
+      }
+    ],
+    "rakatUnits": [
+      {
+        "label": "২ রাকাত নফল (একাকী আদায়)",
+        "count": 2,
+        "status": "nafl",
+        "config": {
+          "rakats": 2,
+          "rakatRange": [
+            2,
+            4
+          ],
+          "qiratRakats": [
+            1,
+            2
+          ],
+          "firstSittingAfter": null,
+          "hasQunut": false,
+          "isJanaza": false,
+          "jahr": [],
+          "sajdaCount": 2,
+          "endsWithSalam": true
+        }
+      }
+    ],
+    "steps": [
+      {
+        "stepNumber": 1,
+        "rakatLabel": "১ম ও ২য় রাকাত",
+        "titleBn": "একাকী নামাজ ও মুনাজাত",
+        "descriptionBn": "ঘরে একাকী দুই রাকাত নামাজ দীর্ঘ রুকু ও সেজদায় আদায় করুন এবং গ্রহণ শেষ হওয়া পর্যন্ত দোয়া করুন।",
+        "recitationId": "dua-1"
+      }
+    ],
+    "commonMistakes": [
+      "চন্দ্রগ্রহণে জামাত করার জন্য মসজিদে সমবেত হওয়া (হানাফি মতে এটি একাকী পড়ার আমল)।"
+    ],
+    "faqs": [
+      {
+        "question": "কুসূফ ও খুসূফের পার্থক্য কী?",
+        "answer": "কুসূফ (الكُسُوف) হলো সূর্যগ্রহণ যাতে জামাতে নামাজ সুন্নাত। আর খুসূফ (الخُسُوف) হলো চন্দ্রগ্রহণ যাতে একাকী ঘরে নামাজ পড়া সুন্নাত।"
+      }
+    ],
+    "references": [
+      {
+        "type": "hadith",
+        "source": "সহীহ বুখারী",
+        "number": "১০৫২",
+        "grade": "sahih"
+      },
+      {
+        "type": "fiqh",
+        "source": "আল-হিদায়া ১ম খণ্ড",
+        "number": "সালাতুল খুসূফ"
+      }
+    ],
+    "relatedPrayers": [
+      "salatul-kusuf"
+    ],
+    "relatedRulings": [
+      "ruling-forbidden-and-makruh-times"
+    ]
+  },
+  {
+    "slug": "salatul-istisqa",
+    "nameBn": "সালাতুল ইস্তিসকা (বৃষ্টির নামাজ)",
+    "nameAr": "صَلَاةُ الاسْتِسْقَاءِ",
+    "nameEn": "Salatul Istisqa",
+    "category": "sunnah",
+    "group": "special",
+    "timeDescriptionBn": "অনাবৃষ্টি ও তীব্র খরার সময়ে উন্মুক্ত ময়দানে।",
+    "totalRakats": 2,
+    "simulatorConfigId": "salatul-istisqa-main",
+    "niyyat": {
+      "id": "niyyat-salatul-istisqa",
+      "titleBn": "সালাতুল ইস্তিসকার নিয়্যত",
+      "titleEn": "Niyyah for Rain Prayer",
+      "arabic": "نَوَيْتُ أَنْ أُصَلِّيَ لِلَّهِ تَعَالَىٰ رَكْعَتَيْ صَلَاةِ الِاسْتِسْقَاءِ سُنَّةً مُتَوَجِّهًا إِلَىٰ جِهَةِ الْكَعْبَةِ الشَّرِيفَةِ",
+      "uccharonBn": "নাওয়াইতু আন উসাল্লিয়া লিল্লাহি তা'আলা রাক'আতাই সালাতিল ইসতিসক্বায়ি সুন্নাতান মুতাওয়াজ্জিহান ইলা জিহাতিল কা'বাতিশ শারীফাহ।",
+      "banglish": "Nawaytu an usalliya lillahi ta'ala rak'atay salatil-istisqa'i sunnatan mutawajjihan ila jihatil-ka'batish-shareefah.",
+      "meaningBn": "আমি আল্লাহর সন্তুষ্টির উদ্দেশ্যে কিবলামুখী হয়ে বৃষ্টির জন্য সালাতুল ইস্তিসকার দুই রাকাত সুন্নাত নামাজ আদায়ের সংকল্প করছি।"
+    },
+    "fazilat": {
+      "textBn": "রাসুলুল্লাহ (সা.) উন্মুক্ত ময়দানে বের হয়ে বৃষ্টির জন্য দোয়া করলেন, কিবলামুখী হলেন, নিজের চাদর উল্টালেন এবং দুই রাকাত নামাজ আদায় করলেন।",
+      "reference": {
+        "type": "hadith",
+        "source": "সহীহ বুখারী",
+        "number": "১০১৩",
+        "grade": "sahih"
+      }
+    },
+    "specialRules": [
+      {
+        "title": "ইস্তিসকার সুন্নাহ আদবসমূহ",
+        "description": "নামাজে যাওয়ার পূর্বে ৩ দিন রোজা রাখা, তওবা-ইস্তিগফার করা, মানুষের হক ফিরিয়ে দেওয়া এবং সাধারণ ছেঁড়াফাটা কাপড় পরে বিনম্রভাবে শিশু ও বয়োবৃদ্ধদের সাথে নিয়ে উন্মুক্ত মাঠে গমন করা সুন্নাত।"
+      },
+      {
+        "title": "চাদর উল্টানো",
+        "description": "নামাজ শেষে ইমাম কিবলামুখী হয়ে নিজের চাদরের ওপরের অংশ নিচে এবং ডান দিক বাম দিকে উল্টে দেবেন (পরিস্থিতি পরিবর্তনের প্রতীক হিসেবে) এবং হাত তুলে দোয়া করবেন।"
+      }
+    ],
+    "rakatUnits": [
+      {
+        "label": "২ রাকাত সুন্নাত (উন্মুক্ত মাঠে জামাতে)",
+        "count": 2,
+        "status": "sunnah",
+        "config": {
+          "rakats": 2,
+          "qiratRakats": [
+            1,
+            2
+          ],
+          "firstSittingAfter": null,
+          "hasQunut": false,
+          "isJanaza": false,
+          "jahr": [
+            1,
+            2
+          ],
+          "sajdaCount": 2,
+          "endsWithSalam": true
+        }
+      }
+    ],
+    "steps": [
+      {
+        "stepNumber": 1,
+        "rakatLabel": "১ম ও ২য় রাকাত",
+        "titleBn": "জামাতে দুই রাকাত সালাত",
+        "descriptionBn": "আজান ও ইকামত ব্যতীত ইমামের পেছনে দুই রাকাত নামাজ আদায় করুন।",
+        "recitationId": "dua-1"
+      },
+      {
+        "stepNumber": 2,
+        "rakatLabel": "নামাজ শেষে",
+        "titleBn": "চাদর উল্টানো ও ক্রন্দনসহ দোয়া",
+        "descriptionBn": "ইমাম চাদর উল্টে কিবলামুখী হয়ে হাত উল্টো করে আকাশের দিকে তুলে ব্যাকুলভাবে বৃষ্টির দোয়া করবেন।",
+        "recitationId": "dua-istisqa"
+      }
+    ],
+    "commonMistakes": [
+      "ইস্তিসকার নামাজে আজান বা ইকামত দেওয়া।"
+    ],
+    "faqs": [
+      {
+        "question": "ইস্তিসকার দোয়াতে হাত তোলার বিশেষ নিয়ম কী?",
+        "answer": "রাসুলুল্লাহ (সা.) ইস্তিসকার দোয়ায় এত উঁচুতে হাত তুলতেন যে তাঁর বগলের শুভ্রতা দেখা যেত এবং হাতের তালু জমিনের দিকে ও পিঠ আকাশের দিকে রাখতেন।"
+      }
+    ],
+    "references": [
+      {
+        "type": "hadith",
+        "source": "সহীহ বুখারী",
+        "number": "১০১৩",
+        "grade": "sahih"
+      },
+      {
+        "type": "hadith",
+        "source": "সুনানে আবু দাউদ",
+        "number": "১১৬৯",
+        "grade": "sahih"
+      }
+    ],
+    "relatedPrayers": [
+      "salatul-kusuf",
+      "jumuah"
+    ],
+    "relatedRulings": [
+      "ruling-jamaat-and-imamat"
+    ]
+  },
+  {
+    "slug": "shukr",
+    "nameBn": "সালাতুশ শুকর ও সিজদায়ে শোকর",
+    "nameAr": "صَلَاةُ الشُّكْرِ وَسَجْدَةُ الشُّكْرِ",
+    "nameEn": "Salatus Shukr",
+    "category": "nafl",
+    "group": "special",
+    "timeDescriptionBn": "কোনো অপ্রত্যাশিত সুখবর পেলে বা বিপদ থেকে উদ্ধার হলে।",
+    "totalRakats": 2,
+    "simulatorConfigId": "shukr-main",
+    "niyyat": {
+      "id": "niyyat-shukr",
+      "titleBn": "সালাতুশ শুকরের নিয়্যত",
+      "titleEn": "Niyyah for Gratitude Prayer",
+      "arabic": "نَوَيْتُ أَنْ أُصَلِّيَ لِلَّهِ تَعَالَىٰ رَكْعَتَيْ صَلَاةِ الشُّكْرِ نَفْلًا مُتَوَجِّهًا إِلَىٰ جِهَةِ الْكَعْبَةِ الشَّرِيفَةِ",
+      "uccharonBn": "নাওয়াইতু আন উসাল্লিয়া লিল্লাহি তা'আলা রাক'আতাই সালাতিশ শুকরি নাফলান মুতাওয়াজ্জিহান ইলা জিহাতিল কা'বাতিশ শারীফাহ।",
+      "banglish": "Nawaytu an usalliya lillahi ta'ala rak'atay salatish-shukri naflan mutawajjihan ila jihatil-ka'batish-shareefah.",
+      "meaningBn": "আমি আল্লাহর সন্তুষ্টির উদ্দেশ্যে কিবলামুখী হয়ে শুকরিয়ার দুই রাকাত নফল নামাজ আদায়ের সংকল্প করছি।"
+    },
+    "fazilat": {
+      "textBn": "রাসুলুল্লাহ (সা.)-এর নিকট যখন কোনো আনন্দদায়ক সংবাদ আসত বা তিনি কোনো সুসংবাদ পেতেন, তখন তিনি আল্লাহর প্রতি কৃতজ্ঞতাস্বরূপ সিজদায় লুটিয়ে পড়তেন।",
+      "reference": {
+        "type": "hadith",
+        "source": "সুনানে আবু দাউদ",
+        "number": "২৭৭৪",
+        "grade": "sahih"
+      }
+    },
+    "specialRules": [
+      {
+        "title": "নামাজ বনাম সিজদায়ে শোকর",
+        "description": "কৃতজ্ঞতাস্বরূপ দুই রাকাত নফল নামাজ পড়াও জায়েজ, অথবা সরাসরি কিবলামুখী হয়ে একটি সিজদা দেওয়াও জায়েজ। হানাফি ফিকহে নামাজের ভেতরে সিজদায়ে শোকর মাকরূহ; তবে নামাজের বাইরে ওযু সহকারে একাগ্রভাবে সিজদায়ে শোকর আদায় করা জুমহুর ফুকাহাদের মতে মুস্তাহাব।"
+      }
+    ],
+    "rakatUnits": [
+      {
+        "label": "২ রাকাত নফল (অথবা ১টি সিজদায়ে শোকর)",
+        "count": 2,
+        "status": "nafl",
+        "config": {
+          "rakats": 2,
+          "qiratRakats": [
+            1,
+            2
+          ],
+          "firstSittingAfter": null,
+          "hasQunut": false,
+          "isJanaza": false,
+          "jahr": [],
+          "sajdaCount": 2,
+          "endsWithSalam": true
+        }
+      }
+    ],
+    "steps": [
+      {
+        "stepNumber": 1,
+        "rakatLabel": "পদ্ধতি ১",
+        "titleBn": "দুই রাকাত শুকরিয়ার নামাজ",
+        "descriptionBn": "সাধারণ নফল নামাজের মতো দুই রাকাত নামাজ পড়ে আল্লাহর শোকর আদায় করুন।",
+        "recitationId": "dua-1"
+      },
+      {
+        "stepNumber": 2,
+        "rakatLabel": "পদ্ধতি ২",
+        "titleBn": "কেবল একটি সিজদায়ে শোকর",
+        "descriptionBn": "পবিত্র অবস্থায় কিবলামুখী হয়ে 'আল্লাহু আকবার' বলে সরাসরি সিজদায় যান এবং আল্লাহর হামদ ও তাসবীহ পড়ে উঠে পড়ুন।",
+        "recitationId": "dua-sajda-shukr"
+      }
+    ],
+    "commonMistakes": [
+      "ফরজ নামাজের রুকু-সিজদার মাঝখানে শোকরের সিজদা করা (এতে নামাজ মাকরূহ বা বিশৃঙ্খল হয়)।"
+    ],
+    "faqs": [
+      {
+        "question": "সিজদায়ে শোকরের জন্য কি ওযু থাকা শর্ত?",
+        "answer": "হ্যাঁ, সাধারণ সিজদার মতোই পবিত্রতা ও ওযু থাকা আবশ্যক।"
+      }
+    ],
+    "references": [
+      {
+        "type": "hadith",
+        "source": "সুনানে আবু দাউদ",
+        "number": "২৭৭৪",
+        "grade": "sahih"
+      },
+      {
+        "type": "hadith",
+        "source": "সুনানে তিরমিযী",
+        "number": "১৫৭৮",
+        "grade": "hasan"
+      }
+    ],
+    "relatedPrayers": [
+      "salatul-hajat"
+    ],
+    "relatedRulings": [
+      "ruling-sajda-tilawat"
+    ]
+  },
+  {
+    "slug": "shab-e-qadr",
+    "nameBn": "শবে কদরের নফল নামাজ ও আমল",
+    "nameAr": "صَلَاةُ لَيْلَةِ القَدْرِ",
+    "nameEn": "Laylatul Qadr Prayer",
+    "category": "nafl",
+    "group": "sunnah-nafl",
+    "timeDescriptionBn": "রমজান মাসের শেষ দশকের বিজোড় রাতসমূহে (২১, ২৩, ২৫, ২৭ ও ২৯তম রাত)।",
+    "totalRakats": 2,
+    "simulatorConfigId": "shab-e-qadr-main",
+    "niyyat": {
+      "id": "niyyat-shab-e-qadr",
+      "titleBn": "শবে কদরের নফল নামাজের নিয়্যত",
+      "titleEn": "Niyyah for Laylatul Qadr Prayer",
+      "arabic": "نَوَيْتُ أَنْ أُصَلِّيَ لِلَّهِ تَعَالَىٰ رَكْعَتَيْ صَلَاةِ اللَّيْلِ نَفْلًا مُتَوَجِّهًا إِلَىٰ جِهَةِ الْكَعْبَةِ الشَّرِيفَةِ",
+      "uccharonBn": "নাওয়াইতু আন উসাল্লিয়া লিল্লাহি তা'আলা রাক'আতাই সালাতিল লাইলি নাফলান মুতাওয়াজ্জিহান ইলা জিহাতিল কা'বাতিশ শারীফাহ।",
+      "banglish": "Nawaytu an usalliya lillahi ta'ala rak'atay salatil-layli naflan mutawajjihan ila jihatil-ka'batish-shareefah.",
+      "meaningBn": "আমি আল্লাহর সন্তুষ্টির উদ্দেশ্যে কিবলামুখী হয়ে রাতের দুই রাকাত নফল নামাজ আদায়ের সংকল্প করছি।"
+    },
+    "fazilat": {
+      "textBn": "যে ব্যক্তি ঈমানের সাথে ও সাওয়াবের আশায় কদরের রাতে নামাজে দাঁড়িয়ে ইবাদত করবে, তার পূর্ববর্তী সমস্ত গুনাহ ক্ষমা করে দেওয়া হবে।",
+      "reference": {
+        "type": "hadith",
+        "source": "সহীহ বুখারী",
+        "number": "২০১৪",
+        "grade": "sahih"
+      }
+    },
+    "specialRules": [
+      {
+        "title": "নির্দিষ্ট কোনো রাকাত বা সুরার ধরাবাঁধা নিয়ম নেই",
+        "description": "সহীহ সুন্নাহ অনুযায়ী শবে কদরে বিশেষ কোনো সুরার সংখ্যা বা নির্দিষ্ট ১০০/১২ রাকাতের ধরাবাঁধা কোনো নিয়ম নেই। সাধারণ নফল নামাজ, তাহাজ্জুদ ও কুরআন তিলাওয়াত যত বেশি সম্ভব আদায় করাই সুন্নাত।"
+      },
+      {
+        "title": "শবে কদরের শ্রেষ্ঠ দোয়া",
+        "description": "আম্মাজান হযরত আয়েশা (রা.)-কে রাসুলুল্লাহ (সা.) এই রাতে পড়ার জন্য দোয়া শিখিয়েছেন: 'আল্লাহুম্মা ইন্নাকা আফুউন তুহিব্বুল আফওয়া ফা'ফু আন্নী' (হে আল্লাহ! আপনি ক্ষমাশীল, ক্ষমাকে ভালোবাসেন; অতএব আমাকে ক্ষমা করুন)।"
+      }
+    ],
+    "rakatUnits": [
+      {
+        "label": "২ রাকাত নফল (যত রাকাত সম্ভব কিয়ামুল লাইল)",
+        "count": 2,
+        "status": "nafl",
+        "config": {
+          "rakats": 2,
+          "rakatRange": [
+            2,
+            12
+          ],
+          "qiratRakats": [
+            1,
+            2
+          ],
+          "firstSittingAfter": null,
+          "hasQunut": false,
+          "isJanaza": false,
+          "jahr": [],
+          "sajdaCount": 2,
+          "endsWithSalam": true
+        }
+      }
+    ],
+    "steps": [
+      {
+        "stepNumber": 1,
+        "rakatLabel": "প্রতি ২ রাকাত",
+        "titleBn": "দীর্ঘ কিরাত ও রুকু-সেজদা",
+        "descriptionBn": "দুই রাকাত করে নফল নামাজে দাঁড়িয়ে দীর্ঘ কিরাত ও দীর্ঘ সেজদা সহকারে সাধ্যমতো নামাজ আদায় করুন।",
+        "recitationId": "dua-1"
+      },
+      {
+        "stepNumber": 2,
+        "rakatLabel": "ইবাদতের বিরতিতে",
+        "titleBn": "মাসনূন দোয়ার প্রাচুর্য",
+        "descriptionBn": "নামাজের ফাঁকে ও সেজদায় কদরের বিশেষ দোয়াটি বারবার পাঠ করুন।",
+        "recitationId": "dua-laylatul-qadr"
+      }
+    ],
+    "commonMistakes": [
+      "বাজারি বইয়ে লেখা নির্দিষ্ট বানোয়াট নিয়মে সুরার সংখ্যা গুনে নামাজ পড়া।"
+    ],
+    "faqs": [
+      {
+        "question": "শবে কদর কি শুধুই ২৭শে রমজানের রাত?",
+        "answer": "২৭শে রমজানের রাত হওয়ার সম্ভাবনা বেশি হলেও রাসুলুল্লাহ (সা.) শেষ দশকের সব বিজোড় রাতে (২১, ২৩, ২৫, ২৭ ও ২৯) কদর তালাশ করার নির্দেশ দিয়েছেন।"
+      }
+    ],
+    "references": [
+      {
+        "type": "hadith",
+        "source": "সহীহ বুখারী",
+        "number": "২০১৪",
+        "grade": "sahih"
+      },
+      {
+        "type": "hadith",
+        "source": "সুনানে তিরমিযী",
+        "number": "৩৫১৩",
+        "grade": "sahih"
+      }
+    ],
+    "relatedPrayers": [
+      "tahajjud",
+      "tarawih"
+    ],
+    "relatedRulings": [
+      "ruling-sunnahs-of-salah"
+    ]
+  },
+  {
+    "slug": "shab-e-barat",
+    "nameBn": "শবে বরাতের নফল নামাজ ও আমল",
+    "nameAr": "صَلَاةُ لَيْلَةِ النِّصْفِ مِنْ شَعْبَانَ",
+    "nameEn": "Shab-e-Barat",
+    "category": "nafl",
+    "group": "sunnah-nafl",
+    "timeDescriptionBn": "১৫ই শাবানের দিবাগত রাতে।",
+    "totalRakats": 2,
+    "simulatorConfigId": "shab-e-barat-main",
+    "niyyat": {
+      "id": "niyyat-shab-e-barat",
+      "titleBn": "শবে বরাতের নফল নামাজের নিয়্যত",
+      "titleEn": "Niyyah for Shab-e-Barat Prayer",
+      "arabic": "نَوَيْتُ أَنْ أُصَلِّيَ لِلَّهِ تَعَالَىٰ رَكْعَتَيْ صَلَاةِ اللَّيْلِ نَفْلًا مُتَوَجِّهًا إِلَىٰ جِهَةِ الْكَعْبَةِ الشَّرِيفَةِ",
+      "uccharonBn": "নাওয়াইতু আন উসাল্লিয়া লিল্লাহি তা'আলা রাক'আতাই সালাতিল লাইলি নাফলান মুতাওয়াজ্জিহান ইলা জিহাতিল কা'বাতিশ শারীফাহ।",
+      "banglish": "Nawaytu an usalliya lillahi ta'ala rak'atay salatil-layli naflan mutawajjihan ila jihatil-ka'batish-shareefah.",
+      "meaningBn": "আমি আল্লাহর সন্তুষ্টির উদ্দেশ্যে কিবলামুখী হয়ে রাতের দুই রাকাত নফল নামাজ আদায়ের সংকল্প করছি।"
+    },
+    "fazilat": {
+      "textBn": "১৫ই শাবানের রাতে আল্লাহ তাআলা তাঁর বান্দাদের প্রতি বিশেষ অনুগ্রহে দৃষ্টি দেন এবং মুশরিক ও হিংসুক ব্যতীত সকলকে ক্ষমা করে দেন।",
+      "reference": {
+        "type": "hadith",
+        "source": "সুনানে ইবনে মাজাহ",
+        "number": "১৩৮৮",
+        "grade": "hasan"
+      }
+    },
+    "specialRules": [
+      {
+        "title": "গ্রহণযোগ্য আমল বনাম বানোয়াট প্রথা",
+        "description": "গ্রহণযোগ্য আমল: এই রাতে একাকী নফল নামাজ, কুরআন তিলাওয়াত, ইস্তিগফার এবং পরদিন রোজা রাখার সাধারণ আমলকে অধিকাংশ ফুকাহা ও হানাফি ওলামায়ে কেরাম মুস্তাহাব গণ্য করেছেন। বর্জনীয় প্রথা: বাজারে প্রচলিত ১০০ রাকাত বা নির্দিষ্ট সংখ্যক সুরা পড়ার বানোয়াট নিয়ম সম্পূর্ণ জাল (মাওযূ)। এছাড়া আতশবাজি, হালুয়া-রুটি বা আলোকসজ্জা ইসলামের অংশ নয়।"
+      }
+    ],
+    "rakatUnits": [
+      {
+        "label": "২ রাকাত নফল (সামর্থ্য অনুযায়ী নফল ইবাদত)",
+        "count": 2,
+        "status": "nafl",
+        "config": {
+          "rakats": 2,
+          "rakatRange": [
+            2,
+            12
+          ],
+          "qiratRakats": [
+            1,
+            2
+          ],
+          "firstSittingAfter": null,
+          "hasQunut": false,
+          "isJanaza": false,
+          "jahr": [],
+          "sajdaCount": 2,
+          "endsWithSalam": true
+        }
+      }
+    ],
+    "steps": [
+      {
+        "stepNumber": 1,
+        "rakatLabel": "প্রতি ২ রাকাত",
+        "titleBn": "একাকী নফল নামাজ",
+        "descriptionBn": "সাধারণ নফল নামাজের মতোই দুই রাকাত করে নিজের সুবিধা অনুযায়ী নামাজ আদায় করুন।",
+        "recitationId": "dua-1"
+      },
+      {
+        "stepNumber": 2,
+        "rakatLabel": "নামাজ শেষে",
+        "titleBn": "তওবা ও ইস্তিগফার",
+        "descriptionBn": "গুনাহ থেকে মুক্তির জন্য আল্লাহর দরবারে একাগ্র চিত্তে কান্নাকাটি ও দোয়া করুন।",
+        "recitationId": "dua-tawbah-sayyidul-istighfar"
+      }
+    ],
+    "commonMistakes": [
+      "নির্দিষ্ট ১০০ রাকাত পড়ার বানোয়াট রেওয়ায়েত বিশ্বাস করা।",
+      "মসজিদে আলোকসজ্জা, হইচই ও আতশবাজি ফোটানো।"
+    ],
+    "faqs": [
+      {
+        "question": "শবে বরাতের পরদিন কি রোজা রাখা সুন্নাত?",
+        "answer": "হাদিসে ১৫ই শাবানের দিনে রোজা রাখার কথা এসেছে (ইবনে মাজাহ ১৩৮৮)। তাছাড়া প্রতি আরবি মাসের ১৩, ১৪ ও ১৫ তারিখের 'আইয়ামে বীয'-এর রোজার অংশ হিসেবেও এ রোজা রাখা অত্যন্ত সওয়াবের কাজ।"
+      }
+    ],
+    "references": [
+      {
+        "type": "hadith",
+        "source": "সুনানে ইবনে মাজাহ",
+        "number": "১৩৮৮",
+        "grade": "hasan"
+      },
+      {
+        "type": "fiqh",
+        "source": "রদ্দুল মুহতার (ফাতওয়ায়ে শামী)",
+        "number": "নওয়াফিল অধ্যায়"
+      }
+    ],
+    "relatedPrayers": [
+      "tahajjud",
+      "salatul-tawbah"
+    ],
+    "relatedRulings": [
+      "ruling-sunnahs-of-salah"
     ]
   }
 ];
