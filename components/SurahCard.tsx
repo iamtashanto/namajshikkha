@@ -5,7 +5,7 @@ import { useAudio } from "./AudioProvider";
 import { Play, Pause, Volume2, BookOpenText } from "lucide-react";
 
 interface SurahDuaData {
-    id: number;
+    id: number | string;
     title_bn: string;
     title_en: string;
     arabic_text: string;

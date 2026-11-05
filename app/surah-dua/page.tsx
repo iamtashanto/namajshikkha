@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import SurahCard from "@/components/SurahCard";
 import SearchBar from "@/components/SearchBar";
-import surahs from "@/data/surahs.json";
-import duas from "@/data/duas.json";
+import { Breadcrumbs } from "@/src/components/ui";
+import { getSurahCardItems } from "@/src/data/surah-dua-items";
 
 type TabType = "all" | "surah" | "dua";
 
@@ -12,7 +12,9 @@ export default function SurahDuaPage() {
     const [activeTab, setActiveTab] = useState<TabType>("all");
     const [searchQuery, setSearchQuery] = useState("");
 
-    const allItems = [...surahs, ...duas];
+    const allItems = useMemo(() => getSurahCardItems(), []);
+    const surahCount = useMemo(() => allItems.filter(i => i.category === "surah").length, [allItems]);
+    const duaCount = useMemo(() => allItems.filter(i => i.category === "dua").length, [allItems]);
 
     const filteredItems = allItems.filter((item) => {
         const matchesTab =
@@ -27,12 +29,15 @@ export default function SurahDuaPage() {
 
     const tabs: { key: TabType; label: string; count: number }[] = [
         { key: "all", label: "সবগুলো", count: allItems.length },
-        { key: "surah", label: "সূরা", count: surahs.length },
-        { key: "dua", label: "দোয়া", count: duas.length },
+        { key: "surah", label: "সূরা", count: surahCount },
+        { key: "dua", label: "দোয়া", count: duaCount },
     ];
 
     return (
-        <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8">
+        <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+            {/* Breadcrumb Navigation */}
+            <Breadcrumbs items={[{ label: "সূরা ও দোয়া" }]} />
+
             {/* Page Header */}
             <div className="mb-10 text-center">
                 <h1 className="bangla-text mb-3 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">

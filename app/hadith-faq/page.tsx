@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import SearchBar from "@/components/SearchBar";
-import hadiths from "@/data/hadiths.json";
+import { Breadcrumbs, ReferenceChip } from "@/src/components/ui";
+import { prayerHadiths } from "@/src/data/hadiths";
 import faqs from "@/data/faqs.json";
 import { ChevronDown, BookHeart, MessageCircleQuestion } from "lucide-react";
 
@@ -15,14 +16,14 @@ export default function HadithFaqPage() {
 
     const normalizedQuery = searchQuery.toLowerCase().trim();
 
-    const filteredHadiths = hadiths.filter(
+    const filteredHadiths = prayerHadiths.filter(
         (h) =>
             searchQuery === "" ||
-            h.title_bn?.includes(searchQuery) ||
-            h.title_en?.toLowerCase().includes(normalizedQuery) ||
-            h.text_bn?.includes(searchQuery) ||
-            h.narrator_bn?.includes(searchQuery) ||
-            h.source?.includes(searchQuery) ||
+            h.titleBn?.includes(searchQuery) ||
+            h.titleEn?.toLowerCase().includes(normalizedQuery) ||
+            h.textBn?.includes(searchQuery) ||
+            h.narratorBn?.includes(searchQuery) ||
+            h.reference.source?.includes(searchQuery) ||
             h.category?.includes(normalizedQuery)
     );
 
@@ -36,7 +37,10 @@ export default function HadithFaqPage() {
     );
 
     return (
-        <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8">
+        <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+            {/* Breadcrumbs */}
+            <Breadcrumbs items={[{ label: "হাদিস ও প্রশ্নোত্তর" }]} />
+
             {/* Page Header */}
             <div className="mb-10 text-center">
                 <h1 className="bangla-text mb-3 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
@@ -69,7 +73,7 @@ export default function HadithFaqPage() {
                 >
                     <BookHeart className="h-4 w-4" />
                     <span className="bangla-text">হাদিস</span>
-                    <span className="text-xs opacity-70">({hadiths.length})</span>
+                    <span className="text-xs opacity-70">({prayerHadiths.length})</span>
                 </button>
                 <button
                     onClick={() => { setView("faq"); setSearchQuery(""); }}
@@ -95,7 +99,7 @@ export default function HadithFaqPage() {
                             >
                                 <div className="mb-3 flex items-start justify-between gap-3">
                                     <h2 className="bangla-text text-lg font-bold text-gray-800 dark:text-dark-text">
-                                        {hadith.title_bn}
+                                        {hadith.titleBn}
                                     </h2>
                                     <span className="shrink-0 rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
                                         {hadith.category === "namaj" ? "নামাজ" : hadith.category === "quran" ? "কুরআন" : hadith.category}
@@ -103,17 +107,18 @@ export default function HadithFaqPage() {
                                 </div>
 
                                 <blockquote className="bangla-text mb-4 border-l-3 border-blue-300 pl-4 text-sm leading-7 text-gray-600 dark:border-blue-600 dark:text-dark-text-secondary sm:text-base">
-                                    {hadith.text_bn}
+                                    {hadith.textBn}
                                 </blockquote>
 
-                                <div className="flex flex-wrap items-center gap-3 text-xs text-gray-400 dark:text-dark-text-muted">
+                                <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-gray-500 dark:text-dark-text-muted">
                                     <span className="bangla-text">
-                                        📖 বর্ণনাকারী: <strong className="text-gray-500 dark:text-dark-text-secondary">{hadith.narrator_bn}</strong>
+                                        📖 বর্ণনাকারী: <strong className="text-gray-700 dark:text-dark-text-secondary">{hadith.narratorBn}</strong>
                                     </span>
-                                    <span className="hidden sm:inline">•</span>
-                                    <span className="bangla-text">
-                                        📚 সূত্র: <strong className="text-gray-500 dark:text-dark-text-secondary">{hadith.source}</strong>
-                                    </span>
+                                    <ReferenceChip
+                                        source={hadith.reference.source}
+                                        hadithNumber={hadith.reference.number}
+                                        grade={hadith.reference.grade}
+                                    />
                                 </div>
                             </article>
                         ))
