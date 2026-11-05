@@ -1,24 +1,29 @@
 import { MetadataRoute } from 'next';
 import historyData from "@/data/islamic-history.json";
+import { siteConfig } from "@/src/config/site";
 
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://namajshikkha.vercel.app'; // Replace with actual domain if known
+    const baseUrl = siteConfig.url;
 
     // Static routes
     const routes = [
         '',
         '/namaj-rules',
         '/namaj-details',
-        '/quran',
-        '/islamic-history',
+        '/simulator',
+        '/prayer-times',
         '/surah-dua',
+        '/quran',
+        '/masail',
+        '/islamic-history',
         '/hadith-faq',
+        '/more',
     ].map((route) => ({
         url: `${baseUrl}${route}`,
         lastModified: new Date(),
-        changeFrequency: 'monthly' as const,
+        changeFrequency: 'weekly' as const,
         priority: route === '' ? 1 : 0.8,
     }));
 

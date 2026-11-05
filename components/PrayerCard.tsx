@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ChevronDown, Clock, ExternalLink } from "lucide-react";
+import { Badge, BadgeVariant } from "@/src/components/ui";
 
 interface RakatBreakdown {
     type: string;
@@ -39,33 +40,6 @@ interface PrayerData {
     details_bn: string;
     steps: PrayerStep[];
 }
-
-const colorMap: Record<string, { bg: string; text: string; dot: string; border: string }> = {
-    emerald: {
-        bg: "bg-emerald-100 dark:bg-emerald-900/30",
-        text: "text-emerald-700 dark:text-emerald-400",
-        dot: "bg-emerald-500",
-        border: "border-emerald-200 dark:border-emerald-800/40",
-    },
-    gold: {
-        bg: "bg-amber-100 dark:bg-amber-900/30",
-        text: "text-amber-700 dark:text-amber-400",
-        dot: "bg-amber-500",
-        border: "border-amber-200 dark:border-amber-800/40",
-    },
-    blue: {
-        bg: "bg-blue-100 dark:bg-blue-900/30",
-        text: "text-blue-700 dark:text-blue-400",
-        dot: "bg-blue-500",
-        border: "border-blue-200 dark:border-blue-800/40",
-    },
-    purple: {
-        bg: "bg-purple-100 dark:bg-purple-900/30",
-        text: "text-purple-700 dark:text-purple-400",
-        dot: "bg-purple-500",
-        border: "border-purple-200 dark:border-purple-800/40",
-    },
-};
 
 export default function PrayerCard({ data }: { data: PrayerData }) {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -115,15 +89,18 @@ export default function PrayerCard({ data }: { data: PrayerData }) {
             {/* Rakat Breakdown Badges */}
             <div className="flex flex-wrap gap-2 border-t border-emerald-50 px-5 py-3 dark:border-dark-border sm:px-6">
                 {data.rakat_breakdown.map((rakat, i) => {
-                    const colors = colorMap[rakat.color] || colorMap.emerald;
+                    const variantMap: Record<string, BadgeVariant> = {
+                        emerald: "fard",
+                        gold: "sunnah",
+                        purple: "wajib",
+                        blue: "nafl",
+                    };
+                    const variant = variantMap[rakat.color] || "fard";
+
                     return (
-                        <span
-                            key={i}
-                            className={`bangla-text inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium ${colors.bg} ${colors.text}`}
-                        >
-                            <span className={`h-1.5 w-1.5 rounded-full ${colors.dot}`} />
+                        <Badge key={i} variant={variant} dot>
                             {rakat.count} {rakat.type}
-                        </span>
+                        </Badge>
                     );
                 })}
             </div>

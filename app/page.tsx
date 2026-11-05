@@ -1,4 +1,14 @@
-import { BookOpen, BookHeart, MessageCircleQuestion, ScrollText, BookOpenCheck, ListChecks, Landmark } from "lucide-react";
+import {
+  BookOpen,
+  BookHeart,
+  ScrollText,
+  BookOpenCheck,
+  ListChecks,
+  Landmark,
+  Sparkles,
+  Clock,
+  BookMarked,
+} from "lucide-react";
 import NavigationCard from "@/components/NavigationCard";
 
 export default function Home() {
@@ -58,6 +68,13 @@ export default function Home() {
             color="emerald"
           />
           <NavigationCard
+            href="/simulator"
+            icon={Sparkles}
+            title="নামাজ সিমুলেটর"
+            description="ইন্টারঅ্যাক্টিভ অ্যানিমেশনসহ নামাজ শিখুন"
+            color="gold"
+          />
+          <NavigationCard
             href="/namaj-details"
             icon={ListChecks}
             title="নামাজের বিবরণ"
@@ -65,18 +82,11 @@ export default function Home() {
             color="emerald"
           />
           <NavigationCard
-            href="/quran"
-            icon={BookOpenCheck}
-            title="কুরআনের সূরা"
-            description="১১৪টি সূরা — অডিও তিলাওয়াত সহ অনুসন্ধান করুন"
-            color="gold"
-          />
-          <NavigationCard
-            href="/islamic-history"
-            icon={Landmark}
-            title="ইসলামের ইতিহাস"
-            description="প্রাক-ইসলাম থেকে আধুনিক যুগ — ৫৮টি ঘটনা"
-            color="purple"
+            href="/prayer-times"
+            icon={Clock}
+            title="নামাজের সময়সূচী"
+            description="প্রতিদিনের ৫ ওয়াক্ত নামাজের সঠিক সময়"
+            color="blue"
           />
           <NavigationCard
             href="/surah-dua"
@@ -86,17 +96,31 @@ export default function Home() {
             color="gold"
           />
           <NavigationCard
-            href="/hadith-faq"
-            icon={BookHeart}
-            title="হাদিস"
-            description="নামাজ সম্পর্কিত সহীহ হাদিস সংকলন"
+            href="/quran"
+            icon={BookOpenCheck}
+            title="কুরআনের সূরা"
+            description="১১৪টি সূরা — অডিও তিলাওয়াত সহ অনুসন্ধান করুন"
+            color="emerald"
+          />
+          <NavigationCard
+            href="/masail"
+            icon={BookMarked}
+            title="নামাজের মাসায়েল"
+            description="অযু, গোসল, সেজদায়ে সাহু ও জরুরি বিধানাবলী"
             color="blue"
           />
           <NavigationCard
             href="/hadith-faq"
-            icon={MessageCircleQuestion}
-            title="প্রশ্ন ও উত্তর"
-            description="নামাজ সম্পর্কিত সচরাচর জিজ্ঞাসিত প্রশ্ন"
+            icon={BookHeart}
+            title="হাদিস ও প্রশ্নোত্তর"
+            description="নামাজ সম্পর্কিত সহীহ হাদিস ও সচরাচর প্রশ্ন"
+            color="purple"
+          />
+          <NavigationCard
+            href="/islamic-history"
+            icon={Landmark}
+            title="ইসলামের ইতিহাস"
+            description="প্রাক-ইসলাম থেকে আধুনিক যুগ — ৫৮টি ঐতিহাসিক ঘটনা"
             color="purple"
           />
         </div>

@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { siteConfig } from '@/src/config/site';
 
 export const dynamic = 'force-static';
 
@@ -8,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
             userAgent: '*',
             allow: '/',
         },
-        sitemap: 'https://namajshikkha.vercel.app/sitemap.xml', // Replace with actual domain
+        sitemap: `${siteConfig.url}/sitemap.xml`,
     };
 }

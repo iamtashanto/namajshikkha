@@ -1,30 +1,57 @@
 import type { Metadata } from "next";
-import { Inter, Amiri, Noto_Sans_Bengali } from "next/font/google";
+import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { PreferencesProvider } from "@/src/context/PreferencesContext";
+import PreferencesModal from "@/src/components/PreferencesModal";
 import Navbar from "@/components/Navbar";
+import MobileBottomNav from "@/components/MobileBottomNav";
 import Footer from "@/components/Footer";
 import { AudioProvider } from "@/components/AudioProvider";
 import { GlobalAudioPlayer } from "@/components/GlobalAudioPlayer";
 import { MobileInstallPrompt } from "@/components/MobileInstallPrompt";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const amiri = Amiri({
+const amiri = localFont({
+  src: [
+    {
+      path: "../public/fonts/amiri-400.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/amiri-700.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
   variable: "--font-arabic",
-  weight: ["400", "700"],
-  subsets: ["arabic"],
   display: "swap",
 });
 
-const notoSansBengali = Noto_Sans_Bengali({
+const bengaliFont = localFont({
+  src: [
+    {
+      path: "../public/fonts/hind-siliguri-400.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/hind-siliguri-500.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/hind-siliguri-600.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/hind-siliguri-700.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
   variable: "--font-bengali",
-  weight: ["400", "500", "600", "700"],
-  subsets: ["bengali"],
   display: "swap",
 });
 
@@ -75,7 +102,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="bn" className={`${inter.variable} ${amiri.variable} ${notoSansBengali.variable}`} suppressHydrationWarning>
+    <html lang="bn" className={`${amiri.variable} ${bengaliFont.variable}`} suppressHydrationWarning>
       <head>
         {/* Prevent flash of wrong theme */}
         <script
@@ -93,13 +120,17 @@ export default function RootLayout({
       </head>
       <body className="flex min-h-screen flex-col bg-white antialiased dark:bg-dark-bg" suppressHydrationWarning>
         <ThemeProvider>
-          <AudioProvider>
-            <Navbar />
-            <main className="flex-1 pb-32">{children}</main>
-            <GlobalAudioPlayer />
-            <MobileInstallPrompt />
-            <Footer />
-          </AudioProvider>
+          <PreferencesProvider>
+            <AudioProvider>
+              <Navbar />
+              <main className="flex-1 pb-24 md:pb-16">{children}</main>
+              <GlobalAudioPlayer />
+              <MobileInstallPrompt />
+              <MobileBottomNav />
+              <PreferencesModal />
+              <Footer />
+            </AudioProvider>
+          </PreferencesProvider>
         </ThemeProvider>
       </body>
     </html>
