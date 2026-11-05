@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useMemo } from "react";
-import Link from "next/link";
+import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import {
   Search,
@@ -81,15 +80,19 @@ export function SearchModal() {
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
-  // Focus input on open & clear state on close
+  const handleClose = useCallback(() => {
+    setQuery("");
+    setActiveCategory("all");
+    closeSearch();
+  }, [closeSearch]);
+
+  // Focus input on open
   useEffect(() => {
     if (isSearchOpen) {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         inputRef.current?.focus();
       }, 50);
-    } else {
-      setQuery("");
-      setActiveCategory("all");
+      return () => clearTimeout(timer);
     }
   }, [isSearchOpen]);
 
@@ -112,7 +115,7 @@ export function SearchModal() {
   if (!isSearchOpen) return null;
 
   const handleSelectResult = (url: string) => {
-    closeSearch();
+    handleClose();
     router.push(url);
   };
 
@@ -135,7 +138,7 @@ export function SearchModal() {
       aria-modal="true"
       aria-labelledby="search-modal-title"
       className="fixed inset-0 z-50 flex items-start justify-center p-3 sm:p-4 pt-12 sm:pt-20 bg-black/60 backdrop-blur-sm animate-fade-in"
-      onClick={closeSearch}
+      onClick={handleClose}
     >
       <div
         className="w-full max-w-2xl bg-white dark:bg-dark-card border border-emerald-100 dark:border-dark-border rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh] transition-all"
@@ -322,7 +325,7 @@ export function SearchModal() {
             <span>হিন্দ ও বাংলা সব ভাষায় প্রযোজ্য</span>
           </div>
           <button
-            onClick={closeSearch}
+            onClick={handleClose}
             className="hover:text-gray-700 dark:hover:text-gray-300"
           >
             বন্ধ করুন [ESC]

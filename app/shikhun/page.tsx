@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { BookOpen, Clock, ArrowRight, Sparkles, HelpCircle, Compass } from "lucide-react";
+import { BookOpen, Clock, ArrowRight, Compass } from "lucide-react";
 import { siteConfig } from "@/src/config/site";
-import { shikhunArticles, shikhunCategories } from "@/src/data/shikhun";
-import { Breadcrumbs, Badge } from "@/src/components/ui";
+import { shikhunArticles } from "@/src/data/shikhun";
+import { Breadcrumbs } from "@/src/components/ui";
 import { JsonLd } from "@/src/components/seo/JsonLd";
 import { buildBreadcrumbSchema } from "@/src/lib/seo/schema";
 

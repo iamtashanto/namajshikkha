@@ -33,14 +33,6 @@ function getTodayKey(): string {
   return `${yyyy}-${mm}-${dd}`;
 }
 
-function addDaysToDateKey(days: number): string {
-  const target = new Date(Date.now() + days * 86400000);
-  const yyyy = target.getFullYear();
-  const mm = String(target.getMonth() + 1).padStart(2, "0");
-  const dd = String(target.getDate()).padStart(2, "0");
-  return `${yyyy}-${mm}-${dd}`;
-}
-
 export async function getHifzRecord(surahId: string): Promise<HifzRecord | null> {
   try {
     const db = await openDatabase();

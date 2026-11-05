@@ -244,6 +244,21 @@ export function buildSearchIndex(): SearchDoc[] {
     });
   }
 
+  // 11. All 114 Quran Surahs
+  for (const s of allSurahsData) {
+    docs.push({
+      id: `quran-surah-${s.number}`,
+      titleBn: `সূরা ${s.name_bangla}`,
+      titleEn: `Surah ${s.name_english}`,
+      titleAr: s.name_arabic,
+      categoryKey: "surah",
+      categoryLabelBn: "সূরা ও কুরআন",
+      url: "/quran",
+      snippetBn: `${s.name_bangla} — ${s.total_ayah} আয়াত, ${s.revelation_type}।`,
+      searchableContent: `${s.name_bangla} ${s.name_english} ${s.name_banglish} ${s.name_arabic} ${s.number} quran surah সূরা`,
+    });
+  }
+
   return docs;
 }
 

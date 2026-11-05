@@ -6,11 +6,9 @@ import {
   Calendar,
   ArrowLeft,
   ArrowRight,
-  BookOpen,
   HelpCircle,
   Lightbulb,
   CheckCircle2,
-  Share2,
 } from "lucide-react";
 import { siteConfig } from "@/src/config/site";
 import {
@@ -18,7 +16,7 @@ import {
   getShikhunArticleBySlug,
 } from "@/src/data/shikhun";
 import { getPrayerBySlug, getRulingBySlug } from "@/src/data";
-import { Breadcrumbs, Card, Accordion } from "@/src/components/ui";
+import { Breadcrumbs, Accordion } from "@/src/components/ui";
 import { JsonLd } from "@/src/components/seo/JsonLd";
 import {
   buildArticleSchema,

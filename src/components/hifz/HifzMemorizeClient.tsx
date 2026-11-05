@@ -5,15 +5,9 @@ import Link from "next/link";
 import {
   Play,
   Pause,
-  RotateCcw,
-  SkipBack,
-  SkipForward,
   CheckCircle2,
   RefreshCw,
-  Eye,
   EyeOff,
-  Sparkles,
-  BookOpen,
   Volume2,
   VolumeX,
   Type,
@@ -59,7 +53,6 @@ export function HifzMemorizeClient({ initialSurahId }: HifzMemorizeClientProps) 
   });
 
   const [activeAyahIndex, setActiveAyahIndex] = useState<number>(0);
-  const [rangeStart, setRangeStart] = useState<number>(0);
   const [rangeEnd, setRangeEnd] = useState<number>(0);
   const [currentRepeat, setCurrentRepeat] = useState<number>(1);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
@@ -116,15 +109,16 @@ export function HifzMemorizeClient({ initialSurahId }: HifzMemorizeClientProps) 
 
   const totalAyahs = currentSurah.ayahs.length;
 
-  // Initialize rangeEnd when surah changes
-  useEffect(() => {
-    setRangeStart(0);
+  // Reset range and active index when surah changes during render
+  const [prevSurahId, setPrevSurahId] = useState(selectedSurahId);
+  if (selectedSurahId !== prevSurahId) {
+    setPrevSurahId(selectedSurahId);
     setRangeEnd(Math.max(0, currentSurah.ayahs.length - 1));
     setActiveAyahIndex(0);
     setCurrentRepeat(1);
     setRevealedWordIndices(new Set());
     setRevealedFullAyah(false);
-  }, [currentSurah]);
+  }
 
   // Load Hifz Record
   useEffect(() => {
