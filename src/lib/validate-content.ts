@@ -3,17 +3,27 @@ import { prayerSurahs } from "@/src/data/surahs";
 import { prayerDuas } from "@/src/data/duas";
 import { salahRulings } from "@/src/data/rulings";
 import { prayerHadiths } from "@/src/data/hadiths";
+import { taharatSections } from "@/src/data/taharat";
 import { Reference } from "@/src/types/content";
 
 export interface ValidationError {
-  type: "duplicate_id" | "empty_arabic" | "invalid_config" | "rakat_math_mismatch" | "missing_reference_source";
+  type: "duplicate_id" | "empty_arabic" | "invalid_config" | "rakat_math_mismatch" | "missing_reference_source" | "missing_hadith_grade";
   entityId: string;
   message: string;
+}
+
+export interface NeedsReviewEntry {
+  entityId: string;
+  entityType: "prayer" | "dua" | "ruling" | "hadith" | "taharat";
+  titleBn: string;
+  pageRoute: string;
+  referenceSummary: string;
 }
 
 export interface ValidationResult {
   isValid: boolean;
   errors: ValidationError[];
+  needsReviewItems: NeedsReviewEntry[];
   stats: {
     prayersCount: number;
     surahsCount: number;
@@ -21,11 +31,14 @@ export interface ValidationResult {
     duasCount: number;
     rulingsCount: number;
     hadithsCount: number;
+    taharatCount: number;
+    needsReviewCount: number;
   };
 }
 
 export function validateContent(): ValidationResult {
   const errors: ValidationError[] = [];
+  const needsReviewItems: NeedsReviewEntry[] = [];
   const seenIds = new Set<string>();
 
   let ayahsCount = 0;
@@ -76,6 +89,13 @@ export function validateContent(): ValidationResult {
         message: `Missing reference number for entity [${entityId}] in source: ${ref.source}`,
       });
     }
+    if (ref.type === "hadith" && !ref.grade) {
+      errors.push({
+        type: "missing_hadith_grade",
+        entityId,
+        message: `Missing hadith grade for entity [${entityId}] in source: ${ref.source} (${ref.number})`,
+      });
+    }
   }
 
   // 1. Validate Prayers & SalahConfig & Rakat Math
@@ -91,6 +111,16 @@ export function validateContent(): ValidationResult {
     }
     for (const ref of prayer.references) {
       checkReference(ref, prayer.slug);
+    }
+
+    if (prayer.reviewStatus === "needs-review") {
+      needsReviewItems.push({
+        entityId: prayer.slug,
+        entityType: "prayer",
+        titleBn: prayer.nameBn,
+        pageRoute: `/namaj/${prayer.slug}`,
+        referenceSummary: prayer.references.map((r) => `${r.source} ${r.number}`).join(", "),
+      });
     }
 
     if (!prayer.rakatUnits || prayer.rakatUnits.length === 0) {
@@ -210,6 +240,15 @@ export function validateContent(): ValidationResult {
     if (dua.reference) {
       checkReference(dua.reference, dua.id);
     }
+    if (dua.reviewStatus === "needs-review") {
+      needsReviewItems.push({
+        entityId: dua.id,
+        entityType: "dua",
+        titleBn: dua.titleBn,
+        pageRoute: "/surah-dua",
+        referenceSummary: dua.reference ? `${dua.reference.source} ${dua.reference.number}` : "",
+      });
+    }
   }
 
   // 4. Validate Rulings
@@ -217,6 +256,15 @@ export function validateContent(): ValidationResult {
     checkId(ruling.id, "Ruling");
     for (const ref of ruling.references) {
       checkReference(ref, ruling.id);
+    }
+    if (ruling.reviewStatus === "needs-review") {
+      needsReviewItems.push({
+        entityId: ruling.id,
+        entityType: "ruling",
+        titleBn: ruling.titleBn,
+        pageRoute: `/masail/${ruling.slug}`,
+        referenceSummary: ruling.references.map((r) => `${r.source} ${r.number}`).join(", "),
+      });
     }
   }
 
@@ -226,11 +274,38 @@ export function validateContent(): ValidationResult {
     if (hadith.reference) {
       checkReference(hadith.reference, String(hadith.id));
     }
+    if (hadith.reviewStatus === "needs-review") {
+      needsReviewItems.push({
+        entityId: String(hadith.id),
+        entityType: "hadith",
+        titleBn: hadith.titleBn,
+        pageRoute: "/hadith-faq",
+        referenceSummary: `${hadith.reference.source} ${hadith.reference.number}`,
+      });
+    }
+  }
+
+  // 6. Validate Taharat Sections
+  for (const section of taharatSections) {
+    checkId(`taharat-${section.slug}`, "TaharatSection");
+    for (const ref of section.references) {
+      checkReference(ref, `taharat-${section.slug}`);
+    }
+    if (section.reviewStatus === "needs-review") {
+      needsReviewItems.push({
+        entityId: `taharat-${section.slug}`,
+        entityType: "taharat",
+        titleBn: section.titleBn,
+        pageRoute: `/taharat/${section.slug}`,
+        referenceSummary: section.references.map((r) => `${r.source} ${r.number}`).join(", "),
+      });
+    }
   }
 
   return {
     isValid: errors.length === 0,
     errors,
+    needsReviewItems,
     stats: {
       prayersCount: prayers.length,
       surahsCount: prayerSurahs.length,
@@ -238,6 +313,8 @@ export function validateContent(): ValidationResult {
       duasCount: prayerDuas.length,
       rulingsCount: salahRulings.length,
       hadithsCount: prayerHadiths.length,
+      taharatCount: taharatSections.length,
+      needsReviewCount: needsReviewItems.length,
     },
   };
 }

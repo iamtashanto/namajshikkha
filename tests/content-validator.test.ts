@@ -32,6 +32,31 @@ describe("Canonical Religious Content Validator", () => {
     expect(result.stats.duasCount).toBeGreaterThanOrEqual(14);
     expect(result.stats.rulingsCount).toBeGreaterThanOrEqual(5);
     expect(result.stats.hadithsCount).toBeGreaterThanOrEqual(100);
+    expect(result.stats.taharatCount).toBe(5);
+    expect(result.needsReviewItems.length).toBeGreaterThanOrEqual(15);
+  });
+
+  it("enforces that every hadith reference across the database has an explicit grade", () => {
+    for (const h of prayerHadiths) {
+      if (h.reference.type === "hadith") {
+        expect(["sahih", "hasan", "daif"]).toContain(h.reference.grade);
+      }
+    }
+    for (const d of prayerDuas) {
+      if (d.reference?.type === "hadith") {
+        expect(["sahih", "hasan", "daif"]).toContain(d.reference.grade);
+      }
+    }
+    for (const p of prayers) {
+      if (p.fazilat?.reference?.type === "hadith") {
+        expect(["sahih", "hasan", "daif"]).toContain(p.fazilat.reference.grade);
+      }
+      for (const ref of p.references) {
+        if (ref.type === "hadith") {
+          expect(["sahih", "hasan", "daif"]).toContain(ref.grade);
+        }
+      }
+    }
   });
 
   it("strictly validates rakat math for the 5 daily prayers + Jumuah + Witr", () => {

@@ -1,13 +1,40 @@
-const STATIC_CACHE = "namaj-shikkha-static-v1";
-const AUDIO_CACHE = "namaj-shikkha-audio-v1";
+const STATIC_CACHE = "namaj-shikkha-static-v2";
+const CONTENT_CACHE = "namaj-shikkha-content-v2";
+const FONT_CACHE = "namaj-shikkha-fonts-v2";
+const AUDIO_CACHE = "namaj-shikkha-audio-v2";
+
+const MAX_AUDIO_CACHE_ITEMS = 60;
+const MAX_FONT_CACHE_ITEMS = 20;
 
 const PRECACHE_URLS = [
   "/",
+  "/offline",
   "/simulator",
   "/namaj",
   "/namaj-rules",
   "/taharat",
+  "/surah-dua",
+  "/prayer-times",
+  "/qibla",
+  "/tracker",
+  "/masail",
+  "/about",
 ];
+
+async function enforceCacheSizeLimit(cacheName, maxItems) {
+  try {
+    const cache = await caches.open(cacheName);
+    const keys = await cache.keys();
+    if (keys.length > maxItems) {
+      const excessCount = keys.length - maxItems;
+      for (let i = 0; i < excessCount; i++) {
+        await cache.delete(keys[i]);
+      }
+    }
+  } catch {
+    // Ignore cache eviction errors
+  }
+}
 
 self.addEventListener("install", (event) => {
   self.skipWaiting();
@@ -22,13 +49,19 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("activate", (event) => {
+  const allowedCaches = new Set([
+    STATIC_CACHE,
+    CONTENT_CACHE,
+    FONT_CACHE,
+    AUDIO_CACHE,
+  ]);
   event.waitUntil(
     caches
       .keys()
       .then((keys) =>
         Promise.all(
           keys
-            .filter((k) => k !== STATIC_CACHE && k !== AUDIO_CACHE)
+            .filter((k) => !allowedCaches.has(k))
             .map((k) => caches.delete(k))
         )
       )
@@ -36,7 +69,7 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// Listen for PRECACHE_AUDIO messages from the Namaj Simulator
+// Listen for PRECACHE_AUDIO messages from the Namaj Simulator & Hifz Mode
 self.addEventListener("message", (event) => {
   const data = event.data;
   if (data && data.type === "PRECACHE_AUDIO" && Array.isArray(data.urls)) {
@@ -58,6 +91,7 @@ self.addEventListener("message", (event) => {
             // Ignore individual network failures during background prefetch
           }
         }
+        await enforceCacheSizeLimit(AUDIO_CACHE, MAX_AUDIO_CACHE_ITEMS);
       })
     );
   }
@@ -69,11 +103,35 @@ self.addEventListener("fetch", (event) => {
 
   const url = new URL(request.url);
 
-  // 1. Audio files (/audio/*.mp3 or mp3quran.net): Cache-First, then Network & Cache
+  // 1. Fonts (/fonts/*.woff2): Cache-First with size limit
+  const isFont =
+    url.pathname.startsWith("/fonts/") ||
+    url.pathname.endsWith(".woff2") ||
+    url.pathname.endsWith(".woff");
+
+  if (isFont) {
+    event.respondWith(
+      caches.open(FONT_CACHE).then(async (cache) => {
+        const cached = await cache.match(request);
+        if (cached) return cached;
+
+        const networkResponse = await fetch(request);
+        if (networkResponse && networkResponse.ok) {
+          await cache.put(request, networkResponse.clone());
+          await enforceCacheSizeLimit(FONT_CACHE, MAX_FONT_CACHE_ITEMS);
+        }
+        return networkResponse;
+      })
+    );
+    return;
+  }
+
+  // 2. Audio files (/audio/*.mp3, mp3quran.net, everyayah.com): Cache-First with size limit
   const isAudio =
     url.pathname.startsWith("/audio/") ||
     url.pathname.endsWith(".mp3") ||
-    url.hostname.includes("mp3quran.net");
+    url.hostname.includes("mp3quran.net") ||
+    url.hostname.includes("everyayah.com");
 
   if (isAudio) {
     event.respondWith(
@@ -81,25 +139,52 @@ self.addEventListener("fetch", (event) => {
         const cached = await cache.match(request);
         if (cached) return cached;
 
-        try {
-          const networkResponse = await fetch(request);
-          if (
-            networkResponse &&
-            (networkResponse.ok || networkResponse.type === "opaque")
-          ) {
-            cache.put(request, networkResponse.clone());
-          }
-          return networkResponse;
-        } catch (err) {
-          throw err;
+        const networkResponse = await fetch(request);
+        if (
+          networkResponse &&
+          (networkResponse.ok || networkResponse.type === "opaque")
+        ) {
+          await cache.put(request, networkResponse.clone());
+          await enforceCacheSizeLimit(AUDIO_CACHE, MAX_AUDIO_CACHE_ITEMS);
         }
+        return networkResponse;
       })
     );
     return;
   }
 
-  // 2. Same-origin HTML/JS/CSS/Fonts: Stale-While-Revalidate for offline support
+  // 3. Same-origin Navigation & Content Pages: Stale-While-Revalidate + Offline Fallback
   if (url.origin === self.location.origin) {
+    if (request.mode === "navigate") {
+      event.respondWith(
+        caches.open(CONTENT_CACHE).then(async (contentCache) => {
+          const staticCache = await caches.open(STATIC_CACHE);
+          const cached =
+            (await contentCache.match(request)) ||
+            (await staticCache.match(request));
+
+          const networkPromise = fetch(request)
+            .then((networkResponse) => {
+              if (networkResponse && networkResponse.ok) {
+                contentCache.put(request, networkResponse.clone());
+              }
+              return networkResponse;
+            })
+            .catch(async () => {
+              if (cached) return cached;
+              return (
+                (await staticCache.match("/offline")) ||
+                (await staticCache.match("/"))
+              );
+            });
+
+          return cached || networkPromise;
+        })
+      );
+      return;
+    }
+
+    // Other same-origin assets (JS, CSS, images, RSC payloads): Stale-While-Revalidate
     event.respondWith(
       caches.open(STATIC_CACHE).then(async (cache) => {
         const cached = await cache.match(request);
@@ -117,4 +202,3 @@ self.addEventListener("fetch", (event) => {
     );
   }
 });
-

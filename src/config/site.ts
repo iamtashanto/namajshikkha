@@ -87,6 +87,7 @@ export const siteConfig: SiteConfig = {
           { label: "সহীহ হাদিস", href: "/hadith-faq" },
           { label: "সচরাচর প্রশ্ন", href: "/hadith-faq" },
           { label: "ইসলামিক ইতিহাস", href: "/islamic-history" },
+          { label: "আমাদের সম্পর্কে ও তথ্যসূত্র", href: "/about" },
         ],
       },
     ],

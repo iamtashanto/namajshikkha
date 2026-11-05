@@ -825,6 +825,7 @@ export const taharatSections: TaharatSection[] = [
       { type: "hadith", source: "সুনানে আবু দাউদ", number: "১৬২", grade: "sahih" },
       { type: "fiqh", source: "আল-হিদায়া", number: "১/৩১-৩৫" },
     ],
+    reviewStatus: "needs-review",
   },
 ];
 

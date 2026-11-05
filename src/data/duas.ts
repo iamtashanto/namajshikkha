@@ -370,7 +370,7 @@ export const prayerDuas: Dua[] = [
       "source": "ফাতাওয়ায়ে শামী ও আল-হিদায়া",
       "number": "জানাজা অধ্যায়"
     },
-    "reviewStatus": "verified"
+    "reviewStatus": "needs-review"
   },
   {
     "id": "dua-janaza-boy",
@@ -386,7 +386,7 @@ export const prayerDuas: Dua[] = [
       "source": "আল-হিদায়া ও রদ্দুল মুহতার",
       "number": "জানাজার সালাত"
     },
-    "reviewStatus": "verified"
+    "reviewStatus": "needs-review"
   },
   {
     "id": "dua-janaza-girl",
@@ -402,7 +402,7 @@ export const prayerDuas: Dua[] = [
       "source": "আল-হিদায়া ও রদ্দুল মুহতার",
       "number": "জানাজার সালাত"
     },
-    "reviewStatus": "verified"
+    "reviewStatus": "needs-review"
   },
   {
     "id": "dua-takbir-tashreeq",
@@ -469,9 +469,9 @@ export const prayerDuas: Dua[] = [
       "type": "hadith",
       "source": "সুনানে তিরমিযী",
       "number": "৪৭৯",
-      "grade": "hasan"
+      "grade": "daif"
     },
-    "reviewStatus": "verified"
+    "reviewStatus": "needs-review"
   },
   {
     "id": "dua-tasbih",
@@ -489,7 +489,7 @@ export const prayerDuas: Dua[] = [
       "number": "১২৯৭",
       "grade": "hasan"
     },
-    "reviewStatus": "verified"
+    "reviewStatus": "needs-review"
   },
   {
     "id": "dua-laylatul-qadr",
@@ -522,7 +522,7 @@ export const prayerDuas: Dua[] = [
       "source": "ফাতাওয়ায়ে শামী ও হানাফি ফিকহ",
       "number": "তারাবীহ অধ্যায়"
     },
-    "reviewStatus": "verified"
+    "reviewStatus": "needs-review"
   },
   {
     "id": "dua-tawbah-sayyidul-istighfar",

@@ -279,6 +279,7 @@ export interface PrayerType {
   relatedRulings?: string[]; // IDs of related rulings
   simulatorConfigId: string;
   specialRules?: SpecialRule[];
+  reviewStatus?: ReviewStatus;
 }
 
 export interface HadithItem {
@@ -342,6 +343,7 @@ export interface TaharatSection {
   specialCases?: { title: string; bodyBn: string; reference?: Reference }[];
   faqs: { question: string; answer: string }[];
   references: Reference[];
+  reviewStatus?: ReviewStatus;
 }
 
 

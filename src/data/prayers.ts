@@ -506,7 +506,7 @@ export const prayers: PrayerType[] = [
         "type": "hadith",
         "source": "সুনানে তিরমিযী",
         "number": "৪৩৫",
-        "grade": "hasan"
+        "grade": "daif"
       }
     },
     "rakatUnits": [
@@ -1783,6 +1783,7 @@ export const prayers: PrayerType[] = [
       "ruling-sunnahs-of-salah",
       "ruling-jamaat-and-imamat"
     ],
+    "reviewStatus": "needs-review",
     "specialRules": [
       {
         "title": "২০ রাকাত ও সাহাবায়ে কেরামের ইজমা (ঐকমত্য)",
@@ -2143,6 +2144,7 @@ export const prayers: PrayerType[] = [
     "relatedRulings": [
       "ruling-sunnahs-of-salah"
     ],
+    "reviewStatus": "needs-review",
     "specialRules": [
       {
         "title": "প্রতি রাকাতে ৭৫ বার ও মোট ৩০০ তাসবীহের হিসাব",
@@ -2559,7 +2561,8 @@ export const prayers: PrayerType[] = [
     ],
     "relatedRulings": [
       "ruling-sunnahs-of-salah"
-    ]
+    ],
+    "reviewStatus": "needs-review"
   },
   {
     "slug": "tahiyyatul-wudu",
@@ -2782,7 +2785,7 @@ export const prayers: PrayerType[] = [
         "type": "hadith",
         "source": "সুনানে তিরমিযী",
         "number": "৪৭৯",
-        "grade": "hasan"
+        "grade": "daif"
       }
     },
     "rakatUnits": [
@@ -2839,13 +2842,13 @@ export const prayers: PrayerType[] = [
         "type": "hadith",
         "source": "সুনানে তিরমিযী",
         "number": "৪৭৯",
-        "grade": "hasan"
+        "grade": "daif"
       },
       {
         "type": "hadith",
         "source": "সুনানে ইবনে মাজাহ",
         "number": "১৩৮৪",
-        "grade": "hasan"
+        "grade": "daif"
       }
     ],
     "relatedPrayers": [
@@ -2854,7 +2857,8 @@ export const prayers: PrayerType[] = [
     ],
     "relatedRulings": [
       "ruling-sunnahs-of-salah"
-    ]
+    ],
+    "reviewStatus": "needs-review"
   },
   {
     "slug": "salatul-tawbah",
@@ -3566,6 +3570,7 @@ export const prayers: PrayerType[] = [
     ],
     "relatedRulings": [
       "ruling-sunnahs-of-salah"
-    ]
+    ],
+    "reviewStatus": "needs-review"
   }
 ];

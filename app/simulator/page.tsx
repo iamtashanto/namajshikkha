@@ -1,7 +1,24 @@
 import { Suspense } from "react";
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { siteConfig } from "@/src/config/site";
-import { NamajSimulatorClient } from "@/src/components/simulator/NamajSimulatorClient";
+
+const NamajSimulatorClient = dynamic(
+  () =>
+    import("@/src/components/simulator/NamajSimulatorClient").then(
+      (mod) => mod.NamajSimulatorClient
+    ),
+  {
+    loading: () => (
+      <div className="mx-auto min-h-[640px] max-w-6xl px-4 py-12 text-center">
+        <div className="mx-auto h-12 w-12 animate-spin rounded-full border-4 border-emerald-200 border-t-emerald-600" />
+        <p className="bangla-text mt-4 text-sm font-medium text-gray-600 dark:text-dark-text-secondary">
+          নামাজ সিমুলেটর লোড হচ্ছে...
+        </p>
+      </div>
+    ),
+  }
+);
 
 export const metadata: Metadata = {
   title: "ইন্টারঅ্যাক্টিভ নামাজ সিমুলেটর — ধাপে ধাপে দেখে নামাজ শিখুন",

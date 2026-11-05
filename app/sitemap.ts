@@ -31,6 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/hadith-faq',
         '/taharat',
         '/shikhun',
+        '/about',
         '/more',
     ].map((route) => ({
         url: `${baseUrl}${route}`,

@@ -483,6 +483,11 @@ export function NamajSimulatorClient() {
       if (audioRef.current) audioRef.current.pause();
       setIsPlaying(false);
       setScreen("completion");
+      try {
+        window.dispatchEvent(new CustomEvent("namaj:simulation-complete"));
+      } catch {
+        // Ignore custom event errors
+      }
     } else {
       goToStep(safeStepIndex + 1);
     }

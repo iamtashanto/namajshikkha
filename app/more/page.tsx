@@ -13,6 +13,7 @@ import {
   Droplets,
   Compass,
   Calendar,
+  ShieldCheck,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -34,6 +35,7 @@ const allSections = [
   { href: "/islamic-history", label: "ইসলামিক ইতিহাস", desc: "৫৮টি ঐতিহাসিক ঘটনা", icon: Landmark, color: "text-purple-600 bg-purple-50 dark:bg-purple-950/40 dark:text-purple-400" },
   { href: "/shikhun", label: "শিখুন ও প্রবন্ধ", desc: "নামাজে মন বসা, নারী-পুরুষ পার্থক্য", icon: BookOpen, color: "text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 dark:text-emerald-400" },
   { href: "/hadith-faq", label: "হাদিস ও প্রশ্নোত্তর", desc: "সহীহ হাদিস ও নামাজ FAQ", icon: BookHeart, color: "text-rose-600 bg-rose-50 dark:bg-rose-950/40 dark:text-rose-400" },
+  { href: "/about", label: "আমাদের সম্পর্কে ও তথ্যসূত্র", desc: "মাযহাব, কিতাব ও আলেম পর্যালোচনা", icon: ShieldCheck, color: "text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 dark:text-emerald-400" },
 ];
 
 export default function MorePage() {

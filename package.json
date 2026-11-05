@@ -6,6 +6,7 @@
     "dev": "next dev",
     "validate:content": "vitest run tests/content-validator.test.ts",
     "test": "vitest run",
+    "test:e2e": "playwright test",
     "build": "pnpm run validate:content && next build --webpack",
     "start": "next start",
     "lint": "eslint"

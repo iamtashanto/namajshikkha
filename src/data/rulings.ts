@@ -782,7 +782,7 @@ export const salahRulings: Ruling[] = [
       "fajr",
       "jumuah"
     ],
-    "reviewStatus": "verified",
+    "reviewStatus": "needs-review",
     "faqs": [
       {
         "question": "ইমামের পেছনে কি সূরা ফাতিহা পড়তে হবে?",
@@ -825,7 +825,7 @@ export const salahRulings: Ruling[] = [
       "kaza",
       "fajr"
     ],
-    "reviewStatus": "verified",
+    "reviewStatus": "needs-review",
     "faqs": [
       {
         "question": "উমরী কাযা আদায়ের সহজ উপায় কী?",
@@ -982,7 +982,7 @@ export const salahRulings: Ruling[] = [
       "fajr",
       "dhuhr"
     ],
-    "reviewStatus": "verified",
+    "reviewStatus": "needs-review",
     "faqs": [
       {
         "question": "অসুস্থ ব্যক্তির নামাজে সামনে বালিশ বা টেবিল রেখে কপাল ঠেকানো কি জায়েজ?",
@@ -1026,7 +1026,7 @@ export const salahRulings: Ruling[] = [
       "fajr",
       "dhuhr"
     ],
-    "reviewStatus": "verified",
+    "reviewStatus": "needs-review",
     "faqs": [
       {
         "question": "হায়েয ও নিফাসের কারণে ছুটে যাওয়া নামাজ কি কাযা করতে হবে?",

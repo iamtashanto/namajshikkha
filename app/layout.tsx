@@ -12,6 +12,7 @@ import Footer from "@/components/Footer";
 import { AudioProvider } from "@/components/AudioProvider";
 import { GlobalAudioPlayer } from "@/components/GlobalAudioPlayer";
 import { MobileInstallPrompt } from "@/components/MobileInstallPrompt";
+import { ContentDisclaimer } from "@/src/components/ui/ContentDisclaimer";
 import "./globals.css";
 
 const amiri = localFont({
@@ -62,7 +63,7 @@ export const viewport = {
   themeColor: "#059669",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
+  maximumScale: 5,
 };
 
 export const metadata: Metadata = {
@@ -146,12 +147,21 @@ export default function RootLayout({
         />
       </head>
       <body className="flex min-h-screen flex-col bg-white antialiased dark:bg-dark-bg" suppressHydrationWarning>
+        <a
+          href="#main-content"
+          className="bangla-text sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[120] focus:rounded-xl focus:bg-emerald-700 focus:px-4 focus:py-2.5 focus:text-sm focus:font-bold focus:text-white focus:shadow-lg"
+        >
+          মূল তথ্যে যান
+        </a>
         <ThemeProvider>
           <PreferencesProvider>
             <SearchProvider>
               <AudioProvider>
                 <Navbar />
-                <main className="flex-1 pb-24 md:pb-16">{children}</main>
+                <main id="main-content" className="flex-1 pb-24 md:pb-16">
+                  {children}
+                </main>
+                <ContentDisclaimer />
                 <GlobalAudioPlayer />
                 <MobileInstallPrompt />
                 <MobileBottomNav />

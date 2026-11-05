@@ -96,7 +96,7 @@ export const prayerHadiths: HadithItem[] = [
     "textEn": "O you who believe! Seek help through patience and prayer. Indeed, Allah is with the patient. (Al-Baqarah: 153)",
     "category": "quran",
     "reference": {
-      "type": "hadith",
+      "type": "quran",
       "source": "সূরা আল-বাকারা",
       "number": "২:১৫৩"
     },
@@ -147,8 +147,9 @@ export const prayerHadiths: HadithItem[] = [
     "category": "dua",
     "reference": {
       "type": "hadith",
-      "source": "সুনান আবু দাউদ",
-      "number": "৫২১"
+      "source": "সুনানে আবু দাউদ",
+      "number": "৫২১",
+      "grade": "sahih"
     },
     "reviewStatus": "verified"
   },
@@ -180,8 +181,9 @@ export const prayerHadiths: HadithItem[] = [
     "category": "jumuah",
     "reference": {
       "type": "hadith",
-      "source": "সুনান আবু দাউদ",
-      "number": "১০৪৭"
+      "source": "সুনানে আবু দাউদ",
+      "number": "১০৪৭",
+      "grade": "sahih"
     },
     "reviewStatus": "verified"
   },
@@ -263,7 +265,7 @@ export const prayerHadiths: HadithItem[] = [
     "textEn": "And enjoin prayer upon your family and be steadfast therein. We ask you not for provision; We provide for you, and the best outcome is for the righteous. (Taha: 132)",
     "category": "quran",
     "reference": {
-      "type": "hadith",
+      "type": "quran",
       "source": "সূরা ত্বহা",
       "number": "২০:১৩২"
     },
@@ -279,7 +281,7 @@ export const prayerHadiths: HadithItem[] = [
     "textEn": "Indeed, prayer prohibits immorality and wrongdoing, and the remembrance of Allah is greater. And Allah knows that which you do. (Al-'Ankabut: 45)",
     "category": "quran",
     "reference": {
-      "type": "hadith",
+      "type": "quran",
       "source": "সূরা আল-আনকাবূত",
       "number": "২৯:৪৫"
     },
@@ -296,8 +298,9 @@ export const prayerHadiths: HadithItem[] = [
     "category": "namaj",
     "reference": {
       "type": "hadith",
-      "source": "সুনান আত-তিরমিযী",
-      "number": "৪১৩"
+      "source": "সুনানে তিরমিযী",
+      "number": "৪১৩",
+      "grade": "sahih"
     },
     "reviewStatus": "verified"
   },
@@ -347,7 +350,8 @@ export const prayerHadiths: HadithItem[] = [
     "reference": {
       "type": "hadith",
       "source": "মুসনাদে আহমাদ",
-      "number": "২২৬৪২"
+      "number": "২২৬৪২",
+      "grade": "sahih"
     },
     "reviewStatus": "verified"
   },
@@ -362,8 +366,9 @@ export const prayerHadiths: HadithItem[] = [
     "category": "namaj",
     "reference": {
       "type": "hadith",
-      "source": "সুনান আবু দাউদ",
-      "number": "১৪১৬"
+      "source": "সুনানে আবু দাউদ",
+      "number": "১৪১৬",
+      "grade": "sahih"
     },
     "reviewStatus": "verified"
   },
@@ -395,10 +400,11 @@ export const prayerHadiths: HadithItem[] = [
     "category": "nafl",
     "reference": {
       "type": "hadith",
-      "source": "সুনান আত-তিরমিযী",
-      "number": "৫৮৬"
+      "source": "সুনানে তিরমিযী",
+      "number": "৫৮৬",
+      "grade": "hasan"
     },
-    "reviewStatus": "verified"
+    "reviewStatus": "needs-review"
   },
   {
     "id": "hadith-25",
@@ -445,8 +451,9 @@ export const prayerHadiths: HadithItem[] = [
     "category": "namaj",
     "reference": {
       "type": "hadith",
-      "source": "সুনান আবু দাউদ",
-      "number": "৬৬৬"
+      "source": "সুনানে আবু দাউদ",
+      "number": "৬৬৬",
+      "grade": "sahih"
     },
     "reviewStatus": "verified"
   },
@@ -528,7 +535,7 @@ export const prayerHadiths: HadithItem[] = [
     "textEn": "O children of Adam, take your adornment at every masjid (prayer), and eat and drink, but be not excessive. Indeed, He likes not those who commit excess. (Al-A'raf: 31)",
     "category": "quran",
     "reference": {
-      "type": "hadith",
+      "type": "quran",
       "source": "সূরা আল-আরাফ",
       "number": "৭:৩১"
     },
@@ -545,8 +552,9 @@ export const prayerHadiths: HadithItem[] = [
     "category": "wudu",
     "reference": {
       "type": "hadith",
-      "source": "ইবনে হিব্বান",
-      "number": "১০৫১"
+      "source": "সহীহ ইবনে হিব্বান",
+      "number": "১০৫১",
+      "grade": "hasan"
     },
     "reviewStatus": "verified"
   },
@@ -560,7 +568,7 @@ export const prayerHadiths: HadithItem[] = [
     "textEn": "Certainly will the believers have succeeded. They who are during their prayer humbly submissive. (Al-Mu'minun: 1-2)",
     "category": "quran",
     "reference": {
-      "type": "hadith",
+      "type": "quran",
       "source": "সূরা আল-মুমিনুন",
       "number": "২৩:১-২"
     },
@@ -594,8 +602,9 @@ export const prayerHadiths: HadithItem[] = [
     "category": "dua",
     "reference": {
       "type": "hadith",
-      "source": "সুনান আন-নাসায়ী",
-      "number": "৯৯২৮"
+      "source": "সুনানে নাসাঈ",
+      "number": "৯৯২৮",
+      "grade": "sahih"
     },
     "reviewStatus": "verified"
   },
@@ -627,8 +636,9 @@ export const prayerHadiths: HadithItem[] = [
     "category": "wudu",
     "reference": {
       "type": "hadith",
-      "source": "সুনান আন-নাসায়ী",
-      "number": "৫"
+      "source": "সুনানে নাসাঈ",
+      "number": "৫",
+      "grade": "sahih"
     },
     "reviewStatus": "verified"
   },
@@ -813,10 +823,11 @@ export const prayerHadiths: HadithItem[] = [
     "category": "nafl",
     "reference": {
       "type": "hadith",
-      "source": "সুনান আত-তিরমিযী",
-      "number": "৪৩৫"
+      "source": "সুনানে তিরমিযী",
+      "number": "৪৩৫",
+      "grade": "daif"
     },
-    "reviewStatus": "verified"
+    "reviewStatus": "needs-review"
   },
   {
     "id": "hadith-50",
@@ -880,8 +891,9 @@ export const prayerHadiths: HadithItem[] = [
     "category": "women",
     "reference": {
       "type": "hadith",
-      "source": "সুনান আবু দাউদ",
-      "number": "৫৬৭"
+      "source": "সুনানে আবু দাউদ",
+      "number": "৫৬৭",
+      "grade": "sahih"
     },
     "reviewStatus": "verified"
   },
@@ -946,7 +958,7 @@ export const prayerHadiths: HadithItem[] = [
     "textEn": "Indeed, the hypocrites think to deceive Allah, but He is deceiving them. And when they stand for prayer, they stand lazily, showing off to the people and not remembering Allah except a little. (An-Nisa: 142)",
     "category": "quran",
     "reference": {
-      "type": "hadith",
+      "type": "quran",
       "source": "সূরা আন-নিসা",
       "number": "৪:১৪২"
     },
@@ -963,8 +975,9 @@ export const prayerHadiths: HadithItem[] = [
     "category": "namaj",
     "reference": {
       "type": "hadith",
-      "source": "সুনান আবু দাউদ",
-      "number": "১৩১৯"
+      "source": "সুনানে আবু দাউদ",
+      "number": "১৩১৯",
+      "grade": "hasan"
     },
     "reviewStatus": "verified"
   },
@@ -1029,7 +1042,7 @@ export const prayerHadiths: HadithItem[] = [
     "textEn": "And when you travel throughout the land, there is no blame upon you for shortening the prayer... (An-Nisa: 101)",
     "category": "quran",
     "reference": {
-      "type": "hadith",
+      "type": "quran",
       "source": "সূরা আন-নিসা",
       "number": "৪:১০১"
     },
@@ -1045,7 +1058,7 @@ export const prayerHadiths: HadithItem[] = [
     "textEn": "And establish prayer at the two ends of the day and at the approach of the night. Indeed, good deeds do away with misdeeds. That is a reminder for those who remember. (Hud: 114)",
     "category": "quran",
     "reference": {
-      "type": "hadith",
+      "type": "quran",
       "source": "সূরা হুদ",
       "number": "১১:১১৪"
     },
@@ -1130,10 +1143,11 @@ export const prayerHadiths: HadithItem[] = [
     "category": "jamaat",
     "reference": {
       "type": "hadith",
-      "source": "সুনান আত-তিরমিযী",
-      "number": "২৪১"
+      "source": "সুনানে তিরমিযী",
+      "number": "২৪১",
+      "grade": "hasan"
     },
-    "reviewStatus": "verified"
+    "reviewStatus": "needs-review"
   },
   {
     "id": "hadith-69",
@@ -1146,8 +1160,9 @@ export const prayerHadiths: HadithItem[] = [
     "category": "nafl",
     "reference": {
       "type": "hadith",
-      "source": "সুনান আবু দাউদ",
-      "number": "৮৬৪"
+      "source": "সুনানে আবু দাউদ",
+      "number": "৮৬৪",
+      "grade": "sahih"
     },
     "reviewStatus": "verified"
   },
@@ -1229,7 +1244,7 @@ export const prayerHadiths: HadithItem[] = [
     "textEn": "So recite what is easy [for you] of the Qur'an. And establish prayer and give Zakah. (Al-Muzzammil: 20)",
     "category": "quran",
     "reference": {
-      "type": "hadith",
+      "type": "quran",
       "source": "সূরা আল-মুয্যাম্মিল",
       "number": "৭৩:২০"
     },
@@ -1264,7 +1279,8 @@ export const prayerHadiths: HadithItem[] = [
     "reference": {
       "type": "hadith",
       "source": "সুনানুল কুবরা লিল বায়হাকী",
-      "number": "৬১১৪"
+      "number": "৬১১৪",
+      "grade": "sahih"
     },
     "reviewStatus": "verified"
   },
@@ -1453,7 +1469,7 @@ export const prayerHadiths: HadithItem[] = [
       "number": "৩৯৫",
       "grade": "sahih"
     },
-    "reviewStatus": "verified"
+    "reviewStatus": "needs-review"
   },
   {
     "id": "hadith-88",
@@ -1500,10 +1516,11 @@ export const prayerHadiths: HadithItem[] = [
     "category": "nafl",
     "reference": {
       "type": "hadith",
-      "source": "সুনান আত-তিরমিযী",
-      "number": "৪৭৯"
+      "source": "সুনানে তিরমিযী",
+      "number": "৪৭৯",
+      "grade": "daif"
     },
-    "reviewStatus": "verified"
+    "reviewStatus": "needs-review"
   },
   {
     "id": "hadith-91",
@@ -1550,8 +1567,9 @@ export const prayerHadiths: HadithItem[] = [
     "category": "nafl",
     "reference": {
       "type": "hadith",
-      "source": "সুনান আবু দাউদ",
-      "number": "১২৬৯"
+      "source": "সুনানে আবু দাউদ",
+      "number": "১২৬৯",
+      "grade": "sahih"
     },
     "reviewStatus": "verified"
   },
@@ -1583,8 +1601,9 @@ export const prayerHadiths: HadithItem[] = [
     "category": "tahajjud",
     "reference": {
       "type": "hadith",
-      "source": "সুনান আবু দাউদ",
-      "number": "১৩০৮"
+      "source": "সুনানে আবু দাউদ",
+      "number": "১৩০৮",
+      "grade": "hasan"
     },
     "reviewStatus": "verified"
   },
@@ -1634,7 +1653,8 @@ export const prayerHadiths: HadithItem[] = [
     "reference": {
       "type": "hadith",
       "source": "সুনানুদ দারিমী",
-      "number": "৩৪০৭"
+      "number": "৩৪০৭",
+      "grade": "sahih"
     },
     "reviewStatus": "verified"
   },
@@ -1666,8 +1686,9 @@ export const prayerHadiths: HadithItem[] = [
     "category": "dua",
     "reference": {
       "type": "hadith",
-      "source": "সুনান আবু দাউদ",
-      "number": "১৪৮৮"
+      "source": "সুনানে আবু দাউদ",
+      "number": "১৪৮৮",
+      "grade": "sahih"
     },
     "reviewStatus": "verified"
   }
