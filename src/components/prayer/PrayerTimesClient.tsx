@@ -116,8 +116,14 @@ const WAQT_CONFIG: {
   },
 ];
 
-export function PrayerTimesClient() {
+export function PrayerTimesClient({ initialLocation }: { initialLocation?: CityLocation }) {
   const [settings, setSettings] = useState<PrayerTimesSettings>(() => {
+    if (initialLocation) {
+      return {
+        ...DEFAULT_PRAYER_SETTINGS,
+        location: initialLocation,
+      };
+    }
     if (typeof window === "undefined") return DEFAULT_PRAYER_SETTINGS;
     try {
       const raw = localStorage.getItem(SETTINGS_STORAGE_KEY);

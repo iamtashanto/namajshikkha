@@ -6,6 +6,7 @@ import { salahRulings } from "@/src/data/rulings";
 import { taharatSections } from "@/src/data/taharat";
 import { prayerSurahs } from "@/src/data/surahs";
 import { shikhunArticles } from "@/src/data/shikhun";
+import { ALL_LOCATIONS } from "@/src/data/locations";
 
 export const dynamic = 'force-static';
 
@@ -38,6 +39,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: route === '' ? 1 : 0.8,
+    }));
+
+    // Dynamic District & City Prayer Times routes (SEO for all 64 districts of Bangladesh + world cities)
+    const districtRoutes: MetadataRoute.Sitemap = ALL_LOCATIONS.map((loc) => ({
+        url: `${baseUrl}/prayer-times/${loc.id}`,
+        lastModified: new Date(),
+        changeFrequency: 'daily' as const,
+        priority: loc.isPopular ? 0.95 : 0.85,
     }));
 
     // Dynamic Prayer routes
@@ -98,5 +107,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.85,
     }));
 
-    return [...routes, ...prayerRoutes, ...masailRoutes, ...taharatRoutes, ...shikhunRoutes, ...hifzRoutes, ...historyRoutes];
+    return [...routes, ...districtRoutes, ...prayerRoutes, ...masailRoutes, ...taharatRoutes, ...shikhunRoutes, ...hifzRoutes, ...historyRoutes];
 }

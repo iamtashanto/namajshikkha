@@ -11,6 +11,9 @@ importers:
       adhan:
         specifier: ^4.4.6
         version: 4.4.6
+      bd-geo-info:
+        specifier: ^5.1.1
+        version: 5.1.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       lucide-react:
         specifier: ^0.574.0
         version: 0.574.0(react@19.2.3)
@@ -930,6 +933,17 @@ packages:
   baseline-browser-mapping@2.9.19:
     resolution: {integrity: sha512-ipDqC8FrAl/76p2SSWKSI+H9tFwm7vYqXQrItCuiVPt26Km0jS+NzSsBWAaBusvSbQcfJG+JitdMm+wZAgTYqg==}
     hasBin: true
+
+  bd-geo-info@5.1.1:
+    resolution: {integrity: sha512-i7R0CmVYmBnz6InhPGKnvt2cvXRv4AAY8DyPs6jZlJ1go2Tr/oeyQRlukiUihd8Cq3/toWb+B79LOoK39fR4GQ==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
 
   brace-expansion@1.1.12:
     resolution: {integrity: sha512-9T9UjW3r0UW5c1Q7GTwllptXwhvYmEzFhzMfZ9H7FQWt+uZePjZPjBP/W1ZEyZ1twGWom5/56TF4lPcqjnDHcg==}
@@ -3090,6 +3104,11 @@ snapshots:
   balanced-match@1.0.2: {}
 
   baseline-browser-mapping@2.9.19: {}
+
+  bd-geo-info@5.1.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+    optionalDependencies:
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
 
   brace-expansion@1.1.12:
     dependencies:

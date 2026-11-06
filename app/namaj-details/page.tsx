@@ -70,14 +70,41 @@ export default function NamajDetailsPage() {
 
       {/* Important Note Callout */}
       <div className="mt-10">
-        <Callout type="warning" title="জরুরি জ্ঞাতব্য ও ফজিলত">
-          <ul className="space-y-1.5 list-disc list-inside">
-            <li>ফরজ নামাজ ইচ্ছাকৃত ত্যাগ করা কবিরা গুনাহ ও কুফরীর সমতুল্য গর্হিত কাজ।</li>
-            <li>সুন্নাতে মুয়াক্কাদা (ফজরের ২ + যোহরের ৪+২ + মাগরিবের ২ + ইশার ২) বিনা ওজরে ত্যাগ করা উচিত নয়।</li>
-            <li>বিতর নামাজ হানাফি মাজহাবে ওয়াজিব — ইশার পর ঘুমানোর পূর্বে বা তাহাজ্জুদের সাথে আদায় করতে হয়।</li>
-            <li>জামাতে নামাজ আদায়ের সওয়াব একা পড়ার চেয়ে ২৭ গুণ বেশি।</li>
-            <li>নামাজ শুদ্ধ হওয়ার পূর্বশর্ত সঠিক নিয়মে পবিত্রতা ও অযু অর্জন।</li>
-          </ul>
+        <Callout type="warning" title="কোন নামাজ পড়তেই হবে আর কোনটা ছাড়া যাবে? (জরুরি ইসলামী বিধান)">
+          <div className="space-y-3 text-sm leading-relaxed">
+            <p>
+              ইসলামী ফেক্বাহ অনুযায়ী ৫ ওয়াক্ত নামাজের রাকাতগুলোর বাধ্যবাধকতা ও স্তরবিন্যাস নিচে সুস্পষ্টভাবে দেওয়া হলো:
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+              <div className="rounded-xl border border-red-200 bg-red-50/70 p-3.5 dark:border-red-900/40 dark:bg-red-950/20">
+                <p className="font-bold text-red-800 dark:text-red-400">🔴 ১. যা অবশ্যই পড়তে হবে (ফরজ ও ওয়াজিব):</p>
+                <p className="text-xs text-red-900/90 dark:text-red-300 mt-1">
+                  দৈনিক <strong>১৭ রাকাত ফরজ</strong> (ফজর ২, যোহর ৪, আসর ৪, মাগরিব ৩, ইশা ৪) এবং <strong>৩ রাকাত বিতর (ওয়াজিব)</strong> — সর্বমোট <strong>২০ রাকাত</strong> যে কোনো সুস্থ প্রাপ্তবয়স্ক মুসলিমের জন্য পড়া ফরজ ও অলঙ্ঘনীয়। ইচ্ছাকৃত ত্যাগ করা মারাত্মক কবিরা গুনাহ।
+                </p>
+              </div>
+
+              <div className="rounded-xl border border-amber-200 bg-amber-50/70 p-3.5 dark:border-amber-900/40 dark:bg-amber-950/20">
+                <p className="font-bold text-amber-800 dark:text-amber-400">🟡 ২. যা নিয়মিত পড়া উচিত (সুন্নাতে মুয়াক্কাদাহ):</p>
+                <p className="text-xs text-amber-900/90 dark:text-amber-300 mt-1">
+                  মোট <strong>১২ রাকাত</strong> (ফজরের পূর্বে ২, যোহরের পূর্বে ৪ ও পরে ২, মাগরিবের পরে ২, ইশার পরে ২)। রাসুলুল্লাহ (সা.) সর্বদা তা আদায় করেছেন। ওজর ছাড়া অভ্যাসগতভাবে ছেড়ে দেওয়া গোনাহের কারণ।
+                </p>
+              </div>
+
+              <div className="rounded-xl border border-emerald-200 bg-emerald-50/70 p-3.5 dark:border-emerald-900/40 dark:bg-emerald-950/20">
+                <p className="font-bold text-emerald-800 dark:text-emerald-400">🟢 ৩. যা পড়লে অতিরিক্ত সওয়াব (সুন্নাতে যায়েদাহ/নফল):</p>
+                <p className="text-xs text-emerald-900/90 dark:text-emerald-300 mt-1">
+                  আসরের পূর্বে ৪ রাকাত, ইশার পূর্বে ৪ রাকাত এবং অন্যান্য নফল রাকাত। পড়লে জান্নাতে সুউচ্চ মর্যাদা লাভ হয়, কিন্তু সময়ের স্বল্পতায় না পড়লেও কোনো গুনাহ হবে না।
+                </p>
+              </div>
+
+              <div className="rounded-xl border border-blue-200 bg-blue-50/70 p-3.5 dark:border-blue-900/40 dark:bg-blue-950/20">
+                <p className="font-bold text-blue-800 dark:text-blue-400">💡 সংক্ষিপ্ত সময়ে কী করবেন (অফিস বা ভ্রমণে):</p>
+                <p className="text-xs text-blue-900/90 dark:text-blue-300 mt-1">
+                  জরুরি সময়ে বা কাজের চাপে অন্তত ফরজ ও বিতর আদায় করে নিলেও ফরজ দায়িত্ব পালন হয়ে যাবে। তবে ফজরের ২ রাকাত সুন্নাত কোনো অবস্থাতেই ছাড়া অনুচিত।
+                </p>
+              </div>
+            </div>
+          </div>
         </Callout>
       </div>
 
