@@ -35,22 +35,22 @@ const amiri = localFont({
 const bengaliFont = localFont({
   src: [
     {
-      path: "../public/fonts/hind-siliguri-400.woff2",
+      path: "../public/fonts/noto-sans-bengali-400.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../public/fonts/hind-siliguri-500.woff2",
+      path: "../public/fonts/noto-sans-bengali-500.woff2",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../public/fonts/hind-siliguri-600.woff2",
+      path: "../public/fonts/noto-sans-bengali-600.woff2",
       weight: "600",
       style: "normal",
     },
     {
-      path: "../public/fonts/hind-siliguri-700.woff2",
+      path: "../public/fonts/noto-sans-bengali-700.woff2",
       weight: "700",
       style: "normal",
     },
