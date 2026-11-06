@@ -23,11 +23,12 @@ import {
   formatHijriDate,
 } from "@/src/lib/prayer-times/dates";
 import { PrayerTimesSettings } from "@/src/lib/prayer-times/types";
+import { matchNearestDistrict } from "@/src/lib/prayer-times/geo-matcher";
 
 const SETTINGS_STORAGE_KEY = "namajshikkha_prayer_settings_v1";
 
 export function HomePrayerWidget() {
-  const [settings] = useState<PrayerTimesSettings>(() => {
+  const [settings, setSettings] = useState<PrayerTimesSettings>(() => {
     if (typeof window === "undefined") return DEFAULT_PRAYER_SETTINGS;
     try {
       const raw = localStorage.getItem(SETTINGS_STORAGE_KEY);
@@ -45,6 +46,33 @@ export function HomePrayerWidget() {
     return DEFAULT_PRAYER_SETTINGS;
   });
   const [currentTime, setCurrentTime] = useState<Date>(new Date());
+
+  // Auto request / detect GPS location on home screen
+  useEffect(() => {
+    try {
+      const hasStored = localStorage.getItem(SETTINGS_STORAGE_KEY);
+      if (!hasStored && typeof navigator !== "undefined" && navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            const matched = matchNearestDistrict(
+              pos.coords.latitude,
+              pos.coords.longitude
+            );
+            const updated = { ...settings, location: matched };
+            setSettings(updated);
+            localStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(updated));
+          },
+          () => {
+            // Silently maintain default
+          },
+          { timeout: 8000, maximumAge: 3600000 }
+        );
+      }
+    } catch {
+      // Ignore
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => setCurrentTime(new Date()), 1000);
@@ -163,6 +191,28 @@ export function HomePrayerWidget() {
               </div>
             );
           })}
+        </div>
+
+        {/* Quick Fasting (Sehri & Iftar) & Astronomical (Sunset) Strip */}
+        <div className="relative z-10 mt-3 pt-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div className="flex flex-wrap items-center gap-4">
+            <span className="flex items-center gap-1.5 text-gold-300 font-semibold">
+              <span className="h-2 w-2 rounded-full bg-gold-400" />
+              <span>আজকের সেহরি শেষ: <strong>{formatBanglaTime(todayTimes.sehriEnd)}</strong></span>
+            </span>
+            <span className="flex items-center gap-1.5 text-emerald-200 font-semibold">
+              <span className="h-2 w-2 rounded-full bg-emerald-400" />
+              <span>ইফতার ও সূর্যাস্ত: <strong>{formatBanglaTime(todayTimes.iftar)}</strong></span>
+            </span>
+          </div>
+
+          <Link
+            href="/prayer-times"
+            className="text-[11px] text-emerald-300 hover:text-white underline font-semibold flex items-center gap-1"
+          >
+            <span>জেলা পরিবর্তন বা বিস্তারিত সময়সূচী</span>
+            <ChevronRight className="h-3 w-3" />
+          </Link>
         </div>
       </div>
     </div>

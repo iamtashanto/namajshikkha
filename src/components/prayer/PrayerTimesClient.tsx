@@ -26,6 +26,7 @@ import {
   BANGLADESH_DISTRICTS,
   CityLocation,
 } from "@/src/data/locations";
+import { matchNearestDistrict } from "@/src/lib/prayer-times/geo-matcher";
 import {
   calculatePrayerTimes,
   getCurrentWaqtInfo,
@@ -200,7 +201,7 @@ export function PrayerTimesClient({ initialLocation }: { initialLocation?: CityL
     return getMonthlyPrayerTimes(viewYear, viewMonth, settings);
   }, [viewYear, viewMonth, settings]);
 
-  // Handle GPS location with friendly Bangla prompt
+  // Handle GPS location with friendly Bangla prompt & nearest district matching
   const handleGetGPSLocation = () => {
     if (!navigator.geolocation) {
       setGeoError("আপনার ব্রাউজারে জিপিএস সুবিধা পাওয়া যায়নি।");
@@ -212,16 +213,11 @@ export function PrayerTimesClient({ initialLocation }: { initialLocation?: CityL
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         setGeoLoading(false);
-        const loc: CityLocation = {
-          id: "gps-current",
-          nameBn: "আপনার বর্তমান অবস্থান (GPS)",
-          nameEn: "Current GPS Location",
-          countryBn: "বাংলাদেশ",
-          lat: pos.coords.latitude,
-          lng: pos.coords.longitude,
-          timezone: "Asia/Dhaka",
-        };
-        saveSettings({ ...settings, location: loc });
+        const matched = matchNearestDistrict(
+          pos.coords.latitude,
+          pos.coords.longitude
+        );
+        saveSettings({ ...settings, location: matched });
         setIsLocationModalOpen(false);
       },
       () => {
@@ -233,6 +229,32 @@ export function PrayerTimesClient({ initialLocation }: { initialLocation?: CityL
       { timeout: 10000, enableHighAccuracy: true }
     );
   };
+
+  // Auto detect location prompt on mount if user hasn't explicitly set location
+  useEffect(() => {
+    if (initialLocation) return;
+    try {
+      const hasStored = localStorage.getItem(SETTINGS_STORAGE_KEY);
+      if (!hasStored && navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            const matched = matchNearestDistrict(
+              pos.coords.latitude,
+              pos.coords.longitude
+            );
+            saveSettings({ ...settings, location: matched });
+          },
+          () => {
+            // Silently fall back to default (Dhaka)
+          },
+          { timeout: 8000, maximumAge: 3600000 }
+        );
+      }
+    } catch {
+      // Ignore
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Toggle notification permission
   const handleToggleNotification = async () => {
