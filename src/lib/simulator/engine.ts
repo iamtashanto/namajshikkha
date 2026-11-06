@@ -738,3 +738,58 @@ export function buildTimeline(
   };
 }
 
+/**
+ * Combines multiple RakatUnit timelines into a single continuous,
+ * multi-unit prayer simulation (e.g., full 4+4+2+2+3 Isha prayer).
+ */
+export function buildCombinedTimeline(
+  units: { label: string; config: SalahConfig }[],
+  options: SimulatorOptions
+): Timeline {
+  if (!units.length) {
+    throw new Error("Cannot build combined timeline from empty units list");
+  }
+
+  const allSteps: Step[] = [];
+  let totalRakatsCombined = 0;
+  let totalTasbihCountCombined = 0;
+  let totalEstimatedDurationMs = 0;
+  const unitLabels = units.map((u) => u.label).join(" + ");
+
+  units.forEach((unit, uIdx) => {
+    const isLastUnit = uIdx === units.length - 1;
+    const unitTimeline = buildTimeline(unit.config, {
+      ...options,
+      unitLabel: unit.label,
+      includeMunajat: isLastUnit,
+    });
+
+    unitTimeline.steps.forEach((step) => {
+      allSteps.push({
+        ...step,
+        id: `u${uIdx + 1}_${step.id}`,
+        instructionBn: `【${unit.label}】 ${step.instructionBn}`,
+      });
+    });
+
+    totalRakatsCombined += unit.config.rakats;
+    totalTasbihCountCombined += unitTimeline.metadata.totalTasbihCount;
+    totalEstimatedDurationMs += unitTimeline.metadata.estimatedDurationMs;
+  });
+
+  return {
+    steps: allSteps,
+    metadata: {
+      totalRakats: totalRakatsCombined,
+      prayerSlug: options.prayerSlug,
+      unitLabel: unitLabels,
+      gender: options.gender,
+      role: options.role,
+      totalSteps: allSteps.length,
+      totalTasbihCount: totalTasbihCountCombined,
+      estimatedDurationMs: totalEstimatedDurationMs,
+      isJanaza: false,
+    },
+  };
+}
+

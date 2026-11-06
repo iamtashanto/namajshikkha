@@ -42,6 +42,7 @@ import { getMasteredSurahIds } from "@/src/lib/hifz/storage";
 import { PrayerGroup, PrayerType, RakatUnit } from "@/src/types/content";
 import {
   buildTimeline,
+  buildCombinedTimeline,
   getDefaultSurahForRakat,
   POSTURE_META,
   SalahGender,
@@ -201,6 +202,8 @@ export function NamajSimulatorClient() {
   );
   const [selectedUnitIndex, setSelectedUnitIndex] =
     useState<number>(initialUnitIdx);
+  const [selectedMultiUnits, setSelectedMultiUnits] = useState<number[]>([]);
+  const [isFullPrayerMode, setIsFullPrayerMode] = useState<boolean>(false);
   const [gender, setGender] = useState<SalahGender>(
     urlGenderParam === "female" || urlGenderParam === "male"
       ? urlGenderParam
@@ -374,6 +377,23 @@ export function NamajSimulatorClient() {
 
   // Build deterministic timeline from the pure TS engine
   const timeline = useMemo(() => {
+    if (isFullPrayerMode || selectedMultiUnits.length > 1) {
+      const unitsToSimulate = isFullPrayerMode
+        ? selectedPrayer.rakatUnits
+        : selectedMultiUnits
+            .sort((a, b) => a - b)
+            .map((i) => selectedPrayer.rakatUnits[i])
+            .filter(Boolean);
+
+      return buildCombinedTimeline(unitsToSimulate, {
+        gender,
+        role,
+        surahChoice: surahChoices,
+        prayerSlug: selectedPrayer.slug,
+        includeMunajat,
+      });
+    }
+
     return buildTimeline(selectedUnit.config, {
       gender,
       role,
@@ -383,11 +403,13 @@ export function NamajSimulatorClient() {
       includeMunajat,
     });
   }, [
+    isFullPrayerMode,
+    selectedMultiUnits,
     selectedUnit,
+    selectedPrayer,
     gender,
     role,
     surahChoices,
-    selectedPrayer.slug,
     includeMunajat,
   ]);
 
@@ -1129,44 +1151,143 @@ export function NamajSimulatorClient() {
             <div className="lg:col-span-5 space-y-5">
               {/* Step 2: Rakat Unit Selection */}
               <div className="rounded-2xl border border-emerald-100 bg-white p-4 sm:p-5 shadow-xs dark:border-dark-border dark:bg-dark-card">
-                <h3 className="bangla-text mb-3 text-base font-bold text-gray-900 dark:text-white">
-                  ২. রাকাত ইউনিট নির্বাচন করুন ({selectedPrayer.nameBn})
-                </h3>
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="bangla-text text-base font-bold text-gray-900 dark:text-white">
+                    ২. রাকাত ইউনিট নির্বাচন ({selectedPrayer.nameBn})
+                  </h3>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsFullPrayerMode((prev) => !prev);
+                      setSelectedMultiUnits([]);
+                    }}
+                    className={`bangla-text rounded-lg px-2.5 py-1 text-xs font-bold transition-all ${
+                      isFullPrayerMode
+                        ? "bg-emerald-600 text-white shadow-xs"
+                        : "bg-emerald-50 text-emerald-700 hover:bg-emerald-100 dark:bg-emerald-950/60 dark:text-emerald-300"
+                    }`}
+                  >
+                    {isFullPrayerMode ? "✓ সম্পূর্ণ নামাজ মোড সক্রিয়" : "সম্পূর্ণ নামাজ (সব রাকাত)"}
+                  </button>
+                </div>
+
+                <p className="bangla-text text-xs text-gray-500 dark:text-dark-text-muted mb-3">
+                  {isFullPrayerMode
+                    ? "সম্পূর্ণ নামাজের সকল সুন্নাত, ফরজ ও ওয়াজিব ইউনিট একের পর এক ধারাবাহিকভাবে সিমুলেশন হবে।"
+                    : "একাধিক ইউনিট নির্বাচন করতে পাশের চেকবক্সে টিক দিন, অথবা সরাসরি একটি ইউনিট ট্যাপ করুন।"}
+                </p>
+
                 <div className="grid grid-cols-1 gap-2">
                   {selectedPrayer.rakatUnits.map((unit, idx) => {
-                    const active = idx === safeUnitIndex;
+                    const isMulti = selectedMultiUnits.includes(idx);
+                    const active = isFullPrayerMode || isMulti || (!isFullPrayerMode && selectedMultiUnits.length === 0 && idx === safeUnitIndex);
                     const badge = STATUS_BADGE_MAP[unit.status] || {
                       variant: "neutral" as BadgeVariant,
                       label: unit.status,
                     };
                     return (
-                      <button
+                      <div
                         key={idx}
-                        type="button"
-                        onClick={() => setSelectedUnitIndex(idx)}
-                        className={`flex items-center justify-between rounded-xl border px-3.5 py-2.5 text-left transition-all ${
+                        className={`flex items-center justify-between rounded-xl border px-3 py-2 text-left transition-all ${
                           active
-                            ? "border-emerald-600 bg-emerald-50/90 ring-2 ring-emerald-500/20 dark:border-emerald-500 dark:bg-emerald-950/50"
+                            ? "border-emerald-600 bg-emerald-50/90 ring-1 ring-emerald-500/30 dark:border-emerald-500 dark:bg-emerald-950/50"
                             : "border-gray-200 bg-white hover:border-emerald-200 dark:border-dark-border dark:bg-dark-bg"
                         }`}
                       >
-                        <span className="bangla-text text-sm font-bold text-gray-900 dark:text-white">
-                          {unit.label}
-                        </span>
+                        <label className="flex items-center gap-3 cursor-pointer flex-1">
+                          <input
+                            type="checkbox"
+                            checked={active}
+                            onChange={(e) => {
+                              setIsFullPrayerMode(false);
+                              if (e.target.checked) {
+                                setSelectedMultiUnits((prev) => [...prev, idx]);
+                                setSelectedUnitIndex(idx);
+                              } else {
+                                setSelectedMultiUnits((prev) =>
+                                  prev.filter((i) => i !== idx)
+                                );
+                              }
+                            }}
+                            className="h-4 w-4 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500 dark:border-dark-border"
+                          />
+                          <span className="bangla-text text-sm font-bold text-gray-900 dark:text-white">
+                            {unit.label}
+                          </span>
+                        </label>
                         <Badge variant={badge.variant} dot>
                           {badge.label}
                         </Badge>
-                      </button>
+                      </div>
                     );
                   })}
                 </div>
               </div>
 
-              {/* Step 3: Gender & Role Selection */}
+              {/* Step 3: Posture Mode (Standing / Floor / Chair) */}
+              <div className="rounded-2xl border border-emerald-100 bg-white p-4 sm:p-5 shadow-xs dark:border-dark-border dark:bg-dark-card space-y-2">
+                <h3 className="bangla-text text-base font-bold text-gray-900 dark:text-white">
+                  ৩. নামাজের ধরন (দাঁড়িয়ে / মাটিতে বসে / চেয়ারে বসে)
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setPostureMode("standing")}
+                    className={`bangla-text flex flex-col items-start rounded-xl border p-2.5 text-left transition-all ${
+                      postureMode === "standing"
+                        ? "border-emerald-600 bg-emerald-50/90 ring-2 ring-emerald-500/20 dark:border-emerald-500 dark:bg-emerald-950/50"
+                        : "border-gray-200 bg-white dark:border-dark-border dark:bg-dark-bg"
+                    }`}
+                  >
+                    <span className="text-xs sm:text-sm font-bold text-gray-900 dark:text-white">
+                      🧍 দাঁড়িয়ে নামাজ
+                    </span>
+                    <span className="text-[11px] text-gray-500 dark:text-dark-text-muted mt-0.5">
+                      স্বাভাবিক কিয়াম, রুকু ও ভূমিতে সিজদা
+                    </span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setPostureMode("sittingFloor")}
+                    className={`bangla-text flex flex-col items-start rounded-xl border p-2.5 text-left transition-all ${
+                      postureMode === "sittingFloor"
+                        ? "border-emerald-600 bg-emerald-50/90 ring-2 ring-emerald-500/20 dark:border-emerald-500 dark:bg-emerald-950/50"
+                        : "border-gray-200 bg-white dark:border-dark-border dark:bg-dark-bg"
+                    }`}
+                  >
+                    <span className="text-xs sm:text-sm font-bold text-gray-900 dark:text-white">
+                      🧎 মাটিতে বসে
+                    </span>
+                    <span className="text-[11px] text-gray-500 dark:text-dark-text-muted mt-0.5">
+                      মাটিতে বসে কিয়াম, ইশারা/ভূমিতে সিজদা
+                    </span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setPostureMode("sittingChair")}
+                    className={`bangla-text flex flex-col items-start rounded-xl border p-2.5 text-left transition-all ${
+                      postureMode === "sittingChair"
+                        ? "border-emerald-600 bg-emerald-50/90 ring-2 ring-emerald-500/20 dark:border-emerald-500 dark:bg-emerald-950/50"
+                        : "border-gray-200 bg-white dark:border-dark-border dark:bg-dark-bg"
+                    }`}
+                  >
+                    <span className="text-xs sm:text-sm font-bold text-gray-900 dark:text-white">
+                      🪑 চেয়ারে বসে
+                    </span>
+                    <span className="text-[11px] text-gray-500 dark:text-dark-text-muted mt-0.5">
+                      চেয়ারে সোজা কিয়াম, গভীরতর সিজদা ইশারা
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Step 4: Gender & Role Selection */}
               <div className="rounded-2xl border border-emerald-100 bg-white p-4 sm:p-5 shadow-xs dark:border-dark-border dark:bg-dark-card space-y-4">
                 <div>
                   <h3 className="bangla-text mb-2.5 text-base font-bold text-gray-900 dark:text-white">
-                    ৩. লিঙ্গ নির্বাচন (হানাফি অঙ্গভঙ্গির পার্থক্য)
+                    ৪. লিঙ্গ নির্বাচন (হানাফি অঙ্গভঙ্গির পার্থক্য)
                   </h3>
                   <div className="grid grid-cols-2 gap-2.5">
                     <button
@@ -1207,7 +1328,7 @@ export function NamajSimulatorClient() {
 
                 <div>
                   <h3 className="bangla-text mb-2.5 text-base font-bold text-gray-900 dark:text-white">
-                    ৪. নামাজ আদায়ের ভূমিকা (একা / ইমাম / মুক্তাদি)
+                    ৫. নামাজ আদায়ের ভূমিকা (একা / ইমাম / মুক্তাদি)
                   </h3>
                   <div className="grid grid-cols-1 gap-2">
                     {ROLE_OPTIONS.map((opt) => {
@@ -1254,7 +1375,7 @@ export function NamajSimulatorClient() {
                 selectedUnit.config.qiratRakats.length > 0 && (
                   <div className="rounded-2xl border border-emerald-100 bg-white p-4 sm:p-5 shadow-xs dark:border-dark-border dark:bg-dark-card">
                     <h3 className="bangla-text mb-1 text-base font-bold text-gray-900 dark:text-white">
-                      ৫. রাকাতভিত্তিক সূরা নির্বাচন (ঐচ্ছিক)
+                      ৬. রাকাতভিত্তিক সূরা নির্বাচন (ঐচ্ছিক)
                     </h3>
                     <p className="bangla-text mb-3 text-xs text-gray-500 dark:text-dark-text-muted">
                       সূরা ফাতিহার পর যে সূরাগুলো তিলাওয়াত করতে চান:
