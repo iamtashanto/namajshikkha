@@ -60,22 +60,30 @@ export async function generateMetadata({
     };
   }
 
-  const rawTitle = `${prayer.nameBn} নামাজের সম্পূর্ণ নিয়ম ও নিয়ত`;
-  const title = (rawTitle.length <= 60 ? rawTitle : `${prayer.nameBn} নামাজের নিয়ম ও নিয়ত`).slice(0, 60);
-  const description = `${prayer.nameBn} নামাজের সঠিক নিয়ম, নিয়ত, রাকাতের হিসাব ও ফযিলত। হানাফি ফিকহ ও সহীহ হাদিস ভিত্তিক সম্পূর্ণ নির্দেশিকা।`.slice(0, 155);
+  const title = `${prayer.nameBn} নামাজ কত রাকাত ও পড়ার সঠিক নিয়ম — ${prayer.nameEn} Prayer Rules, Niyyah & Rakats | নামাজ শিক্ষা`;
+  const description = `${prayer.nameBn} নামাজ কত রাকাত, কোনটা ফরজ, কোনটা সুন্নত আর কোনটা নফল? ${prayer.nameBn} নামাজের সঠিক নিয়ম, বাংলা ও আরবি নিয়ত, ওয়াক্ত, তাকবীর, রুকু-সিজদা ও সহীহ হাদিস ভিত্তিক ফজিলত।`;
 
   return {
     title,
     description,
     keywords: [
       `${prayer.nameBn} নামাজ`,
+      `${prayer.nameBn} নামাজ কত রাকাত`,
       `${prayer.nameBn} নামাজের নিয়ম`,
       `${prayer.nameBn} নামাজের নিয়্যত`,
+      `${prayer.nameBn} নামাজের সময়`,
       `${prayer.nameBn} নামাজের রাকাত`,
-      prayer.nameEn,
+      `${prayer.nameBn} নামাজের ফজিলত`,
+      `${prayer.nameBn} namaz koto rakat`,
+      `${prayer.nameBn} namaz rules`,
+      `${prayer.nameEn} prayer rakats`,
+      `${prayer.nameEn} salah rules`,
       prayer.nameAr,
       "নামাজ শিক্ষা",
       "হানাফি ফিকহ",
+      "ফরজ নামাজ",
+      "সুন্নত নামাজ",
+      "নফল নামাজ",
     ],
     alternates: {
       canonical: `${siteConfig.url}/namaj/${prayer.slug}`,
