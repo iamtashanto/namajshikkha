@@ -10,7 +10,7 @@
  *  -270°  = Horizontal RIGHT (+1, 0) [Away from Qibla]
  */
 
-import { Posture, SalahGender } from "./types";
+import { Posture, SalahGender, PostureMode } from "./types";
 
 export type BodyPartHighlight =
   | "forehead_nose"
@@ -579,11 +579,239 @@ export const FEMALE_POSES: Record<Posture, JointPose> = {
   },
 };
 
-export function getPoseForPosture(
+function buildSittingFloorPose(
+  base: JointPose,
   posture: Posture,
   gender: SalahGender
 ): JointPose {
-  return gender === "female" ? FEMALE_POSES[posture] : MALE_POSES[posture];
+  switch (posture) {
+    case Posture.STANDING:
+    case Posture.QAWMA:
+      return {
+        ...base,
+        hipX: 256,
+        hipY: 228,
+        torsoAngle: 0,
+        headAngle: -10,
+        upperArmAngle: -166,
+        forearmAngle: -122,
+        thighAngle: -128,
+        shinAngle: -270,
+        footAngle: -180,
+        front: {
+          bodyDropY: 68,
+          torsoScaleY: 1.0,
+          leftUpperArmAngle: 12,
+          rightUpperArmAngle: -12,
+          handsMode: "thighs",
+        },
+      };
+
+    case Posture.TAKBIR_HANDS_RAISED:
+    case Posture.QUNUT_TAKBIR_HANDS_RAISED:
+    case Posture.EID_TAKBIR_HANDS_RAISED:
+      return {
+        ...base,
+        hipX: 256,
+        hipY: 228,
+        torsoAngle: 0,
+        headAngle: -10,
+        thighAngle: -128,
+        shinAngle: -270,
+        footAngle: -180,
+        front: {
+          bodyDropY: 68,
+          torsoScaleY: 1.0,
+          leftUpperArmAngle: gender === "female" ? 36 : 42,
+          rightUpperArmAngle: gender === "female" ? -36 : -42,
+          handsMode: gender === "female" ? "raised_shoulders" : "raised_ears",
+        },
+      };
+
+    case Posture.QIYAM_HANDS_FOLDED:
+    case Posture.JANAZA_TAKBIR:
+      return {
+        ...base,
+        hipX: 256,
+        hipY: 228,
+        torsoAngle: 0,
+        headAngle: -10,
+        thighAngle: -128,
+        shinAngle: -270,
+        footAngle: -180,
+        front: {
+          bodyDropY: 68,
+          torsoScaleY: 1.0,
+          leftUpperArmAngle: 24,
+          rightUpperArmAngle: -24,
+          handsMode: gender === "female" ? "folded_chest" : "folded_navel",
+        },
+      };
+
+    case Posture.RUKU:
+      return {
+        ...base,
+        hipX: 256,
+        hipY: 228,
+        torsoAngle: -40,
+        headAngle: -45,
+        upperArmAngle: -165,
+        forearmAngle: -135,
+        thighAngle: -128,
+        shinAngle: -270,
+        footAngle: -180,
+        front: {
+          bodyDropY: 68,
+          torsoScaleY: 0.72,
+          leftUpperArmAngle: 18,
+          rightUpperArmAngle: -18,
+          handsMode: "knees",
+        },
+      };
+
+    default:
+      return base;
+  }
+}
+
+function buildChairPose(
+  base: JointPose,
+  posture: Posture,
+  gender: SalahGender
+): JointPose {
+  const chairHipX = 236;
+  const chairHipY = 194;
+  const chairThighAngle = -90;
+  const chairShinAngle = -180;
+  const chairFootAngle = -90;
+
+  switch (posture) {
+    case Posture.STANDING:
+    case Posture.QAWMA:
+      return {
+        ...base,
+        hipX: chairHipX,
+        hipY: chairHipY,
+        torsoAngle: 0,
+        headAngle: -8,
+        upperArmAngle: -168,
+        forearmAngle: -120,
+        thighAngle: chairThighAngle,
+        shinAngle: chairShinAngle,
+        footAngle: chairFootAngle,
+        front: {
+          bodyDropY: 36,
+          torsoScaleY: 1.0,
+          leftUpperArmAngle: 12,
+          rightUpperArmAngle: -12,
+          handsMode: "thighs",
+        },
+      };
+
+    case Posture.TAKBIR_HANDS_RAISED:
+    case Posture.QUNUT_TAKBIR_HANDS_RAISED:
+    case Posture.EID_TAKBIR_HANDS_RAISED:
+      return {
+        ...base,
+        hipX: chairHipX,
+        hipY: chairHipY,
+        torsoAngle: 0,
+        headAngle: -8,
+        thighAngle: chairThighAngle,
+        shinAngle: chairShinAngle,
+        footAngle: chairFootAngle,
+        front: {
+          bodyDropY: 36,
+          torsoScaleY: 1.0,
+          leftUpperArmAngle: gender === "female" ? 36 : 42,
+          rightUpperArmAngle: gender === "female" ? -36 : -42,
+          handsMode: gender === "female" ? "raised_shoulders" : "raised_ears",
+        },
+      };
+
+    case Posture.QIYAM_HANDS_FOLDED:
+    case Posture.JANAZA_TAKBIR:
+      return {
+        ...base,
+        hipX: chairHipX,
+        hipY: chairHipY,
+        torsoAngle: 0,
+        headAngle: -8,
+        thighAngle: chairThighAngle,
+        shinAngle: chairShinAngle,
+        footAngle: chairFootAngle,
+        front: {
+          bodyDropY: 36,
+          torsoScaleY: 1.0,
+          leftUpperArmAngle: 24,
+          rightUpperArmAngle: -24,
+          handsMode: gender === "female" ? "folded_chest" : "folded_navel",
+        },
+      };
+
+    case Posture.RUKU:
+      return {
+        ...base,
+        hipX: chairHipX,
+        hipY: chairHipY,
+        torsoAngle: -32,
+        headAngle: -40,
+        upperArmAngle: -160,
+        forearmAngle: -125,
+        thighAngle: chairThighAngle,
+        shinAngle: chairShinAngle,
+        footAngle: chairFootAngle,
+        front: {
+          bodyDropY: 36,
+          torsoScaleY: 0.78,
+          leftUpperArmAngle: 16,
+          rightUpperArmAngle: -16,
+          handsMode: "knees",
+        },
+      };
+
+    case Posture.SAJDA:
+      return {
+        ...base,
+        hipX: chairHipX,
+        hipY: chairHipY,
+        torsoAngle: -58,
+        headAngle: -70,
+        upperArmAngle: -150,
+        forearmAngle: -115,
+        thighAngle: chairThighAngle,
+        shinAngle: chairShinAngle,
+        footAngle: chairFootAngle,
+        front: {
+          bodyDropY: 36,
+          torsoScaleY: 0.55,
+          leftUpperArmAngle: 24,
+          rightUpperArmAngle: -24,
+          handsMode: "knees",
+        },
+      };
+
+    default:
+      return {
+        ...base,
+        hipX: chairHipX,
+        hipY: chairHipY,
+        thighAngle: chairThighAngle,
+        shinAngle: chairShinAngle,
+        footAngle: chairFootAngle,
+      };
+  }
+}
+
+export function getPoseForPosture(
+  posture: Posture,
+  gender: SalahGender,
+  mode: PostureMode = "standing"
+): JointPose {
+  const base = gender === "female" ? FEMALE_POSES[posture] : MALE_POSES[posture];
+  if (mode === "sittingFloor") return buildSittingFloorPose(base, posture, gender);
+  if (mode === "sittingChair") return buildChairPose(base, posture, gender);
+  return base;
 }
 
 export const POSTURE_META: Record<

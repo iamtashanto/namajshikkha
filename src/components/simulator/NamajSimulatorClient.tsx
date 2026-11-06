@@ -46,6 +46,7 @@ import {
   POSTURE_META,
   SalahGender,
   SalahRole,
+  PostureMode,
 } from "@/src/lib/simulator";
 import {
   resolveStepRecitations,
@@ -212,6 +213,7 @@ export function NamajSimulatorClient() {
       ? urlRoleParam
       : "alone"
   );
+  const [postureMode, setPostureMode] = useState<PostureMode>("standing");
   const [surahChoices, setSurahChoices] = useState<Record<number, string>>({
     1: getDefaultSurahForRakat(1),
     2: getDefaultSurahForRakat(2),
@@ -1500,6 +1502,7 @@ export function NamajSimulatorClient() {
                 <PrayerFigure
                   posture={currentStep.posture}
                   gender={gender}
+                  postureMode={postureMode}
                   view={effectiveFigureView}
                   highlightParts={currentHighlights}
                   className="h-full w-full max-w-[340px]"

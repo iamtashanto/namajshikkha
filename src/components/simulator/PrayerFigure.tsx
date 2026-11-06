@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import {
   Posture,
   SalahGender,
+  PostureMode,
   BodyPartHighlight,
   JointPose,
   getPoseForPosture,
@@ -14,6 +15,7 @@ import {
 export interface PrayerFigureProps {
   posture: Posture;
   gender: SalahGender;
+  postureMode?: PostureMode;
   view?: "side" | "front";
   highlightParts?: BodyPartHighlight[];
   className?: string;
@@ -130,6 +132,7 @@ function HighlightCallout({
 export function PrayerFigure({
   posture,
   gender,
+  postureMode = "standing",
   view = "side",
   highlightParts = [],
   className = "w-full max-w-md",
@@ -137,13 +140,13 @@ export function PrayerFigure({
   showQiblaIndicator = true,
   showPostureBadge = false,
 }: PrayerFigureProps) {
-  const targetPose = getPoseForPosture(posture, gender);
+  const targetPose = getPoseForPosture(posture, gender, postureMode);
   const [pose, setPose] = useState<JointPose>(targetPose);
   const currentPoseRef = useRef<JointPose>(targetPose);
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const nextTarget = getPoseForPosture(posture, gender);
+    const nextTarget = getPoseForPosture(posture, gender, postureMode);
     const prefersReducedMotion =
       typeof window !== "undefined" &&
       window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
@@ -343,6 +346,36 @@ export function PrayerFigure({
             strokeLinecap="round"
           />
         </g>
+
+        {/* Chair for Sitting on Chair Mode */}
+        {postureMode === "sittingChair" && (
+          <g id="prayer-chair" opacity="0.95">
+            {view === "side" ? (
+              <>
+                {/* Side View Chair */}
+                <rect x="182" y="196" width="70" height="10" rx="3" fill="#059669" fillOpacity="0.4" stroke="#8d5b4c" strokeWidth="2" />
+                {/* Backrest */}
+                <line x1="248" y1="120" x2="248" y2="204" stroke="#8d5b4c" strokeWidth="5" strokeLinecap="round" />
+                <line x1="248" y1="135" x2="242" y2="135" stroke="#8d5b4c" strokeWidth="4" />
+                <line x1="248" y1="160" x2="242" y2="160" stroke="#8d5b4c" strokeWidth="4" />
+                {/* Legs */}
+                <line x1="186" y1="206" x2="186" y2="270" stroke="#8d5b4c" strokeWidth="5" strokeLinecap="round" />
+                <line x1="248" y1="206" x2="248" y2="270" stroke="#8d5b4c" strokeWidth="5" strokeLinecap="round" />
+                <line x1="186" y1="245" x2="248" y2="245" stroke="#8d5b4c" strokeWidth="3" />
+              </>
+            ) : (
+              <>
+                {/* Front View Chair */}
+                <rect x="164" y="196" width="72" height="10" rx="3" fill="#059669" fillOpacity="0.4" stroke="#8d5b4c" strokeWidth="2" />
+                <line x1="170" y1="206" x2="170" y2="270" stroke="#8d5b4c" strokeWidth="5" strokeLinecap="round" />
+                <line x1="230" y1="206" x2="230" y2="270" stroke="#8d5b4c" strokeWidth="5" strokeLinecap="round" />
+                <line x1="168" y1="120" x2="168" y2="200" stroke="#8d5b4c" strokeWidth="5" strokeLinecap="round" />
+                <line x1="232" y1="120" x2="232" y2="200" stroke="#8d5b4c" strokeWidth="5" strokeLinecap="round" />
+                <line x1="168" y1="125" x2="232" y2="125" stroke="#8d5b4c" strokeWidth="5" strokeLinecap="round" />
+              </>
+            )}
+          </g>
+        )}
 
         {view === "side" ? (
           <g id="figure-side-view">

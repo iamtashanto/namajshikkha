@@ -24,6 +24,7 @@ export enum Posture {
 
 export type SalahGender = "male" | "female";
 export type SalahRole = "alone" | "imam" | "muqtadi";
+export type PostureMode = "standing" | "sittingFloor" | "sittingChair";
 
 export interface GenderVariantFlags {
   handRaiseHeight: "earlobes" | "shoulders";
