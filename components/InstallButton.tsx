@@ -3,6 +3,9 @@
 import { usePWAInstall } from "@/hooks/usePWAInstall";
 import { Download, Smartphone } from "lucide-react";
 
+const APK_RELEASE_URL =
+  "https://github.com/iamtashanto/namajshikkha/releases/download/v1.0.0/namajshikkha.apk";
+
 interface InstallButtonProps {
     variant?: "navbar" | "footer" | "banner";
     className?: string;
@@ -15,8 +18,7 @@ export function InstallButton({ variant = "navbar", className = "" }: InstallBut
         return (
             <div className={`flex flex-col gap-2.5 ${className}`}>
                 <a
-                    href="/download/namajshikkha.apk"
-                    download="namajshikkha.apk"
+                    href={APK_RELEASE_URL}
                     className="flex w-full items-center justify-center gap-2 rounded-xl bg-gold-600 px-6 py-3 text-sm font-bold text-gray-950 shadow-xl transition-all hover:bg-gold-500 active:scale-[0.98] dark:bg-gold-500 dark:hover:bg-gold-400"
                 >
                     <Smartphone className="h-5 w-5" />
@@ -38,8 +40,7 @@ export function InstallButton({ variant = "navbar", className = "" }: InstallBut
     return (
         <div className="flex items-center gap-1.5">
             <a
-                href="/download/namajshikkha.apk"
-                download="namajshikkha.apk"
+                href={APK_RELEASE_URL}
                 className={`flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3 py-1.5 text-[11px] font-bold text-white shadow transition-all hover:bg-emerald-700 active:scale-95 md:px-3.5 md:py-2 md:text-xs dark:bg-emerald-500 dark:hover:bg-emerald-400 ${className}`}
                 title="Android APK ডাউনলোড করুন"
             >
