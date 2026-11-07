@@ -3,10 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import {
   Menu,
   X,
-  BookOpen,
   Sun,
   Moon,
   Search,
@@ -43,8 +43,15 @@ export default function Navbar() {
             href="/"
             className="flex items-center gap-2.5 group shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-xl"
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-700 shadow-md shadow-emerald-200 transition-transform group-hover:scale-105 dark:shadow-emerald-900/30">
-              <BookOpen className="h-5 w-5 text-white" />
+            <div className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl shadow-md transition-transform group-hover:scale-105 border border-emerald-200/60 dark:border-emerald-800/60 bg-emerald-950">
+              <Image
+                src="/logo.png"
+                alt="নামাজ শিক্ষা লোগো"
+                width={40}
+                height={40}
+                className="h-full w-full object-cover"
+                priority
+              />
             </div>
             <div className="flex flex-col">
               <span className="bangla-text text-lg font-bold leading-tight text-emerald-800 dark:text-emerald-400">

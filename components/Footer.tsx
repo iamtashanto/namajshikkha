@@ -1,5 +1,6 @@
-import { Heart, BookOpen, ExternalLink, Mail, Github, Twitter, Facebook, Linkedin, Youtube } from "lucide-react";
+import { Heart, ExternalLink, Mail, Github, Twitter, Facebook, Linkedin, Youtube } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { InstallButton } from "./InstallButton";
 import { siteConfig } from "@/src/config/site";
 
@@ -27,8 +28,14 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-700 shadow-lg shadow-emerald-900/20">
-                <BookOpen className="h-6 w-6 text-white" />
+              <div className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-xl shadow-lg shadow-emerald-900/40 border border-emerald-700/50 bg-emerald-950">
+                <Image
+                  src="/logo.png"
+                  alt="নামাজ শিক্ষা লোগো"
+                  width={44}
+                  height={44}
+                  className="h-full w-full object-cover"
+                />
               </div>
               <div className="flex flex-col">
                 <span className="bangla-text text-xl font-bold leading-tight text-white dark:text-emerald-400">
