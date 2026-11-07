@@ -154,13 +154,13 @@ export default function Navbar() {
         id="mobile-nav-panel"
         aria-hidden={!isOpen}
         inert={!isOpen}
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+        className={`md:hidden overflow-y-auto transition-all duration-300 ease-in-out ${
           isOpen
-            ? "max-h-[380px] border-t border-emerald-100 bg-white dark:border-dark-border dark:bg-dark-card"
+            ? "max-h-[calc(100vh-4rem-4.5rem)] border-t border-emerald-100 bg-white shadow-xl dark:border-dark-border dark:bg-dark-card"
             : "max-h-0 pointer-events-none"
         }`}
       >
-        <div className="space-y-1 px-4 py-3">
+        <div className="space-y-1 px-4 pt-3 pb-6">
           {primaryNavLinks.map((link) => (
             <Link
               key={link.href}
@@ -171,7 +171,7 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
-          <div className="pt-2 border-t border-gray-100 dark:border-dark-border sm:hidden">
+          <div className="pt-3 pb-2 border-t border-gray-100 dark:border-dark-border sm:hidden">
             <InstallButton />
           </div>
         </div>
